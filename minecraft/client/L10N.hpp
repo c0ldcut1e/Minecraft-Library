@@ -1,0 +1,15 @@
+#pragma once
+
+#include "mlink/MLink.hpp"
+
+namespace mc
+{
+    class L10N
+    {
+    public:
+        static const wchar_t *GetString(int stringId)
+        {
+            return MLINK_FUNC(const wchar_t *, 0x02F24864, int)(stringId);
+        }
+    };
+} // namespace mc

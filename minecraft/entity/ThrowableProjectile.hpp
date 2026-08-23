@@ -1,0 +1,46 @@
+#pragma once
+
+#include <cstdint>
+
+#include "mlink/MLink.hpp"
+
+#include "Entity.hpp"
+#include "LivingEntity.hpp"
+#include "MinecraftLib.hpp"
+#include "internal/shared_ptr.hpp"
+
+namespace mc
+{
+    class ThrowableProjectile : public Entity
+    {
+    public:
+        void getOwner(mboost::shared_ptr<LivingEntity> &owner)
+        {
+            MLINK_FUNC(void, 0x029F1978, ThrowableProjectile *, mboost::shared_ptr<LivingEntity> &)(this, owner);
+        }
+
+        uint32_t field_0x350;
+        uint32_t field_0x354;
+        uint32_t field_0x358;
+        uint32_t field_0x35C;
+        uint32_t field_0x360;
+        uint32_t field_0x364;
+        uint32_t field_0x368;
+        uint32_t field_0x36C;
+        uint32_t field_0x370;
+        uint32_t field_0x374;
+        uint32_t field_0x378;
+        uint32_t field_0x37C;
+        uint32_t field_0x380;
+        uint32_t field_0x384;
+        uint32_t field_0x388;
+        uint32_t field_0x38C;
+        uint32_t field_0x390;
+        uint32_t field_0x394;
+        uint32_t field_0x398;
+        uint32_t field_0x39C;
+        uint32_t field_0x3A0;
+        uint32_t field_0x3A4;
+    };
+    MC_CHECK_SIZE(ThrowableProjectile, 0x3A8);
+} // namespace mc
