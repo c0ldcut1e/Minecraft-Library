@@ -235,5 +235,20 @@ namespace mc
         {
             MLINK_FUNC(void, 0x30E4B54, float, float, float)(x, y, z);
         }
+
+        static void enablePolygonOffset()
+        {
+            MLINK_FUNC(void, 0x03124D04)();
+        }
+
+        static void disablePolygonOffset()
+        {
+            MLINK_FUNC(void, 0x03124D20)();
+        }
+
+        static void polygonOffset(float param_1, float param_2)
+        {
+            MLINK_FUNC(void, 0x030E52D4, float, float)(param_1, param_2);
+        }
     };
 } // namespace mc
