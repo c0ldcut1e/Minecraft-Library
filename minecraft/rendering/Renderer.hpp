@@ -69,6 +69,11 @@ namespace mc
             MLINK_FUNC(void, 0x03417520, Renderer *, void *)(this, ptr);
         }
 
+        void ResetRenderState()
+        {
+            MLINK_FUNC(void, 0x03414B58, Renderer *)(this);
+        }
+
         void StateSetFaceCull(bool unk1)
         {
             MLINK_FUNC(void, 0x03417E48, Renderer *, bool)(this, unk1);
