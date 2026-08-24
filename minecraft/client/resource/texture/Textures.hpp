@@ -4,6 +4,7 @@
 
 #include "mlink/MLink.hpp"
 
+#include "client/resource/ArrayWithLength.hpp"
 #include "internal/basic_string.hpp"
 #include "rendering/buffer/BufferedImage.hpp"
 
@@ -15,6 +16,11 @@ namespace mc
         void bind(int textureId)
         {
             MLINK_FUNC(void, 0x0338EE78, Textures *, int)(this, textureId);
+        }
+
+        void replaceTextureDirect(ArrayWithLength<int> pixels, int width, int height, int textureId)
+        {
+            MLINK_FUNC(void, 0x03390860, Textures *, ArrayWithLength<int>, int, int, int)(this, pixels, width, height, textureId);
         }
 
         void bindTexture(const mstd::basic_string<wchar_t> &str)
