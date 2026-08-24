@@ -7,10 +7,10 @@
 #include "MinecraftLib.hpp"
 #include "System.hpp"
 
+class VPADStatus;
+
 namespace mc
 {
-    class VPADStatus;
-
     class CInput
     {
     public:
