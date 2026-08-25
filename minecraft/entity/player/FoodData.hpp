@@ -8,7 +8,6 @@
 
 namespace mc
 {
-    // Player owns FoodData, so including Player.hpp here would create a cycle.
     class Player;
 
     class FoodData

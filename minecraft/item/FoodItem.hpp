@@ -19,8 +19,6 @@ namespace mc
     class FoodItem : public Item
     {
     public:
-        // These constructors initialize the Item base in the game code. Do not construct
-        // FoodItem through C++'s normal base-construction path.
         static FoodItem *__ct(FoodItem *ptr, int nutrition, float saturationModifier, bool meat)
         {
             return MLINK_FUNC(FoodItem *, 0x02413908, FoodItem *, int, float, bool)(ptr, nutrition, saturationModifier, meat);

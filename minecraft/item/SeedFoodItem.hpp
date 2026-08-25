@@ -18,8 +18,6 @@ namespace mc
     class SeedFoodItem : public FoodItem
     {
     public:
-        // The game constructor initializes FoodItem itself; use this placement-style
-        // entry point to avoid running the Item base constructor twice.
         static SeedFoodItem *__ct(SeedFoodItem *ptr, int nutrition, float saturationModifier, Block *cropBlock, Block *soilBlock)
         {
             return MLINK_FUNC(SeedFoodItem *, 0x028851D0, SeedFoodItem *, int, float, Block *, Block *)(ptr, nutrition, saturationModifier, cropBlock,

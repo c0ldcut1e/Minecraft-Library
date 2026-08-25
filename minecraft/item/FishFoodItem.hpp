@@ -17,8 +17,6 @@ namespace mc
     class FishFoodItem : public FoodItem
     {
     public:
-        // The game constructor initializes FoodItem itself; use this placement-style
-        // entry point to avoid running the Item base constructor twice.
         static FishFoodItem *__ct(FishFoodItem *ptr, bool cooked)
         {
             return MLINK_FUNC(FishFoodItem *, 0x02376780, FishFoodItem *, bool)(ptr, cooked);
