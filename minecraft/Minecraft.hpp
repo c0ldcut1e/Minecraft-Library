@@ -80,6 +80,7 @@
 #include "entity/animal/Cow.hpp"
 #include "entity/animal/Donkey.hpp"
 #include "entity/animal/Horse.hpp"
+#include "entity/animal/Llama.hpp"
 #include "entity/animal/Mule.hpp"
 #include "entity/animal/MushroomCow.hpp"
 #include "entity/animal/Ocelot.hpp"
