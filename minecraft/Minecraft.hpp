@@ -101,6 +101,7 @@
 #include "entity/global/GlobalEntity.hpp"
 #include "entity/global/LightningBolt.hpp"
 #include "entity/monster/AbstractSkeleton.hpp"
+#include "entity/monster/Blaze.hpp"
 #include "entity/monster/CaveSpider.hpp"
 #include "entity/monster/Creeper.hpp"
 #include "entity/monster/Drowned.hpp"
