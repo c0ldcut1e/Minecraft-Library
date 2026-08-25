@@ -3,7 +3,11 @@
 
 #include <cstdint>
 
+#include "mlink/MLink.hpp"
+
 #include "MinecraftLib.hpp"
+#include "internal/VTable.hpp"
+#include "network/nn/nex/SocketDriver.hpp"
 #include "utils/Common.hpp"
 
 #define AF_INET 2
@@ -133,6 +137,99 @@ namespace nn::nex
     class BerkeleySocketDriver
     {
     public:
+        class BerkeleySocket
+        {
+        public:
+            BerkeleySocket()
+            {
+                MLINK_FUNC(void, 0x03704E98, BerkeleySocket *)(this);
+            }
+
+            ~BerkeleySocket()
+            {
+                MLINK_FUNC(void, 0x03704F48, BerkeleySocket *)(this);
+            }
+
+            bool Bind(uint16_t &portNumber)
+            {
+                return MLINK_FUNC(bool, 0x037050C8, BerkeleySocket *, uint16_t *)(this, &portNumber);
+            }
+
+            void Close()
+            {
+                MLINK_FUNC(void, 0x03705058, BerkeleySocket *)(this);
+            }
+
+            SocketDriver::_Result Connect(const SocketDriver::InetAddress &address)
+            {
+                return MLINK_FUNC(SocketDriver::_Result, 0x03705478, BerkeleySocket *, const SocketDriver::InetAddress *)(this, &address);
+            }
+
+            SocketDriver::_Result GetLastSocketError(int errorCode) const
+            {
+                return MLINK_FUNC(SocketDriver::_Result, 0x03704F5C, const BerkeleySocket *, int)(this, errorCode);
+            }
+
+            bool Open(SocketDriver::_TrafficType trafficType)
+            {
+                return MLINK_FUNC(bool, 0x03704F60, BerkeleySocket *, SocketDriver::_TrafficType)(this, trafficType);
+            }
+
+            SocketDriver::_Result Recv(uint8_t *buffer, uint32_t size, uint32_t *receivedSize)
+            {
+                return MLINK_FUNC(SocketDriver::_Result, 0x03705528, BerkeleySocket *, uint8_t *, uint32_t, uint32_t *)(this, buffer, size,
+                                                                                                                        receivedSize);
+            }
+
+            SocketDriver::_Result RecvFrom(uint8_t *buffer, uint32_t size, SocketDriver::InetAddress *address, uint32_t *receivedSize,
+                                           SocketDriver::_SocketFlag flags)
+            {
+                return MLINK_FUNC(SocketDriver::_Result, 0x03705264, BerkeleySocket *, uint8_t *, uint32_t, SocketDriver::InetAddress *, uint32_t *,
+                                  SocketDriver::_SocketFlag)(this, buffer, size, address, receivedSize, flags);
+            }
+
+            SocketDriver::_Result Send(const uint8_t *buffer, uint32_t size, uint32_t *sentSize)
+            {
+                return MLINK_FUNC(SocketDriver::_Result, 0x037055F0, BerkeleySocket *, const uint8_t *, uint32_t, uint32_t *)(this, buffer, size,
+                                                                                                                              sentSize);
+            }
+
+            SocketDriver::_Result SendTo(const uint8_t *buffer, uint32_t size, const SocketDriver::InetAddress &address, uint32_t *sentSize)
+            {
+                return MLINK_FUNC(SocketDriver::_Result, 0x03705380, BerkeleySocket *, const uint8_t *, uint32_t, const SocketDriver::InetAddress *,
+                                  uint32_t *)(this, buffer, size, &address, sentSize);
+            }
+
+            bool SetAsync(bool enabled)
+            {
+                return MLINK_FUNC(bool, 0x03705700, BerkeleySocket *, bool)(this, enabled);
+            }
+
+            SocketDriver::_Result SetMulticastAddress(uint32_t address)
+            {
+                return MLINK_FUNC(SocketDriver::_Result, 0x037056B8, BerkeleySocket *, uint32_t)(this, address);
+            }
+
+            bool SetTTL(uint8_t ttl)
+            {
+                return MLINK_FUNC(bool, 0x037056C0, BerkeleySocket *, uint8_t)(this, ttl);
+            }
+
+            bool Shutdown()
+            {
+                return MLINK_FUNC(bool, 0x03705090, BerkeleySocket *)(this);
+            }
+
+            bool asynchronous;
+            uint8_t field_0x1;
+            uint8_t field_0x2;
+            uint8_t field_0x3;
+            mc::VTable *vtable;
+            int descriptor;
+            uint32_t *networkMetrics;
+        };
+        MC_CHECK_SIZE(BerkeleySocket, 0x10);
+
         static void *GetDefaultSendMultiParameter()
         {
             return (void *) 0x10A9B694;
