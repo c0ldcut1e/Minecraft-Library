@@ -46,6 +46,16 @@ namespace mc
             MLINK_FUNC(void, 0x03305DF0, ServerConnection *, Socket *)(this, socket);
         }
 
+        void stop()
+        {
+            MLINK_FUNC(void, 0x0330610C, ServerConnection *)(this);
+        }
+
+        void tick()
+        {
+            MLINK_FUNC(void, 0x033067D0, ServerConnection *)(this);
+        }
+
         uint32_t field_0x0;
         uint32_t field_0x4;
         uint32_t field_0x8;

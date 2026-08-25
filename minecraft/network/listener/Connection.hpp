@@ -14,8 +14,6 @@
 
 namespace mc
 {
-    class PacketListener;
-
     class Connection
     {
     public:
@@ -28,6 +26,11 @@ namespace mc
         bool getAndSetRunning(bool running)
         {
             return MLINK_FUNC(bool, 0x0222E908, Connection *, bool)(this, running);
+        }
+
+        void _init()
+        {
+            MLINK_FUNC(void, 0x0222E978, Connection *)(this);
         }
 
         void readTick()

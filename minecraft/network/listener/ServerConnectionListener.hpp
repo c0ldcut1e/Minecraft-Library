@@ -44,6 +44,16 @@ namespace mc
             MLINK_FUNC(void, 0x03306558, ServerConnectionListener *)(this);
         }
 
+        bool isServerPacketListener()
+        {
+            return MLINK_FUNC(bool, 0x03308C28, ServerConnectionListener *)(this);
+        }
+
+        bool isDisconnected()
+        {
+            return MLINK_FUNC(bool, 0x03308C30, ServerConnectionListener *)(this);
+        }
+
         uint32_t field_0x0;
         Connection *connection;
         bool done;
