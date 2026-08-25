@@ -128,6 +128,7 @@
 #include "item/BucketItem.hpp"
 #include "item/DyeColor.hpp"
 #include "item/EmptyMapItem.hpp"
+#include "item/FoodItem.hpp"
 #include "item/InteractionResultHolder.hpp"
 #include "item/Item.hpp"
 #include "item/ItemCooldowns.hpp"
