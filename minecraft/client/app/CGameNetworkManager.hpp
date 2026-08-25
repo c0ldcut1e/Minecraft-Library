@@ -4,9 +4,16 @@
 
 #include "mlink/MLink.hpp"
 
+#include "MinecraftLib.hpp"
+#include "PlatformTypes.hpp"
+#include "client/C4JEvent.hpp"
+#include "client/Minecraft.hpp"
 #include "entity/player/PlayerUID.hpp"
+#include "internal/vector.hpp"
+#include "network/listener/ClientPacketListener.hpp"
 #include "network/player/INetworkPlayer.hpp"
 #include "network/session/FriendSessionInfo.hpp"
+#include "network/session/GameSessionData.hpp"
 
 namespace mc
 {
@@ -36,6 +43,16 @@ namespace mc
         static void SetJoiningMiniGameId(uint32_t miniGameId)
         {
             *MLink::PointerFromAddress<uint32_t>(0x104F6298) = miniGameId;
+        }
+
+        bool StartNetworkGame(Minecraft *minecraft, void *data)
+        {
+            return MLINK_FUNC(bool, 0x02D54FFC, CGameNetworkManager *, Minecraft *, void *)(this, minecraft, data);
+        }
+
+        bool _RunNetworkGame(void *data)
+        {
+            return MLINK_FUNC(bool, 0x02D56E48, CGameNetworkManager *, void *)(this, data);
         }
 
         void AddLocalPlayerByUserIndex(int userIndex)
@@ -173,6 +190,22 @@ namespace mc
             return MLINK_FUNC(bool, 0x02D574B0, CGameNetworkManager *, int)(this, userIndex);
         }
 
+        bool GetGameSessionInfo(int userIndex, uint32_t sessionId, FriendSessionInfo *sessionInfo)
+        {
+            return MLINK_FUNC(bool, 0x02D574E0, CGameNetworkManager *, int, uint32_t, FriendSessionInfo *)(this, userIndex, sessionId, sessionInfo);
+        }
+
+        void SetSessionsUpdatedCallback(void (*callback)(void *), void *data)
+        {
+            MLINK_FUNC(void, 0x02D574F8, CGameNetworkManager *, void (*)(void *), void *)(this, callback, data);
+        }
+
+        void GetFullFriendSessionInfo(FriendSessionInfo *sessionInfo, void (*callback)(bool, void *), void *data)
+        {
+            MLINK_FUNC(void, 0x02D57510, CGameNetworkManager *, FriendSessionInfo *, void (*)(bool, void *), void *)(this, sessionInfo, callback,
+                                                                                                                     data);
+        }
+
         int JoinGame(FriendSessionInfo *fsInfo, int localUsersMask, bool joinFromInvite)
         {
             return MLINK_FUNC(int, 0x02D57558, CGameNetworkManager *, FriendSessionInfo *, int, bool)(this, fsInfo, localUsersMask, joinFromInvite);
@@ -181,6 +214,11 @@ namespace mc
         void LeaveGame(bool keepSession)
         {
             MLINK_FUNC(void, 0x02D578C8, CGameNetworkManager *, bool)(this, keepSession);
+        }
+
+        static void CancelJoinGame(void *data)
+        {
+            MLINK_FUNC(void, 0x02D578C4, void *)(data);
         }
 
         void PlayerJoining(INetworkPlayer *pNetworkPlayer)
@@ -308,9 +346,9 @@ namespace mc
             MLINK_FUNC(void, 0x02D54F1C, CGameNetworkManager *)(this);
         }
 
-        void CorrectErrorIDS(int errorId)
+        int CorrectErrorIDS(int errorId)
         {
-            MLINK_FUNC(void, 0x02D54F84, CGameNetworkManager *, int)(this, errorId);
+            return MLINK_FUNC(int, 0x02D54F84, CGameNetworkManager *, int)(this, errorId);
         }
 
         void RegisterPlayerChangedCallback(int index, void *(*callback)(void *, INetworkPlayer *, bool), void *data)
@@ -397,5 +435,151 @@ namespace mc
         {
             return MLINK_FUNC(bool, 0x02D591F4, CGameNetworkManager *)(this);
         }
+
+        int GetLockedProfile()
+        {
+            return MLINK_FUNC(int, 0x02D5AC20, CGameNetworkManager *)(this);
+        }
+
+        bool IsSignedInLive(int playerIndex)
+        {
+            return MLINK_FUNC(bool, 0x02D5AD28, CGameNetworkManager *, int)(this, playerIndex);
+        }
+
+        bool AllowedToPlayMultiplayer(int playerIndex)
+        {
+            return MLINK_FUNC(bool, 0x02D5AD40, CGameNetworkManager *, int)(this, playerIndex);
+        }
+
+        bool IsHandlingBootInvite()
+        {
+            return MLINK_FUNC(bool, 0x02D5AD70, CGameNetworkManager *)(this);
+        }
+
+        void WiiU_ClearIsHandlingBootInvite()
+        {
+            MLINK_FUNC(void, 0x02D5AD88)();
+        }
+
+        void WiiU_ShowErrorViewer()
+        {
+            MLINK_FUNC(void, 0x02D5AD98)();
+        }
+
+        void ShowConnectOnlineNintendoProgress(int userIndex, int (*callback)(void *, bool, int, int), void *data)
+        {
+            MLINK_FUNC(void, 0x02D5ADA8, CGameNetworkManager *, int, int (*)(void *, bool, int, int), void *)(this, userIndex, callback, data);
+        }
+
+        void WiiU_ReleaseForeground()
+        {
+            MLINK_FUNC(void, 0x02D5ADC4)();
+        }
+
+        void WiiU_AcquiredForeground()
+        {
+            MLINK_FUNC(void, 0x02D5AE04)();
+        }
+
+        void WiiU_ReleaseCallback()
+        {
+            MLINK_FUNC(void, 0x02D5AE54)();
+        }
+
+        void WiiU_SetBootFromFriendList()
+        {
+            MLINK_FUNC(void, 0x02D5AE64)();
+        }
+
+        bool IsUGCRestricted(int playerIndex)
+        {
+            return MLINK_FUNC(bool, 0x02D5AF28, CGameNetworkManager *, int)(this, playerIndex);
+        }
+
+        bool ModeAllowsUGC(Minecraft::EMiniGameId miniGameId)
+        {
+            return MLINK_FUNC(bool, 0x02D5AFC4, CGameNetworkManager *, Minecraft::EMiniGameId)(this, miniGameId);
+        }
+
+        bool IsUGCRestrictedMode(int playerIndex, Minecraft::EMiniGameId miniGameId)
+        {
+            return MLINK_FUNC(bool, 0x02D5B008, CGameNetworkManager *, int, Minecraft::EMiniGameId)(this, playerIndex, miniGameId);
+        }
+
+        bool IsFriendsOnlyUGC(int playerIndex)
+        {
+            return MLINK_FUNC(bool, 0x02D5B090, CGameNetworkManager *, int)(this, playerIndex);
+        }
+
+        int GetMaxPlayers(Minecraft::EMiniGameId miniGameId, uint32_t gameModeId)
+        {
+            return MLINK_FUNC(int, 0x02D5B204, CGameNetworkManager *, Minecraft::EMiniGameId, uint32_t)(this, miniGameId, gameModeId);
+        }
+
+        int GetMaxPlayers(GameSessionData *sessionData)
+        {
+            return MLINK_FUNC(int, 0x02D5B244, CGameNetworkManager *, GameSessionData *)(this, sessionData);
+        }
+
+        int GetMaxPlayers()
+        {
+            return MLINK_FUNC(int, 0x02D5B260, CGameNetworkManager *)(this);
+        }
+
+        void RecvInviteGUI()
+        {
+            MLINK_FUNC(void, 0x02D5B340, CGameNetworkManager *)(this);
+        }
+
+        void ClearInviteInfo()
+        {
+            MLINK_FUNC(void, 0x02D5B358, CGameNetworkManager *)(this);
+        }
+
+        void AttemptPSNSignIn(int (*callback)(void *, bool, int), void *data, bool value, int userIndex)
+        {
+            MLINK_FUNC(void, 0x02D5B328, CGameNetworkManager *, int (*)(void *, bool, int), void *, bool, int)(this, callback, data, value,
+                                                                                                               userIndex);
+        }
+
+        void RemoveCreatedConnection(ClientPacketListener *connection)
+        {
+            MLINK_FUNC(void, 0x02D59204, CGameNetworkManager *, ClientPacketListener *)(this, connection);
+        }
+
+        C4JEventImpl *serverStoppedEvent;
+        C4JEventImpl *serverReadyEvent;
+        bool initialised;
+        uint8_t field_0x9;
+        uint8_t field_0xA;
+        uint8_t field_0xB;
+        uint32_t field_0xC;
+        uint32_t field_0x10;
+        uint32_t field_0x14;
+        int joiningReadyPercentage;
+        uint32_t field_0x1C;
+        uint32_t field_0x20;
+        uint32_t field_0x24;
+        uint32_t field_0x28;
+        uint32_t field_0x2C;
+        uint32_t field_0x30;
+        uint32_t field_0x34;
+        uint32_t field_0x38;
+        uint32_t field_0x3C;
+        uint32_t field_0x40;
+        uint32_t field_0x44;
+        uint32_t field_0x48;
+        uint32_t field_0x4C;
+        uint32_t field_0x50;
+        uint8_t field_0x54;
+        bool lastDisconnectWasLostRoomOnly;
+        uint8_t field_0x56;
+        bool networkThreadRunning;
+        uint32_t field_0x58;
+        mstd::vector<ClientPacketListener *> createdConnections;
+        OSFastMutex createdConnectionsMutex;
+        uint32_t field_0x98;
+        uint32_t field_0x9C;
     };
+    MC_CHECK_SIZE(CGameNetworkManager, 0xA0);
 } // namespace mc

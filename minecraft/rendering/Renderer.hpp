@@ -5,19 +5,7 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
-
-#if __has_include(<gx2/surface.h>)
-#include <gx2/surface.h>
-
-#else
-struct GX2ColorBuffer;
-
-struct GX2DepthBuffer
-{
-    uint8_t data[0xAC];
-};
-MC_CHECK_SIZE(GX2DepthBuffer, 0xAC);
-#endif
+#include "PlatformTypes.hpp"
 
 namespace mc
 {
