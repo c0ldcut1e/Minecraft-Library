@@ -29,6 +29,16 @@ namespace mc
                                                                                                                          callback, data);
         }
 
+        static void CancelJoinGame()
+        {
+            MLINK_FUNC(void, 0x0346E508)();
+        }
+
+        static void FakeLocalPlayerJoined()
+        {
+            MLINK_FUNC(void, 0x0346E50C)();
+        }
+
         uint32_t field_0x0;
         uint32_t field_0x4;
         uint32_t field_0x8;

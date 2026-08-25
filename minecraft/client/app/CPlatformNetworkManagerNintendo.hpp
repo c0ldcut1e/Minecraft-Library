@@ -6,6 +6,7 @@
 
 #include "CGameNetworkManager.hpp"
 #include "MinecraftLib.hpp"
+#include "entity/player/PlayerUID.hpp"
 #include "internal/vector.hpp"
 #include "network/manager/NQRNetworkManager.hpp"
 #include "network/manager/NQRNetworkManager_WiiU.hpp"
@@ -20,6 +21,19 @@ namespace mc
     class CPlatformNetworkManagerNintendo
     {
     public:
+        class PlayerFlags
+        {
+        public:
+            PlayerFlags(INetworkPlayer *player, uint32_t flagCount)
+            {
+                MLINK_FUNC(void, 0x0346CA24, PlayerFlags *, INetworkPlayer *, uint32_t)(this, player, flagCount);
+            }
+
+            INetworkPlayer *player;
+            uint8_t *flags;
+            uint32_t flagBitCount;
+        };
+
         struct FriendSessionEntry
         {
             uint32_t sessionId;
@@ -36,6 +50,11 @@ namespace mc
         static CPlatformNetworkManagerNintendo *GetInstance()
         {
             return MLink::DereferencePointerFromOffset<CPlatformNetworkManagerNintendo>(0x104C6FE4);
+        }
+
+        static NetworkPlayerNintendo *getNetworkPlayer(NQRNetworkPlayer *player)
+        {
+            return MLINK_FUNC(NetworkPlayerNintendo *, 0x03467F04, NQRNetworkPlayer *)(player);
         }
 
         NetworkPlayerNintendo *addNetworkPlayer(NQRNetworkPlayer *player)
@@ -61,6 +80,12 @@ namespace mc
         void ClearFriendsSessions()
         {
             MLINK_FUNC(void, 0x0346E094, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        void HandleDataReceived(NQRNetworkPlayer *sender, NQRNetworkPlayer *receiver, uint8_t *data, uint32_t size)
+        {
+            MLINK_FUNC(void, 0x03467F38, CPlatformNetworkManagerNintendo *, NQRNetworkPlayer *, NQRNetworkPlayer *, uint8_t *,
+                       uint32_t)(this, sender, receiver, data, size);
         }
 
         void ForceFriendsSessionRefresh()
@@ -129,6 +154,16 @@ namespace mc
             MLINK_FUNC(void, 0x0346992C, CPlatformNetworkManagerNintendo *, NQRNetworkPlayer *)(this, player);
         }
 
+        bool isSystemPrimaryPlayer(NQRNetworkPlayer *player)
+        {
+            return MLINK_FUNC(bool, 0x0346964C, CPlatformNetworkManagerNintendo *, NQRNetworkPlayer *)(this, player);
+        }
+
+        void removeNetworkPlayer(NQRNetworkPlayer *player)
+        {
+            MLINK_FUNC(void, 0x03469898, CPlatformNetworkManagerNintendo *, NQRNetworkPlayer *)(this, player);
+        }
+
         bool IsHost()
         {
             return MLINK_FUNC(bool, 0x0346BAB8, CPlatformNetworkManagerNintendo *)(this);
@@ -152,6 +187,31 @@ namespace mc
         bool IsMatchmakingEnabled()
         {
             return MLINK_FUNC(bool, 0x0346BDB8, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        bool IsInStatsEnabledSession()
+        {
+            return MLINK_FUNC(bool, 0x0346BDB0, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        bool IsHandlingBootInvite()
+        {
+            return MLINK_FUNC(bool, 0x0346BDCC, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        bool SessionHasSpace(uint32_t playerCount)
+        {
+            return MLINK_FUNC(bool, 0x0346BDDC, CPlatformNetworkManagerNintendo *, uint32_t)(this, playerCount);
+        }
+
+        bool SessionHasMii(int userIndex)
+        {
+            return MLINK_FUNC(bool, 0x0346BDF0, CPlatformNetworkManagerNintendo *, int)(this, userIndex);
+        }
+
+        void SystemFlagReset()
+        {
+            MLINK_FUNC(void, 0x0346BE20, CPlatformNetworkManagerNintendo *)(this);
         }
 
         bool IsLocalGame()
@@ -184,6 +244,11 @@ namespace mc
             MLINK_FUNC(void, 0x0346B76C, CPlatformNetworkManagerNintendo *, int)(this, userIndex);
         }
 
+        void AddLocalPlayerByPlayerUID(PlayerUID uid)
+        {
+            MLINK_FUNC(void, 0x0346B888, CPlatformNetworkManagerNintendo *, PlayerUID)(this, uid);
+        }
+
         void SetLocalGame(bool value)
         {
             MLINK_FUNC(void, 0x0346C204, CPlatformNetworkManagerNintendo *, bool)(this, value);
@@ -202,6 +267,31 @@ namespace mc
         bool usingLanMode()
         {
             return MLINK_FUNC(bool, 0x0346C3BC, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        bool usingAdhocMode()
+        {
+            return MLINK_FUNC(bool, 0x0346C364, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        void setAdhocMode(bool enabled)
+        {
+            MLINK_FUNC(void, 0x0346C36C, CPlatformNetworkManagerNintendo *, bool)(this, enabled);
+        }
+
+        bool isAdhocConnected()
+        {
+            return MLINK_FUNC(bool, 0x0346C374, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        void connectToAdhoc()
+        {
+            MLINK_FUNC(void, 0x0346C37C, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        bool isAdhocModeChangeInProgress()
+        {
+            return MLINK_FUNC(bool, 0x0346C384, CPlatformNetworkManagerNintendo *)(this);
         }
 
         void setLanMode(bool enabled)
@@ -244,6 +334,11 @@ namespace mc
             MLINK_FUNC(void, 0x0346D66C, CPlatformNetworkManagerNintendo *)(this);
         }
 
+        int GetOutstandingAckCount(INetworkPlayer *player)
+        {
+            return MLINK_FUNC(int, 0x0346C528, CPlatformNetworkManagerNintendo *, INetworkPlayer *)(this, player);
+        }
+
         void UpdateAndSetGameSessionData(INetworkPlayer *player)
         {
             MLINK_FUNC(void, 0x0346C88C, CPlatformNetworkManagerNintendo *, INetworkPlayer *)(this, player);
@@ -251,6 +346,7 @@ namespace mc
 
         void (*sessionsUpdatedCallback)(void *data);
 
+        MC_CHECK_SIZE(PlayerFlags, 0xC);
         MC_CHECK_SIZE(FriendSessionEntry, 0x24);
         uint32_t field_0x0;
         uint32_t field_0x4;

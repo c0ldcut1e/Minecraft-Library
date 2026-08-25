@@ -6,11 +6,10 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/player/PlayerUID.hpp"
+#include "network/manager/NQRNetworkManager.hpp"
 
 namespace mc
 {
-    class NQRNetworkManager_WiiU;
-
     class NQRNetworkPlayer
     {
     public:
@@ -19,6 +18,13 @@ namespace mc
             NNP_TYPE_HOST = 0,
             NNP_TYPE_LOCAL,
             NNP_TYPE_REMOTE,
+        };
+
+        enum class AckFlags : uint8_t
+        {
+            Unknown1 = 1,
+            Request  = 2,
+            Return   = 3,
         };
 
         class Custom
@@ -30,10 +36,10 @@ namespace mc
             }
         };
 
-        NQRNetworkPlayer(NQRNetworkManager_WiiU *manager, eNQRNetworkPlayerType type, bool isHost, uint64_t stationId, int localPlayerIdx,
-                         PlayerUID *uid, const char *name, const wchar_t *wname)
+        NQRNetworkPlayer(NQRNetworkManager *manager, eNQRNetworkPlayerType type, bool isHost, uint64_t stationId, int localPlayerIdx, PlayerUID *uid,
+                         const char *name, const wchar_t *wname)
         {
-            MLINK_FUNC(void, 0x0346721C, NQRNetworkPlayer *, NQRNetworkManager_WiiU *, eNQRNetworkPlayerType, bool, uint64_t, int, PlayerUID *,
+            MLINK_FUNC(void, 0x0346721C, NQRNetworkPlayer *, NQRNetworkManager *, eNQRNetworkPlayerType, bool, uint64_t, int, PlayerUID *,
                        const char *, const wchar_t *)(this, manager, type, isHost, stationId, localPlayerIdx, uid, name, wname);
         }
 
@@ -47,9 +53,41 @@ namespace mc
             return MLINK_FUNC(uint32_t, 0x034670F4, NQRNetworkPlayer *)(this);
         }
 
-        const wchar_t *getMiiName()
+        uint8_t GetSmallId()
+        {
+            return MLINK_FUNC(uint8_t, 0x03467014, NQRNetworkPlayer *)(this);
+        }
+
+        const wchar_t *GetMiiName()
         {
             return MLINK_FUNC(wchar_t *, 0x0346701C, NQRNetworkPlayer *)(this);
+        }
+
+        const char *GetNetworkName()
+        {
+            return MLINK_FUNC(char *, 0x03467024, NQRNetworkPlayer *)(this);
+        }
+
+        const wchar_t *GetNetworkNameW()
+        {
+            return MLINK_FUNC(wchar_t *, 0x0346702C, NQRNetworkPlayer *)(this);
+        }
+
+        int GetLocalPlayerIndex()
+        {
+            return MLINK_FUNC(int, 0x034670B8, NQRNetworkPlayer *)(this);
+        }
+
+        PlayerUID GetUID()
+        {
+            PlayerUID value;
+            MLINK_FUNC(void, 0x034675D4, PlayerUID *, NQRNetworkPlayer *)(&value, this);
+            return value;
+        }
+
+        const wchar_t *getMiiName()
+        {
+            return GetMiiName();
         }
 
         int GetSessionIndex()
@@ -67,9 +105,100 @@ namespace mc
             return MLINK_FUNC(bool, 0x034670A8, NQRNetworkPlayer *)(this);
         }
 
+        bool IsLocal()
+        {
+            return MLINK_FUNC(bool, 0x03467034, NQRNetworkPlayer *)(this);
+        }
+
+        bool IsRemote()
+        {
+            return MLINK_FUNC(bool, 0x03467074, NQRNetworkPlayer *)(this);
+        }
+
+        bool IsSameSystem(NQRNetworkPlayer *other)
+        {
+            return MLINK_FUNC(bool, 0x034670C0, NQRNetworkPlayer *, NQRNetworkPlayer *)(this, other);
+        }
+
+        bool HasVoice()
+        {
+            return MLINK_FUNC(bool, 0x03467104, NQRNetworkPlayer *)(this);
+        }
+
+        bool IsTalking()
+        {
+            return MLINK_FUNC(bool, 0x03467164, NQRNetworkPlayer *)(this);
+        }
+
+        bool IsMutedByLocalUser(int userIndex)
+        {
+            return MLINK_FUNC(bool, 0x03467214, NQRNetworkPlayer *, int)(this, userIndex);
+        }
+
+        bool IsReady()
+        {
+            return MLINK_FUNC(bool, 0x0346762C, NQRNetworkPlayer *)(this);
+        }
+
         void SetCustomDataValue(uint32_t value)
         {
             MLINK_FUNC(void, 0x034670FC, NQRNetworkPlayer *, uint32_t)(this, value);
+        }
+
+        void SetUID(PlayerUID uidValue)
+        {
+            MLINK_FUNC(void, 0x03467600, NQRNetworkPlayer *, PlayerUID)(this, uidValue);
+        }
+
+        void SendInternal(NQRNetworkPlayer *receiver, const void *data, uint32_t size, AckFlags ackFlags)
+        {
+            MLINK_FUNC(void, 0x03467674, NQRNetworkPlayer *, NQRNetworkPlayer *, const void *, uint32_t, AckFlags)(this, receiver, data, size,
+                                                                                                                   ackFlags);
+        }
+
+        void SendData(NQRNetworkPlayer *receiver, const void *data, uint32_t size, bool reliable)
+        {
+            MLINK_FUNC(void, 0x0346775C, NQRNetworkPlayer *, NQRNetworkPlayer *, const void *, uint32_t, bool)(this, receiver, data, size, reliable);
+        }
+
+        void WriteAck(NQRNetworkPlayer *receiver)
+        {
+            MLINK_FUNC(void, 0x034678AC, NQRNetworkPlayer *, NQRNetworkPlayer *)(this, receiver);
+        }
+
+        void ReadAckReturn(AckFlags ackFlags)
+        {
+            MLINK_FUNC(void, 0x034678C8, NQRNetworkPlayer *, AckFlags)(this, ackFlags);
+        }
+
+        void ReadAckRequest(AckFlags ackFlags, NQRNetworkPlayer *sender)
+        {
+            MLINK_FUNC(void, 0x03467924, NQRNetworkPlayer *, AckFlags, NQRNetworkPlayer *)(this, ackFlags, sender);
+        }
+
+        int GetOutstandingAckCount()
+        {
+            return MLINK_FUNC(int, 0x03467940, NQRNetworkPlayer *)(this);
+        }
+
+        int GetSendQueueSizeBytes()
+        {
+            return MLINK_FUNC(int, 0x03467958, NQRNetworkPlayer *)(this);
+        }
+
+        int GetSendQueueSizeMessages()
+        {
+            return MLINK_FUNC(int, 0x0346796C, NQRNetworkPlayer *)(this);
+        }
+
+        int GetTotalSendQueueBytes()
+        {
+            return MLINK_FUNC(int, 0x03467980, NQRNetworkPlayer *)(this);
+        }
+
+        int GetTotalSendQueueMessages()
+        {
+            return MLINK_FUNC(int, 0x03467988, NQRNetworkPlayer *)(this);
         }
 
         void SmallIdAllocated(uint8_t smallId)
@@ -97,7 +226,7 @@ namespace mc
         uint8_t field_0x48;
         uint8_t field_0x49;
         char networkName[0x15];
-        wchar_t networkNameW[0x15];
+        char16_t networkNameW[0x15];
         uint32_t customDataValue;
         uint32_t field_0x90;
         uint32_t field_0x94;
