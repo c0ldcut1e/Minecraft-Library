@@ -6,6 +6,7 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/animal/AbstractHorse.hpp"
+#include "internal/basic_string.hpp"
 #include "internal/not_null_ptr.hpp"
 #include "item/ItemInstance.hpp"
 #include "world/Level.hpp"
@@ -90,23 +91,10 @@ namespace mc
             return MLINK_FUNC(bool, 0x0250A8BC, Horse *)(this);
         }
 
-        uint32_t field_0x7EC;
-        int field_0x7F0;
-        uint16_t field_0x7F4;
-        uint8_t field_0x7F6;
-        uint8_t field_0x7F7;
-        uint32_t field_0x7F8;
-        uint32_t field_0x7FC;
-        uint32_t field_0x800;
-        void *field_0x804;
-        int field_0x808;
-        uint32_t field_0x80C;
-        void *field_0x810;
+        mstd::basic_string<wchar_t> field_0x7F0;
+        uint32_t *field_0x810;
         uint32_t field_0x814;
-        uint8_t field_0x818;
-        uint8_t field_0x819;
-        uint8_t field_0x81A;
-        uint8_t field_0x81B;
+        bool field_0x818;
     };
-    MC_CHECK_SIZE(Horse, 0x81C);
+    MC_CHECK_SIZE(Horse, 0x820);
 } // namespace mc

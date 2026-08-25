@@ -270,6 +270,7 @@ namespace mc
         void *field_0x7E0;
         void *field_0x7E4;
         void *field_0x7E8;
+        uint32_t field_0x7EC;
     };
-    MC_CHECK_SIZE(AbstractHorse, 0x7EC);
+    MC_CHECK_SIZE(AbstractHorse, 0x7F0);
 } // namespace mc

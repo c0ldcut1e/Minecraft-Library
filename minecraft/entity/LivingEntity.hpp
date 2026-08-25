@@ -158,9 +158,9 @@ namespace mc
         void *combatTracker;
         uint32_t field_0x358;
         uint32_t field_0x35C;
-        WiiUDouble field_0x360;
-        WiiUDouble field_0x368;
-        WiiUDouble field_0x370;
+        double field_0x360;
+        double field_0x368;
+        double field_0x370;
         uint32_t field_0x378;
         uint32_t field_0x37C;
         uint32_t field_0x380;
