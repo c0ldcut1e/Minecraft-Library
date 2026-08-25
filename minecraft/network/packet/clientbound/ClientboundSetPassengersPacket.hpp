@@ -65,6 +65,7 @@ namespace mc
 
         int vehicle;
         ArrayWithLength<int> passengers;
+        uint32_t field_0x24;
     };
     MC_CHECK_SIZE(ClientboundSetPassengersPacket, 0x28);
 } // namespace mc

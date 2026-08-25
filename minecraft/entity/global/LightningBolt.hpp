@@ -63,9 +63,13 @@ namespace mc
 
         int life;
         mstd::vector<int> hitEntityIds;
+        uint32_t field_0x364;
         uint64_t seed;
         int flashes;
         bool visualOnly;
+        uint8_t field_0x375;
+        uint8_t field_0x376;
+        uint8_t field_0x377;
     };
     MC_CHECK_SIZE(LightningBolt, 0x378);
 } // namespace mc

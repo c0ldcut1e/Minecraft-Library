@@ -82,6 +82,7 @@ namespace mc
         }
 
         uint32_t field_0x350;
+        uint32_t field_0x354;
         double targetX;
         double targetY;
         double targetZ;

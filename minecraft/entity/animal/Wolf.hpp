@@ -107,6 +107,7 @@ namespace mc
         uint8_t field_0x793;
         float shakeAnim;
         float shakeAnimO;
+        uint32_t field_0x79C;
     };
     MC_CHECK_SIZE(Wolf, 0x7A0);
 } // namespace mc

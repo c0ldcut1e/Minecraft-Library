@@ -70,6 +70,7 @@ namespace mc
         uint32_t vtbl;
         uint32_t field_0xE4;
         uint32_t field_0xE8;
+        uint32_t field_0xEC;
     };
     MC_CHECK_SIZE(LevelData, 0xF0);
 } // namespace mc

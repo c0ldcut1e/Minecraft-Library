@@ -29,6 +29,7 @@ namespace mc
         int y;
         int z;
         EGlobalEntityType type;
+        uint32_t field_0x2C;
     };
     MC_CHECK_SIZE(ClientboundAddGlobalEntityPacket, 0x30);
 } // namespace mc

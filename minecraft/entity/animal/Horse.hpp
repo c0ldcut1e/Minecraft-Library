@@ -95,6 +95,7 @@ namespace mc
         uint32_t *field_0x810;
         uint32_t field_0x814;
         bool field_0x818;
+        uint32_t field_0x81C;
     };
     MC_CHECK_SIZE(Horse, 0x820);
 } // namespace mc
