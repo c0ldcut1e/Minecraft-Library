@@ -106,6 +106,7 @@
 #include "entity/projectile/Fireball.hpp"
 #include "entity/projectile/LargeFireball.hpp"
 #include "entity/projectile/PrimedTnt.hpp"
+#include "entity/projectile/ShulkerBullet.hpp"
 #include "entity/projectile/SmallFireball.hpp"
 #include "entity/projectile/Snowball.hpp"
 #include "entity/projectile/SpectralArrow.hpp"
