@@ -5,29 +5,140 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/VTable.hpp"
 #include "network/player/INetworkPlayer.hpp"
 
 namespace mc
 {
+    class ServerConnection;
+
     class Socket
     {
     public:
+        class SocketInputStreamLocal
+        {
+        public:
+            SocketInputStreamLocal(int queueIndex)
+            {
+                MLINK_FUNC(void, 0x029184F8, SocketInputStreamLocal *, int)(this, queueIndex);
+            }
+
+            uint32_t read()
+            {
+                return MLINK_FUNC(uint32_t, 0x02918F1C, SocketInputStreamLocal *)(this);
+            }
+
+            void close()
+            {
+                MLINK_FUNC(void, 0x029193A8, SocketInputStreamLocal *)(this);
+            }
+
+            void flush()
+            {
+                MLINK_FUNC(void, 0x0297C070, SocketInputStreamLocal *)(this);
+            }
+
+            VTable *vtable;
+            bool open;
+            uint8_t field_0x5;
+            uint8_t field_0x6;
+            uint8_t field_0x7;
+            int queueIndex;
+        };
+
+        class SocketOutputStreamLocal
+        {
+        public:
+            SocketOutputStreamLocal(int queueIndex)
+            {
+                MLINK_FUNC(void, 0x02918494, SocketOutputStreamLocal *, int)(this, queueIndex);
+            }
+
+            void write(uint8_t value)
+            {
+                MLINK_FUNC(void, 0x02919420, SocketOutputStreamLocal *, uint8_t)(this, value);
+            }
+
+            void close()
+            {
+                MLINK_FUNC(void, 0x0291975C, SocketOutputStreamLocal *)(this);
+            }
+
+            void flush()
+            {
+                MLINK_FUNC(void, 0x0297C094, SocketOutputStreamLocal *)(this);
+            }
+
+            VTable *vtable;
+            bool open;
+            uint8_t field_0x5;
+            uint8_t field_0x6;
+            uint8_t field_0x7;
+            int queueIndex;
+        };
+
         class SocketInputStreamNetwork
         {
         public:
-            uint32_t field_0x0;
-            uint32_t field_0x4;
-            uint32_t field_0x8;
-            uint32_t field_0xC;
+            SocketInputStreamNetwork(Socket *socket, int queueIndex)
+            {
+                MLINK_FUNC(void, 0x02918930, SocketInputStreamNetwork *, Socket *, int)(this, socket, queueIndex);
+            }
+
+            uint32_t read()
+            {
+                return MLINK_FUNC(uint32_t, 0x029197D4, SocketInputStreamNetwork *)(this);
+            }
+
+            void close()
+            {
+                MLINK_FUNC(void, 0x02919CB8, SocketInputStreamNetwork *)(this);
+            }
+
+            void flush()
+            {
+                MLINK_FUNC(void, 0x0297C0C4, SocketInputStreamNetwork *)(this);
+            }
+
+            VTable *vtable;
+            bool open;
+            uint8_t field_0x5;
+            uint8_t field_0x6;
+            uint8_t field_0x7;
+            int queueIndex;
+            Socket *socket;
         };
 
         class SocketOutputStreamNetwork
         {
         public:
-            uint32_t field_0x0;
-            uint32_t field_0x4;
-            uint32_t field_0x8;
-            uint32_t field_0xC;
+            SocketOutputStreamNetwork(Socket *socket, int queueIndex)
+            {
+                MLINK_FUNC(void, 0x029189A4, SocketOutputStreamNetwork *, Socket *, int)(this, socket, queueIndex);
+            }
+
+            void write(uint8_t value)
+            {
+                MLINK_FUNC(void, 0x02919CC4, SocketOutputStreamNetwork *, uint8_t)(this, value);
+            }
+
+            void close()
+            {
+                MLINK_FUNC(void, 0x0291A0A4, SocketOutputStreamNetwork *)(this);
+            }
+
+            void flush()
+            {
+                MLINK_FUNC(void, 0x0297C0E8, SocketOutputStreamNetwork *)(this);
+            }
+
+            VTable *vtable;
+            bool open;
+            uint8_t field_0x5;
+            uint8_t field_0x6;
+            uint8_t field_0x7;
+            int queueIndex;
+            Socket *socket;
         };
 
         Socket(bool response)
@@ -43,6 +154,11 @@ namespace mc
         static void addIncomingSocket(Socket *socket)
         {
             MLINK_FUNC(void, 0x02918D70, Socket *)(socket);
+        }
+
+        static void Initialise(ServerConnection *serverConnection)
+        {
+            MLINK_FUNC(void, 0x0291855C, ServerConnection *)(serverConnection);
         }
 
         INetworkPlayer *getPlayer()
@@ -80,6 +196,8 @@ namespace mc
             MLINK_FUNC(void, 0x02918E5C, Socket *, bool)(this, flush);
         }
 
+        MC_CHECK_SIZE(SocketInputStreamLocal, 0xC);
+        MC_CHECK_SIZE(SocketOutputStreamLocal, 0xC);
         MC_CHECK_SIZE(SocketInputStreamNetwork, 0x10);
         MC_CHECK_SIZE(SocketOutputStreamNetwork, 0x10);
         uint8_t field_0x0;
