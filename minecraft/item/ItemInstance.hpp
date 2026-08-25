@@ -9,6 +9,7 @@
 #include "block/Block.hpp"
 #include "client/resource/ResourceLocation.hpp"
 #include "internal/basic_string.hpp"
+#include "internal/not_null_ptr.hpp"
 #include "internal/shared_ptr.hpp"
 #include "nbt/CompoundTag.hpp"
 #include "registry/MappedRegistry.hpp"
@@ -53,6 +54,30 @@ namespace mc
             MLINK_FUNC(void, 0x03087368, const mboost::shared_ptr<ItemInstance> &, ItemInstance *)(result, src);
         }
 
+        static bool isSame(const mboost::not_null_ptr<ItemInstance> &first, const mboost::not_null_ptr<ItemInstance> &second)
+        {
+            return MLINK_FUNC(bool, 0x0248AA9C, const mboost::not_null_ptr<ItemInstance> &, const mboost::not_null_ptr<ItemInstance> &)(first,
+                                                                                                                                        second);
+        }
+
+        static bool isSameIgnoreDurability(const mboost::not_null_ptr<ItemInstance> &first, const mboost::not_null_ptr<ItemInstance> &second)
+        {
+            return MLINK_FUNC(bool, 0x0248ACF4, const mboost::not_null_ptr<ItemInstance> &, const mboost::not_null_ptr<ItemInstance> &)(first,
+                                                                                                                                        second);
+        }
+
+        static bool matches(const mboost::not_null_ptr<ItemInstance> &first, const mboost::not_null_ptr<ItemInstance> &second, bool compareTag)
+        {
+            return MLINK_FUNC(bool, 0x0248A7A8, const mboost::not_null_ptr<ItemInstance> &, const mboost::not_null_ptr<ItemInstance> &,
+                              bool)(first, second, compareTag);
+        }
+
+        static bool tagMatches(const mboost::not_null_ptr<ItemInstance> &first, const mboost::not_null_ptr<ItemInstance> &second)
+        {
+            return MLINK_FUNC(bool, 0x0248A350, const mboost::not_null_ptr<ItemInstance> &, const mboost::not_null_ptr<ItemInstance> &)(first,
+                                                                                                                                        second);
+        }
+
         void copy(mboost::shared_ptr<ItemInstance> &result)
         {
             MLINK_FUNC(void, 0x02486E20, ItemInstance *, mboost::shared_ptr<ItemInstance> &)(this, result);
@@ -68,6 +93,36 @@ namespace mc
         int getAuxValue()
         {
             return MLINK_FUNC(int, 0x02488B24, ItemInstance *)(this);
+        }
+
+        int getCount()
+        {
+            return MLINK_FUNC(int, 0x02479E14, ItemInstance *)(this);
+        }
+
+        int getDamageValue()
+        {
+            return MLINK_FUNC(int, 0x02488B1C, ItemInstance *)(this);
+        }
+
+        Item *getItem()
+        {
+            return MLINK_FUNC(Item *, 0x0247B718, ItemInstance *)(this);
+        }
+
+        int getMaxDamage()
+        {
+            return MLINK_FUNC(int, 0x02488B40, ItemInstance *)(this);
+        }
+
+        int getMaxStackSize()
+        {
+            return MLINK_FUNC(int, 0x0248881C, ItemInstance *)(this);
+        }
+
+        CompoundTag *getTag()
+        {
+            return MLINK_FUNC(CompoundTag *, 0x02488888, ItemInstance *)(this);
         }
 
         void getHoverName(mstd::basic_string<wchar_t> &name)
@@ -95,6 +150,56 @@ namespace mc
             return MLINK_FUNC(bool, 0x02488860, ItemInstance *)(this);
         }
 
+        bool isDamageableItem()
+        {
+            return MLINK_FUNC(bool, 0x02488890, ItemInstance *)(this);
+        }
+
+        bool isDamaged()
+        {
+            return MLINK_FUNC(bool, 0x024889EC, ItemInstance *)(this);
+        }
+
+        bool isStackable()
+        {
+            return MLINK_FUNC(bool, 0x02488A4C, ItemInstance *)(this);
+        }
+
+        bool isStackedByData()
+        {
+            return MLINK_FUNC(bool, 0x02488AE0, ItemInstance *)(this);
+        }
+
+        bool matches(const mboost::not_null_ptr<ItemInstance> &other, bool compareTag)
+        {
+            return MLINK_FUNC(bool, 0x0248A5CC, ItemInstance *, const mboost::not_null_ptr<ItemInstance> &, bool)(this, other, compareTag);
+        }
+
+        void grow(int amount)
+        {
+            MLINK_FUNC(void, 0x02487294, ItemInstance *, int)(this, amount);
+        }
+
+        void resetHoverName()
+        {
+            MLINK_FUNC(void, 0x02490528, ItemInstance *)(this);
+        }
+
+        void setAuxValue(int aux)
+        {
+            MLINK_FUNC(void, 0x02488B2C, ItemInstance *, int)(this, aux);
+        }
+
+        void setCount(int count)
+        {
+            MLINK_FUNC(void, 0x02479E6C, ItemInstance *, int)(this, count);
+        }
+
+        void setHoverName(const mstd::basic_string<wchar_t> &name)
+        {
+            MLINK_FUNC(void, 0x0248F904, ItemInstance *, const mstd::basic_string<wchar_t> &)(this, name);
+        }
+
         bool isEmpty() const
         {
             return MLINK_FUNC(bool, 0x02479AC8, const ItemInstance *)(this);
@@ -108,6 +213,21 @@ namespace mc
         void setTag(CompoundTag *tag)
         {
             MLINK_FUNC(void, 0x0248E080, ItemInstance *, CompoundTag *)(this, tag);
+        }
+
+        void shrink(int amount)
+        {
+            MLINK_FUNC(void, 0x024872AC, ItemInstance *, int)(this, amount);
+        }
+
+        bool hasCustomHoverName()
+        {
+            return MLINK_FUNC(bool, 0x024907E8, ItemInstance *)(this);
+        }
+
+        bool wasCreatedByRestrictedPlayer()
+        {
+            return MLINK_FUNC(bool, 0x0248E580, ItemInstance *)(this);
         }
 
         uint32_t field_0x0;

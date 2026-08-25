@@ -15,6 +15,7 @@
 #include "internal/basic_string.hpp"
 #include "internal/not_null_ptr.hpp"
 #include "internal/shared_ptr.hpp"
+#include "item/ItemCooldowns.hpp"
 #include "item/ItemInstance.hpp"
 #include "utils/Common.hpp"
 #include "utils/Vec3.hpp"
@@ -288,7 +289,7 @@ namespace mc
         mboost::shared_ptr<Entity> thrownItem;
         int xpSeed;
         float redirection;
-        int cooldowns;
+        ItemCooldowns *cooldowns;
         uint32_t field_0x73C;
         uint32_t field_0x740;
         uint32_t field_0x744;
