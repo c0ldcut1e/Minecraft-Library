@@ -82,6 +82,7 @@
 #include "entity/animal/Horse.hpp"
 #include "entity/animal/Mule.hpp"
 #include "entity/animal/MushroomCow.hpp"
+#include "entity/animal/Ocelot.hpp"
 #include "entity/animal/Pig.hpp"
 #include "entity/animal/Sheep.hpp"
 #include "entity/animal/SkeletonHorse.hpp"
