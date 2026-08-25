@@ -6,6 +6,6 @@
 
 #define MC_CHECK_SIZE(a, b)                  static_assert(sizeof(a) == b, "Size not matching")
 
-using mc_double = double __attribute__((aligned(4)));
+using WiiUDouble = double __attribute__((aligned(4)));
 
 using _va_struct = std::va_list *;

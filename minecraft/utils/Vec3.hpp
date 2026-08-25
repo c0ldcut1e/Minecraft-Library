@@ -207,9 +207,9 @@ namespace mc
             return b_x && b_y && b_z;
         }
 
-        mc_double x = 0.0F;
-        mc_double y = 0.0F;
-        mc_double z = 0.0F;
+        WiiUDouble x = 0.0F;
+        WiiUDouble y = 0.0F;
+        WiiUDouble z = 0.0F;
     };
     MC_CHECK_SIZE(Vec3, 0x18);
 } // namespace mc
