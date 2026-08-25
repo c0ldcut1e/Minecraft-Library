@@ -23,6 +23,7 @@ namespace mc
         uint8_t field_0x1A;
         uint8_t field_0x1B;
         mstd::basic_string<wchar_t> nnid;
+        uint32_t field_0x3C;
     };
-    MC_CHECK_SIZE(ServerboundPreLoginPacket, 0x3C);
+    MC_CHECK_SIZE(ServerboundPreLoginPacket, 0x40);
 } // namespace mc

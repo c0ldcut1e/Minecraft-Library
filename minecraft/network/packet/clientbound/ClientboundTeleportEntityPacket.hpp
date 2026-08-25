@@ -32,6 +32,8 @@ namespace mc
         uint8_t yRot;
         uint8_t xRot;
         bool onGround;
+        uint8_t field_0x2B;
+        uint32_t field_0x2C;
     };
-    MC_CHECK_SIZE(ClientboundTeleportEntityPacket, 0x2C);
+    MC_CHECK_SIZE(ClientboundTeleportEntityPacket, 0x30);
 } // namespace mc

@@ -19,6 +19,7 @@ namespace mc
         }
 
         int containerId;
+        uint32_t field_0x1C;
     };
-    MC_CHECK_SIZE(ServerboundContainerClosePacket, 0x1C);
+    MC_CHECK_SIZE(ServerboundContainerClosePacket, 0x20);
 } // namespace mc

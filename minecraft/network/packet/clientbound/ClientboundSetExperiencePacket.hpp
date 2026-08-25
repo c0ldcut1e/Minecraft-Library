@@ -21,6 +21,7 @@ namespace mc
         float progress;
         uint32_t totalExperience;
         uint32_t level;
+        uint32_t field_0x24;
     };
-    MC_CHECK_SIZE(ClientboundSetExperiencePacket, 0x24);
+    MC_CHECK_SIZE(ClientboundSetExperiencePacket, 0x28);
 } // namespace mc

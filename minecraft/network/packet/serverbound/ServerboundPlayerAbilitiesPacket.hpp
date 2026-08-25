@@ -17,6 +17,7 @@ namespace mc
         bool canInstaBuild;
         float flyingSpeed;
         float walkingSpeed;
+        uint32_t field_0x24;
     };
-    MC_CHECK_SIZE(ServerboundPlayerAbilitiesPacket, 0x24);
+    MC_CHECK_SIZE(ServerboundPlayerAbilitiesPacket, 0x28);
 } // namespace mc

@@ -14,6 +14,7 @@
 
 namespace mc
 {
+#pragma pack(push, 4)
     class AbstractHorse : public Animal
     {
     public:
@@ -272,4 +273,5 @@ namespace mc
         void *field_0x7E8;
     };
     MC_CHECK_SIZE(AbstractHorse, 0x7EC);
+#pragma pack(pop)
 } // namespace mc

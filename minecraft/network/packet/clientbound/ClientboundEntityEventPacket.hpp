@@ -31,6 +31,7 @@ namespace mc
         uint8_t field_0x1E;
         uint8_t field_0x1F;
         int data;
+        uint32_t field_0x24;
     };
-    MC_CHECK_SIZE(ClientboundEntityEventPacket, 0x24);
+    MC_CHECK_SIZE(ClientboundEntityEventPacket, 0x28);
 } // namespace mc

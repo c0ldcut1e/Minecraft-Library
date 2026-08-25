@@ -19,6 +19,9 @@ namespace mc
         }
 
         uint32_t field_0x18;
+        uint32_t field_0x1C;
+        uint32_t field_0x20;
+        uint32_t field_0x24;
     };
-    MC_CHECK_SIZE(ClientboundContainerClosePacket, 0x1C);
+    MC_CHECK_SIZE(ClientboundContainerClosePacket, 0x28);
 } // namespace mc
