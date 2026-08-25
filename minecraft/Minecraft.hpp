@@ -125,6 +125,7 @@
 #include "item/BannerItem.hpp"
 #include "item/BlockItem.hpp"
 #include "item/BowItem.hpp"
+#include "item/BowlFoodItem.hpp"
 #include "item/BucketItem.hpp"
 #include "item/DyeColor.hpp"
 #include "item/EmptyMapItem.hpp"
