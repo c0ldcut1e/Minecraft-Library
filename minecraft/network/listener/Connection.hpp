@@ -9,6 +9,7 @@
 #include "Socket.hpp"
 #include "internal/basic_string.hpp"
 #include "internal/shared_ptr.hpp"
+#include "network/packet/DisconnectPacket.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
@@ -24,6 +25,31 @@ namespace mc
                                                                                                                         packetListener);
         }
 
+        bool getAndSetRunning(bool running)
+        {
+            return MLINK_FUNC(bool, 0x0222E908, Connection *, bool)(this, running);
+        }
+
+        void readTick()
+        {
+            MLINK_FUNC(void, 0x0222F378, Connection *)(this);
+        }
+
+        static void runRead(void *connection)
+        {
+            MLINK_FUNC(void, 0x0222F5E0, void *)(connection);
+        }
+
+        void writeTick()
+        {
+            MLINK_FUNC(void, 0x0222F8A4, Connection *)(this);
+        }
+
+        static void runWrite(void *connection)
+        {
+            MLINK_FUNC(void, 0x02230334, void *)(connection);
+        }
+
         void flush()
         {
             MLINK_FUNC(void, 0x02230C3C, Connection *)(this);
@@ -34,14 +60,34 @@ namespace mc
             MLINK_FUNC(void, 0x02230920, Connection *, mboost::shared_ptr<Packet>)(this, packet);
         }
 
+        void queueSend(const mboost::shared_ptr<Packet> &packet)
+        {
+            MLINK_FUNC(void, 0x02230B60, Connection *, mboost::shared_ptr<Packet>)(this, packet);
+        }
+
         void setListener(PacketListener *packetListener)
         {
             MLINK_FUNC(void, 0x02230918, Connection *, PacketListener *)(this, packetListener);
         }
 
+        void close(DisconnectPacket::eDisconnectReason reason)
+        {
+            MLINK_FUNC(void, 0x02230C8C, Connection *, DisconnectPacket::eDisconnectReason)(this, reason);
+        }
+
         void tick()
         {
             MLINK_FUNC(void, 0x02230F7C, Connection *)(this);
+        }
+
+        void sendAndQuit()
+        {
+            MLINK_FUNC(void, 0x02231D20, Connection *)(this);
+        }
+
+        int countDelayedPackets()
+        {
+            return MLINK_FUNC(int, 0x02231D88, Connection *)(this);
         }
 
         Socket *socket;
