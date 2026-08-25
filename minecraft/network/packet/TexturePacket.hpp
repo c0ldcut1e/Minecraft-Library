@@ -5,14 +5,13 @@
 #include "MinecraftLib.hpp"
 #include "Packet.hpp"
 #include "internal/basic_string.hpp"
+#include "internal/enable_shared_from_this.hpp"
 
 namespace mc
 {
-    class TexturePacket : public Packet
+    class TexturePacket : public Packet, public mboost::enable_shared_from_this<TexturePacket>
     {
     public:
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         mstd::basic_string<wchar_t> textureName;
         uint8_t *textureData;
         uint32_t textureSize;

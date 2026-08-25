@@ -6,10 +6,11 @@
 
 #include "MinecraftLib.hpp"
 #include "Packet.hpp"
+#include "internal/enable_shared_from_this.hpp"
 
 namespace mc
 {
-    class ChunkVisibilityPacket : public Packet
+    class ChunkVisibilityPacket : public Packet, public mboost::enable_shared_from_this<ChunkVisibilityPacket>
     {
     public:
         ChunkVisibilityPacket(int posX, int posZ, bool _visible, bool unk1)
@@ -17,8 +18,6 @@ namespace mc
             MLINK_FUNC(void, 0x021D3C1C, ChunkVisibilityPacket *, int, int, bool, bool)(this, posX, posZ, _visible, unk1);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         int x;
         int z;
         bool visible;

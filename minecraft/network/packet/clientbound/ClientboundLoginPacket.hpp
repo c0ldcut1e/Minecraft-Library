@@ -7,11 +7,12 @@
 #include "MinecraftLib.hpp"
 #include "entity/player/PlayerUID.hpp"
 #include "internal/basic_string.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundLoginPacket : public Packet
+    class ClientboundLoginPacket : public Packet, public mboost::enable_shared_from_this<ClientboundLoginPacket>
     {
     public:
         ClientboundLoginPacket(const mstd::basic_string<wchar_t> &userName, int clientVersion, PlayerUID offlineXuid, PlayerUID onlineXuid,
@@ -22,8 +23,6 @@ namespace mc
                                                        skinId, capeId, isGuest, newSeaLevel);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         int clientVersion;
         mstd::basic_string<wchar_t> userName;
         uint32_t field_0x3C;

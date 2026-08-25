@@ -5,12 +5,13 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/shared_ptr.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundMoveEntityPacket : public Packet
+    class ClientboundMoveEntityPacket : public Packet, public mboost::enable_shared_from_this<ClientboundMoveEntityPacket>
     {
     public:
         class PosRot;
@@ -29,7 +30,6 @@ namespace mc
             MLINK_FUNC(void, 0x021DBF24, ClientboundMoveEntityPacket *, int)(this, _entityId);
         }
 
-        mboost::shared_ptr<ClientboundMoveEntityPacket> thisShared;
         int entityId;
         int xa;
         int ya;
@@ -38,6 +38,7 @@ namespace mc
         uint8_t xRot;
         bool onGround;
         bool hasRotation;
+        uint32_t field_0x2C;
     };
     MC_CHECK_SIZE(ClientboundMoveEntityPacket, 0x30);
 

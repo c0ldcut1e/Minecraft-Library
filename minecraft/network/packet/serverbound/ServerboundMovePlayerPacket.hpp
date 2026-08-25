@@ -5,12 +5,13 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 #include "utils/Vec3.hpp"
 
 namespace mc
 {
-    class ServerboundMovePlayerPacket : public Packet
+    class ServerboundMovePlayerPacket : public Packet, public mboost::enable_shared_from_this<ServerboundMovePlayerPacket>
     {
     public:
         class PosRot;
@@ -26,8 +27,6 @@ namespace mc
             MLINK_FUNC(void, 0x028ACF38, ServerboundMovePlayerPacket *, bool, bool)(this, onGround, isFlying);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         Vec3 pos;
         float yRot;
         float xRot;

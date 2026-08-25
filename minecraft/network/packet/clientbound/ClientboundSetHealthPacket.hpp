@@ -5,6 +5,7 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
@@ -17,7 +18,7 @@ namespace mc
     };
     MC_CHECK_SIZE(TelemetryDamageSource, 0xC);
 
-    class ClientboundSetHealthPacket : public Packet
+    class ClientboundSetHealthPacket : public Packet, public mboost::enable_shared_from_this<ClientboundSetHealthPacket>
     {
     public:
         ClientboundSetHealthPacket(float _health, int _food, float _saturation, const TelemetryDamageSource &_source)
@@ -26,8 +27,6 @@ namespace mc
                                                                                                                          _saturation, _source);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         TelemetryDamageSource source;
         float health;
         int food;

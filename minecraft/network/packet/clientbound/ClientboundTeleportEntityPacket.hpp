@@ -6,12 +6,13 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/Entity.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/shared_ptr.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundTeleportEntityPacket : public Packet
+    class ClientboundTeleportEntityPacket : public Packet, public mboost::enable_shared_from_this<ClientboundTeleportEntityPacket>
     {
     public:
         ClientboundTeleportEntityPacket()
@@ -24,8 +25,6 @@ namespace mc
             MLINK_FUNC(void, 0x02227F6C, ClientboundTeleportEntityPacket *, mboost::shared_ptr<Entity>)(this, entity);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         int entityId;
         int x;
         int y;
@@ -34,5 +33,5 @@ namespace mc
         uint8_t xRot;
         bool onGround;
     };
-    MC_CHECK_SIZE(ClientboundTeleportEntityPacket, 0x30);
+    MC_CHECK_SIZE(ClientboundTeleportEntityPacket, 0x2C);
 } // namespace mc

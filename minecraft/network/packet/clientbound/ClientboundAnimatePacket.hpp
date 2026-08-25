@@ -4,12 +4,13 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/Entity.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/shared_ptr.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundAnimatePacket : public Packet
+    class ClientboundAnimatePacket : public Packet, public mboost::enable_shared_from_this<ClientboundAnimatePacket>
     {
     public:
         ClientboundAnimatePacket()
@@ -22,7 +23,6 @@ namespace mc
             MLINK_FUNC(void, 0x021D233C, ClientboundAnimatePacket *, mboost::shared_ptr<Entity>, int)(this, entity, _action);
         }
 
-        mboost::shared_ptr<ClientboundAnimatePacket> thisShared;
         int id;
         int action;
     };

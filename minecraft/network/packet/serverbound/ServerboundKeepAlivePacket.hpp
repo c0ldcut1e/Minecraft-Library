@@ -5,11 +5,12 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ServerboundKeepAlivePacket : public Packet
+    class ServerboundKeepAlivePacket : public Packet, public mboost::enable_shared_from_this<ServerboundKeepAlivePacket>
     {
     public:
         ServerboundKeepAlivePacket()
@@ -17,8 +18,6 @@ namespace mc
             MLINK_FUNC(void, 0x028ACACC, ServerboundKeepAlivePacket *)(this);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         int id;
         uint32_t field_0x1C;
     };

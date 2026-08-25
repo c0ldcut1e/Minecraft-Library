@@ -4,6 +4,7 @@
 
 #include "MinecraftLib.hpp"
 #include "Packet.hpp"
+#include "internal/enable_shared_from_this.hpp"
 
 namespace mc
 {
@@ -24,11 +25,9 @@ namespace mc
     };
     MC_CHECK_SIZE(BlockRegionUpdateChangeList, 0x10);
 
-    class BlockRegionUpdatePacket : public Packet
+    class BlockRegionUpdatePacket : public Packet, public mboost::enable_shared_from_this<BlockRegionUpdatePacket>
     {
     public:
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         int x;
         int y;
         int z;

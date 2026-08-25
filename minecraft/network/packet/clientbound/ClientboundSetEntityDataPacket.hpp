@@ -6,12 +6,13 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/SynchedEntityData.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/shared_ptr.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundSetEntityDataPacket : public Packet
+    class ClientboundSetEntityDataPacket : public Packet, public mboost::enable_shared_from_this<ClientboundSetEntityDataPacket>
     {
     public:
         ClientboundSetEntityDataPacket(int entityId, int param_2, const mboost::shared_ptr<SynchedEntityData> &entityData, bool notJustDirty)
@@ -20,8 +21,6 @@ namespace mc
                        bool)(this, entityId, param_2, entityData, notJustDirty);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         uint32_t field_0x18;
         uint32_t field_0x1C;
         uint32_t field_0x20;

@@ -5,11 +5,12 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundSetExperiencePacket : public Packet
+    class ClientboundSetExperiencePacket : public Packet, public mboost::enable_shared_from_this<ClientboundSetExperiencePacket>
     {
     public:
         ClientboundSetExperiencePacket(float progress, int totalExperience, int level)
@@ -17,11 +18,9 @@ namespace mc
             MLINK_FUNC(void, 0x02220A40, ClientboundSetExperiencePacket *, float, int, int)(this, progress, totalExperience, level);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         float progress;
         uint32_t totalExperience;
         uint32_t level;
     };
-    MC_CHECK_SIZE(ClientboundSetExperiencePacket, 0x28);
+    MC_CHECK_SIZE(ClientboundSetExperiencePacket, 0x24);
 } // namespace mc

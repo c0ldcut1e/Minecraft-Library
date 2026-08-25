@@ -4,16 +4,15 @@
 
 #include "MinecraftLib.hpp"
 #include "client/resource/ArrayWithLength.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/vector.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundMapItemDataPacket : public Packet
+    class ClientboundMapItemDataPacket : public Packet, public mboost::enable_shared_from_this<ClientboundMapItemDataPacket>
     {
     public:
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         uint32_t mapId;
         uint32_t field_0x1C;
         mstd::vector<void *> mapDecorations;

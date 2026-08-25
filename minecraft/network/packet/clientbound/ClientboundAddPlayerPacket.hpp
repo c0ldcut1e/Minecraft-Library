@@ -7,12 +7,13 @@
 #include "MinecraftLib.hpp"
 #include "entity/player/Player.hpp"
 #include "entity/player/PlayerUID.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/shared_ptr.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundAddPlayerPacket : public Packet
+    class ClientboundAddPlayerPacket : public Packet, public mboost::enable_shared_from_this<ClientboundAddPlayerPacket>
     {
     public:
         ClientboundAddPlayerPacket(const mboost::shared_ptr<Player> &player, PlayerUID _uid1, PlayerUID _uid2, int xPos, int yPos, int zPos,
@@ -22,8 +23,6 @@ namespace mc
                        uint32_t)(this, player, _uid1, _uid2, xPos, yPos, zPos, _yaw, _pitch, param_9);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         uint32_t entityId;
         PlayerUID uid1;
         uint32_t field_0x30;

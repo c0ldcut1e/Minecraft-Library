@@ -6,12 +6,13 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/Entity.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/shared_ptr.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundEntityEventPacket : public Packet
+    class ClientboundEntityEventPacket : public Packet, public mboost::enable_shared_from_this<ClientboundEntityEventPacket>
     {
     public:
         ClientboundEntityEventPacket()
@@ -24,8 +25,6 @@ namespace mc
             MLINK_FUNC(void, 0x021D7DEC, ClientboundEntityEventPacket *, mboost::shared_ptr<Entity>, uint8_t, int)(this, entity, eventId, data);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         int entityId;
         uint8_t eventId;
         uint8_t field_0x1D;
@@ -33,5 +32,5 @@ namespace mc
         uint8_t field_0x1F;
         int data;
     };
-    MC_CHECK_SIZE(ClientboundEntityEventPacket, 0x28);
+    MC_CHECK_SIZE(ClientboundEntityEventPacket, 0x24);
 } // namespace mc

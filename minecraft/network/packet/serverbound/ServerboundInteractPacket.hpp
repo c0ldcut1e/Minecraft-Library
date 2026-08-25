@@ -6,13 +6,14 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/Entity.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/shared_ptr.hpp"
 #include "network/packet/Packet.hpp"
 #include "utils/InteractionHand.hpp"
 
 namespace mc
 {
-    class ServerboundInteractPacket : public Packet
+    class ServerboundInteractPacket : public Packet, public mboost::enable_shared_from_this<ServerboundInteractPacket>
     {
     public:
         enum Action : int
@@ -36,8 +37,6 @@ namespace mc
             MLINK_FUNC(void, 0x028AC5A8, ServerboundInteractPacket *)(this);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         uint32_t entityId;
         Action action;
         uint32_t field_0x20;

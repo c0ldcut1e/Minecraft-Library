@@ -8,6 +8,7 @@
 #include "MinecraftLib.hpp"
 #include "Packet.hpp"
 #include "container/Inventory.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/shared_ptr.hpp"
 #include "item/Item.hpp"
 #include "item/ItemInstance.hpp"
@@ -15,7 +16,7 @@
 
 namespace mc
 {
-    class CraftItemPacket : public Packet
+    class CraftItemPacket : public Packet, public mboost::enable_shared_from_this<CraftItemPacket>
     {
     public:
         CraftItemPacket(int param_1, int param_2, int param_3)
@@ -69,8 +70,6 @@ namespace mc
             return stackedRecipesStart[index * 2];
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         uint32_t field_0x18;
         int *stackedRecipesStart;
         int *stackedRecipesEnd;

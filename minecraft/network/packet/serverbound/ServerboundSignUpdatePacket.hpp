@@ -5,15 +5,14 @@
 #include "MinecraftLib.hpp"
 #include "block/BlockPos.hpp"
 #include "internal/basic_string.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ServerboundSignUpdatePacket : public Packet
+    class ServerboundSignUpdatePacket : public Packet, public mboost::enable_shared_from_this<ServerboundSignUpdatePacket>
     {
     public:
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         BlockPos pos;
         mstd::basic_string<wchar_t> *lines;
         uint32_t field_0x28;

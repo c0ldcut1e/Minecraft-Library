@@ -6,12 +6,13 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/Entity.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/shared_ptr.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundRotateHeadPacket : public Packet
+    class ClientboundRotateHeadPacket : public Packet, public mboost::enable_shared_from_this<ClientboundRotateHeadPacket>
     {
     public:
         ClientboundRotateHeadPacket()
@@ -24,7 +25,6 @@ namespace mc
             MLINK_FUNC(void, 0x021E0B70, ClientboundRotateHeadPacket *, mboost::shared_ptr<Entity>, uint8_t)(this, entity, yHeadRot);
         }
 
-        mboost::shared_ptr<ClientboundRotateHeadPacket> thisShared;
         int entityId;
         uint8_t yHeadRot;
     };

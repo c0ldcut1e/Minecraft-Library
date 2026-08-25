@@ -3,15 +3,14 @@
 #include <cstdint>
 
 #include "MinecraftLib.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundPlayerAbilitiesPacket : public Packet
+    class ClientboundPlayerAbilitiesPacket : public Packet, public mboost::enable_shared_from_this<ClientboundPlayerAbilitiesPacket>
     {
     public:
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         bool isInvulnerable;
         bool isFlying;
         bool canFly;

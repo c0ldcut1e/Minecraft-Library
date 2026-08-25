@@ -7,11 +7,12 @@
 #include "MinecraftLib.hpp"
 #include "entity/player/PlayerUID.hpp"
 #include "internal/basic_string.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundPreLoginPacket : public Packet
+    class ClientboundPreLoginPacket : public Packet, public mboost::enable_shared_from_this<ClientboundPreLoginPacket>
     {
     public:
         ClientboundPreLoginPacket(const mstd::basic_string<wchar_t> &loginKey, PlayerUID *playerXuids, uint32_t playerCount, uint8_t friendsOnlyBits,
@@ -24,8 +25,6 @@ namespace mc
              hostIndex, texturePackId, isMatchmakingEnabled, miniGameId);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         PlayerUID *playerXuids;
         uint32_t playerCount;
         uint8_t friendsOnlyBits;

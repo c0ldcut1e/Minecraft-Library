@@ -6,10 +6,11 @@
 
 #include "MinecraftLib.hpp"
 #include "Packet.hpp"
+#include "internal/enable_shared_from_this.hpp"
 
 namespace mc
 {
-    class ChunkVisibilityAreaPacket : public Packet
+    class ChunkVisibilityAreaPacket : public Packet, public mboost::enable_shared_from_this<ChunkVisibilityAreaPacket>
     {
     public:
         ChunkVisibilityAreaPacket(int xMin, int xMax, int yMin, int yMax, bool _visible, bool unk2, bool _useRadius)
@@ -18,8 +19,6 @@ namespace mc
                                                                                                             unk2, _useRadius);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         int minX;
         int maxX;
         int minZ;

@@ -6,10 +6,11 @@
 
 #include "MinecraftLib.hpp"
 #include "Packet.hpp"
+#include "internal/enable_shared_from_this.hpp"
 
 namespace mc
 {
-    class LevelSoundPacket : public Packet
+    class LevelSoundPacket : public Packet, public mboost::enable_shared_from_this<LevelSoundPacket>
     {
     public:
         enum ESound
@@ -23,8 +24,6 @@ namespace mc
                                                                                                         pitch);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         int soundId;
         int x;
         int y;

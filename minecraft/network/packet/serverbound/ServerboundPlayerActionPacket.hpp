@@ -6,12 +6,13 @@
 
 #include "MinecraftLib.hpp"
 #include "block/BlockPos.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 #include "utils/Direction.hpp"
 
 namespace mc
 {
-    class ServerboundPlayerActionPacket : public Packet
+    class ServerboundPlayerActionPacket : public Packet, public mboost::enable_shared_from_this<ServerboundPlayerActionPacket>
     {
     public:
         enum Action : int
@@ -35,8 +36,6 @@ namespace mc
             MLINK_FUNC(void, 0x028D0530, ServerboundPlayerActionPacket *)(this);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         BlockPos position;
         Direction *direction;
         Action action;

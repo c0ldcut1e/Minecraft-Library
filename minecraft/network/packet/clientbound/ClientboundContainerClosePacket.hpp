@@ -5,11 +5,12 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 
 namespace mc
 {
-    class ClientboundContainerClosePacket : public Packet
+    class ClientboundContainerClosePacket : public Packet, public mboost::enable_shared_from_this<ClientboundContainerClosePacket>
     {
     public:
         ClientboundContainerClosePacket(int unk1)
@@ -17,11 +18,7 @@ namespace mc
             MLINK_FUNC(void, 0x021D449C, ClientboundContainerClosePacket *, int)(this, unk1);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         uint32_t field_0x18;
-        uint32_t field_0x1C;
-        uint32_t field_0x20;
     };
-    MC_CHECK_SIZE(ClientboundContainerClosePacket, 0x28);
+    MC_CHECK_SIZE(ClientboundContainerClosePacket, 0x1C);
 } // namespace mc

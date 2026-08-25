@@ -5,6 +5,7 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "internal/not_null_ptr.hpp"
 #include "internal/shared_ptr.hpp"
 #include "item/ItemInstance.hpp"
@@ -13,7 +14,7 @@
 
 namespace mc
 {
-    class ClientboundSetEquippedItemPacket : public Packet
+    class ClientboundSetEquippedItemPacket : public Packet, public mboost::enable_shared_from_this<ClientboundSetEquippedItemPacket>
     {
     public:
         ClientboundSetEquippedItemPacket()
@@ -27,8 +28,6 @@ namespace mc
                                                                                                                                        slot, item);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         mboost::shared_ptr<ItemInstance> item;
         int entityId;
         EquipmentSlot *slot;

@@ -5,12 +5,13 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/enable_shared_from_this.hpp"
 #include "network/packet/Packet.hpp"
 #include "utils/Vec3.hpp"
 
 namespace mc
 {
-    class alignas(8) ClientboundPlayerPositionPacket : public Packet
+    class alignas(8) ClientboundPlayerPositionPacket : public Packet, public mboost::enable_shared_from_this<ClientboundPlayerPositionPacket>
     {
     public:
         enum class RelativeArgument : uint8_t
@@ -28,8 +29,6 @@ namespace mc
                        int)(this, xPos, yPos, zPos, yaw_, pitch_, relativeArgs_, param_7);
         }
 
-        uint32_t field_0x10;
-        uint32_t field_0x14;
         Vec3 pos;
         float yRot;
         float xRot;
