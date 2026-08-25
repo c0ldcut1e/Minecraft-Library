@@ -87,6 +87,9 @@ namespace mc
         float squish;
         float oSquish;
         int jumpDelay;
+
+    protected:
+        Slime() = default;
     };
     MC_CHECK_SIZE(Slime, 0x718);
 } // namespace mc
