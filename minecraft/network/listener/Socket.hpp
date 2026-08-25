@@ -45,9 +45,39 @@ namespace mc
             MLINK_FUNC(void, 0x02918D70, Socket *)(socket);
         }
 
+        INetworkPlayer *getPlayer()
+        {
+            return MLINK_FUNC(INetworkPlayer *, 0x02916D1C, Socket *)(this);
+        }
+
+        void *getRemoteSocketAddress()
+        {
+            return MLINK_FUNC(void *, 0x02918BC0, Socket *)(this);
+        }
+
+        void pushDataToQueue(const uint8_t *data, uint32_t size, bool reliable)
+        {
+            MLINK_FUNC(void, 0x02918BC8, Socket *, const uint8_t *, uint32_t, bool)(this, data, size, reliable);
+        }
+
         void setPlayer(INetworkPlayer *networkPlayer)
         {
             MLINK_FUNC(void, 0x02916D38, Socket *, INetworkPlayer *)(this, networkPlayer);
+        }
+
+        void setSoTimeout(int timeout)
+        {
+            MLINK_FUNC(void, 0x02918DF4, Socket *, int)(this, timeout);
+        }
+
+        void setTrafficClass(int trafficClass)
+        {
+            MLINK_FUNC(void, 0x02918DF8, Socket *, int)(this, trafficClass);
+        }
+
+        void close(bool flush)
+        {
+            MLINK_FUNC(void, 0x02918E5C, Socket *, bool)(this, flush);
         }
 
         MC_CHECK_SIZE(SocketInputStreamNetwork, 0x10);

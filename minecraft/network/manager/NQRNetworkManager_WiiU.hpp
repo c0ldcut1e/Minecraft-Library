@@ -49,6 +49,11 @@ namespace mc
             MLINK_FUNC(void, 0x0348DEAC, NQRNetworkManager_WiiU *, mc::NQRNetworkPlayer *)(this, player);
         }
 
+        void ClearSendQueue()
+        {
+            MLINK_FUNC(void, 0x0348F5D4, NQRNetworkManager_WiiU *)(this);
+        }
+
         void AddConnectedStation(uint64_t stationId)
         {
             MLINK_FUNC(void, 0x03490424, NQRNetworkManager_WiiU *, uint64_t)(this, stationId);
@@ -80,9 +85,44 @@ namespace mc
             return MLINK_FUNC(NQRNetworkPlayer *, 0x0348BC14, NQRNetworkManager_WiiU *, uint64_t, int)(this, stationId, smallId);
         }
 
+        eNQRNetworkManagerInternalState GetState()
+        {
+            return MLINK_FUNC(eNQRNetworkManagerInternalState, 0x0349941C, NQRNetworkManager_WiiU *)(this);
+        }
+
+        int GetPlayerCount()
+        {
+            return MLINK_FUNC(int, 0x0349C9E8, NQRNetworkManager_WiiU *)(this);
+        }
+
+        int GetOnlinePlayerCount()
+        {
+            return MLINK_FUNC(int, 0x0349C9F8, NQRNetworkManager_WiiU *)(this);
+        }
+
         void HandlePlayerJoined(mc::NQRNetworkPlayer *player)
         {
             MLINK_FUNC(void, 0x0348E1A0, NQRNetworkManager_WiiU *, mc::NQRNetworkPlayer *)(this, player);
+        }
+
+        void Initialise()
+        {
+            MLINK_FUNC(void, 0x03499244, NQRNetworkManager_WiiU *)(this);
+        }
+
+        bool IsHost()
+        {
+            return MLINK_FUNC(bool, 0x03499424, NQRNetworkManager_WiiU *)(this);
+        }
+
+        bool IsInSession()
+        {
+            return MLINK_FUNC(bool, 0x03499464, NQRNetworkManager_WiiU *)(this);
+        }
+
+        bool IsReadyToPlayOrIdle()
+        {
+            return MLINK_FUNC(bool, 0x0349942C, NQRNetworkManager_WiiU *)(this);
         }
 
         void JoinRoom(uint32_t _sessionId, int playerMask, const void *presenceSyncInfo)
@@ -135,9 +175,25 @@ namespace mc
             MLINK_FUNC(void, 0x0348BDD8, NQRNetworkManager_WiiU *, NQRNetworkPlayer *)(this, player);
         }
 
+        void RemoteDataSend(NQRNetworkPlayer *sender, NQRNetworkPlayer *receiver, const void *data, uint32_t size)
+        {
+            MLINK_FUNC(void, 0x0349D6F0, NQRNetworkManager_WiiU *, NQRNetworkPlayer *, NQRNetworkPlayer *, const void *,
+                       uint32_t)(this, sender, receiver, data, size);
+        }
+
         void Session_CleanupSession()
         {
             MLINK_FUNC(void, 0x034919F0, NQRNetworkManager_WiiU *)(this);
+        }
+
+        void SetState(eNQRNetworkManagerInternalState state)
+        {
+            MLINK_FUNC(void, 0x0348F660, NQRNetworkManager_WiiU *, eNQRNetworkManagerInternalState)(this, state);
+        }
+
+        void StartGame()
+        {
+            MLINK_FUNC(void, 0x0349BA14, NQRNetworkManager_WiiU *)(this);
         }
 
         void SyncRoomData()
@@ -148,6 +204,16 @@ namespace mc
         void UpdateRoomSyncUIDsFromPlayers()
         {
             MLINK_FUNC(void, 0x0348EC54, NQRNetworkManager_WiiU *)(this);
+        }
+
+        void LeaveRoom(bool keepSession)
+        {
+            MLINK_FUNC(void, 0x0349BAEC, NQRNetworkManager_WiiU *, bool)(this, keepSession);
+        }
+
+        void EndGame()
+        {
+            MLINK_FUNC(void, 0x0349BD5C, NQRNetworkManager_WiiU *)(this);
         }
 
         uint32_t field_0x0;
