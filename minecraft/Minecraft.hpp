@@ -86,6 +86,8 @@
 #include "entity/decoration/Painting.hpp"
 #include "entity/effect/MobEffect.hpp"
 #include "entity/effect/MobEffectInstance.hpp"
+#include "entity/global/EnderCrystal.hpp"
+#include "entity/global/ExperienceOrb.hpp"
 #include "entity/global/GlobalEntity.hpp"
 #include "entity/global/LightningBolt.hpp"
 #include "entity/monster/CaveSpider.hpp"
