@@ -31,6 +31,7 @@ namespace mc
         uint32_t field_0x10;
         uint32_t field_0x14;
         eDisconnectReason reason;
+        uint32_t field_0x1C;
     };
     MC_CHECK_SIZE(DisconnectPacket, 0x20);
 } // namespace mc

@@ -10,7 +10,7 @@
 
 namespace mc
 {
-    class ClientboundPlayerPositionPacket : public Packet
+    class alignas(8) ClientboundPlayerPositionPacket : public Packet
     {
     public:
         enum class RelativeArgument : uint8_t
@@ -31,7 +31,6 @@ namespace mc
         uint32_t field_0x10;
         uint32_t field_0x14;
         Vec3 pos;
-        uint32_t field_0x30;
         float yRot;
         float xRot;
         bool hasRot;
@@ -43,8 +42,9 @@ namespace mc
         uint32_t field_0x48;
         uint32_t field_0x4C;
         uint32_t field_0x50;
-        uint32_t field_0x54;
         int id;
+        uint32_t field_0x58;
+        uint32_t field_0x5C;
     };
     MC_CHECK_SIZE(ClientboundPlayerPositionPacket, 0x60);
 } // namespace mc

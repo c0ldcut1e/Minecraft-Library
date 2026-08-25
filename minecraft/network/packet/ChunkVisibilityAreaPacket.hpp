@@ -28,6 +28,7 @@ namespace mc
         bool field_0x29;
         bool inverted;
         uint8_t field_0x2B;
+        uint32_t field_0x2C;
     };
     MC_CHECK_SIZE(ChunkVisibilityAreaPacket, 0x30);
 } // namespace mc

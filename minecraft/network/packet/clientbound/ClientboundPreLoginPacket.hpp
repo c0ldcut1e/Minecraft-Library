@@ -38,6 +38,7 @@ namespace mc
         bool isMatchmakingEnabled;
         uint32_t miniGameId;
         mstd::basic_string<wchar_t> loginKey;
+        uint32_t field_0x6C;
     };
     MC_CHECK_SIZE(ClientboundPreLoginPacket, 0x70);
 } // namespace mc
