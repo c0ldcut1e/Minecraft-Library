@@ -103,6 +103,7 @@
 #include "entity/projectile/Arrow.hpp"
 #include "entity/projectile/DragonFireball.hpp"
 #include "entity/projectile/EvocationFangs.hpp"
+#include "entity/projectile/EyeOfEnderSignal.hpp"
 #include "entity/projectile/Fireball.hpp"
 #include "entity/projectile/LargeFireball.hpp"
 #include "entity/projectile/PrimedTnt.hpp"
