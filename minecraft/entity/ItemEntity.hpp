@@ -36,6 +36,11 @@ namespace mc
             return MLINK_FUNC(uint64_t, 0x0252D668)();
         }
 
+        static void CreateShared(mboost::shared_ptr<Entity> *out, ItemEntity *itemEntity)
+        {
+            MLINK_FUNC(mboost::shared_ptr<Entity> *, 0x0308C95C, mboost::shared_ptr<Entity> *, ItemEntity *)(out, itemEntity);
+        }
+
         void playerTouch(const mboost::shared_ptr<Player> &player)
         {
             MLINK_FUNC(void, 0x024E0300, ItemEntity *, const mboost::shared_ptr<Player> &)(this, player);

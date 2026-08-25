@@ -8,4 +8,5 @@ namespace mc
     {
     public:
     };
+    MC_CHECK_SIZE(Monster, 0x730);
 } // namespace mc

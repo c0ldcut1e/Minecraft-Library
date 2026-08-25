@@ -25,6 +25,11 @@ namespace mc
             return MLINK_FUNC(uint64_t, 0x023E6FD8)();
         }
 
+        static void CreateShared(mboost::shared_ptr<Entity> *out, EvocationFangs *fangs)
+        {
+            MLINK_FUNC(mboost::shared_ptr<Entity> *, 0x0308B368, mboost::shared_ptr<Entity> *, EvocationFangs *)(out, fangs);
+        }
+
         void setOwner(const mboost::shared_ptr<LivingEntity> &entity)
         {
             MLINK_FUNC(void, 0x023BA764, EvocationFangs *, const mboost::shared_ptr<LivingEntity> &)(this, entity);

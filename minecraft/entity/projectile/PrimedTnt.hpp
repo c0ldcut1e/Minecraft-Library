@@ -6,6 +6,7 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/Entity.hpp"
+#include "internal/shared_ptr.hpp"
 #include "world/Level.hpp"
 
 namespace mc
@@ -21,6 +22,11 @@ namespace mc
         static uint64_t GetType()
         {
             return MLINK_FUNC(uint64_t, 0x02864E98)();
+        }
+
+        static void CreateShared(mboost::shared_ptr<Entity> *out, PrimedTnt *primedTnt)
+        {
+            MLINK_FUNC(mboost::shared_ptr<Entity> *, 0x0308C014, mboost::shared_ptr<Entity> *, PrimedTnt *)(out, primedTnt);
         }
 
         void setFuse(int fuse)

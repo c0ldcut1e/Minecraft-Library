@@ -6,6 +6,7 @@
 
 #include "Entity.hpp"
 #include "MinecraftLib.hpp"
+#include "internal/shared_ptr.hpp"
 #include "world/Level.hpp"
 #include "world/ServerLevel.hpp"
 
@@ -22,6 +23,11 @@ namespace mc
         static uint64_t GetType()
         {
             return MLINK_FUNC(uint64_t, 0x020B3CDC)();
+        }
+
+        static void CreateShared(mboost::shared_ptr<Entity> *out, AreaEffectCloud *cloud)
+        {
+            MLINK_FUNC(mboost::shared_ptr<Entity> *, 0x0308DBEC, mboost::shared_ptr<Entity> *, AreaEffectCloud *)(out, cloud);
         }
 
         int getDuration()
