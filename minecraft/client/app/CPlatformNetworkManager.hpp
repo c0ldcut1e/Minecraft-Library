@@ -5,12 +5,11 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "network/manager/NQRNetworkManager_WiiU.hpp"
 #include "network/session/FriendSessionInfo.hpp"
 
 namespace mc
 {
-    class NQRNetworkManager_WiiU;
-
     class CPlatformNetworkManager
     {
     public:
