@@ -87,4 +87,5 @@ namespace mc
         uint32_t field_0x700;
         uint32_t field_0x704;
     };
+    MC_CHECK_SIZE(Mob, 0x708);
 } // namespace mc
