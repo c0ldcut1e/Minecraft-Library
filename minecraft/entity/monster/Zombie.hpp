@@ -137,6 +137,9 @@ namespace mc
         uint32_t field_0x744;
         uint32_t field_0x748;
         uint32_t field_0x74C;
+
+    protected:
+        Zombie() = default;
     };
     MC_CHECK_SIZE(Zombie, 0x750);
 } // namespace mc
