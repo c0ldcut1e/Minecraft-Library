@@ -76,6 +76,7 @@
 #include "entity/animal/Chicken.hpp"
 #include "entity/animal/Cow.hpp"
 #include "entity/animal/Horse.hpp"
+#include "entity/animal/MushroomCow.hpp"
 #include "entity/animal/Pig.hpp"
 #include "entity/animal/Sheep.hpp"
 #include "entity/animal/Wolf.hpp"
