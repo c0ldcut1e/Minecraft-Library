@@ -134,6 +134,7 @@
 #include "item/ItemCooldowns.hpp"
 #include "item/ItemInstance.hpp"
 #include "item/ItemTier.hpp"
+#include "item/SeedFoodItem.hpp"
 #include "item/SwordItem.hpp"
 #include "nbt/ByteArrayTag.hpp"
 #include "nbt/ByteTag.hpp"
