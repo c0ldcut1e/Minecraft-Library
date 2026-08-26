@@ -11,7 +11,7 @@
 #include "internal/shared_ptr.hpp"
 #include "internal/vector.hpp"
 #include "item/ItemInstance.hpp"
-#include "world/Level.hpp"
+#include "world/level/Level.hpp"
 
 namespace mc
 {

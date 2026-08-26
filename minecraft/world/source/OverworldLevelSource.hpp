@@ -8,7 +8,6 @@
 #include "utils/MCRandom.hpp"
 #include "utils/PerlinNoise.hpp"
 #include "utils/VTable_LevelSource.hpp"
-#include "world/Level.hpp"
 #include "world/feature/BuriedTreasureFeature.hpp"
 #include "world/feature/LargeFeature.hpp"
 #include "world/feature/MineShaftFeature.hpp"
@@ -19,6 +18,7 @@
 #include "world/feature/StrongholdFeature.hpp"
 #include "world/feature/VillageFeature.hpp"
 #include "world/feature/WoodlandMansionFeature.hpp"
+#include "world/level/Level.hpp"
 
 namespace mc
 {

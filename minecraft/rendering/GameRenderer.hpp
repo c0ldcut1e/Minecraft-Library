@@ -18,8 +18,8 @@
 #include "utils/SmoothFloat.hpp"
 #include "utils/Vec3.hpp"
 #include "world/ItemInHandRenderer.hpp"
-#include "world/Level.hpp"
 #include "world/LevelRenderer.hpp"
+#include "world/level/Level.hpp"
 
 namespace mc
 {

@@ -4,7 +4,7 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/monster/Zombie.hpp"
-#include "world/Level.hpp"
+#include "world/level/Level.hpp"
 
 namespace mc
 {

@@ -16,10 +16,10 @@
 #include "rendering/world/LevelRenderer.hpp"
 #include "resource/texture/Textures.hpp"
 #include "ui/Gui.hpp"
-#include "world/Level.hpp"
-#include "world/MultiPlayerLevel.hpp"
 #include "world/gamemode/ClientMasterGameMode.hpp"
 #include "world/gamemode/MultiPlayerGameMode.hpp"
+#include "world/level/Level.hpp"
+#include "world/level/MultiPlayerLevel.hpp"
 
 namespace mc
 {

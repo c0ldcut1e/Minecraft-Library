@@ -9,7 +9,7 @@
 #include "internal/basic_string.hpp"
 #include "internal/not_null_ptr.hpp"
 #include "item/ItemInstance.hpp"
-#include "world/Level.hpp"
+#include "world/level/Level.hpp"
 
 namespace mc
 {

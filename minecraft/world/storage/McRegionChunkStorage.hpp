@@ -4,8 +4,8 @@
 
 #include "internal/basic_string.hpp"
 #include "save/ConsoleSaveFile.hpp"
-#include "world/Level.hpp"
 #include "world/chunk/LevelChunk.hpp"
+#include "world/level/Level.hpp"
 
 namespace mc
 {

@@ -5,8 +5,8 @@
 #include "mlink/MLink.hpp"
 
 #include "network/listener/ServerConnection.hpp"
-#include "world/ServerLevel.hpp"
 #include "world/gamemode/MasterGameMode.hpp"
+#include "world/level/ServerLevel.hpp"
 
 namespace mc
 {

@@ -7,8 +7,8 @@
 #include "Entity.hpp"
 #include "MinecraftLib.hpp"
 #include "internal/shared_ptr.hpp"
-#include "world/Level.hpp"
-#include "world/ServerLevel.hpp"
+#include "world/level/Level.hpp"
+#include "world/level/ServerLevel.hpp"
 
 namespace mc
 {

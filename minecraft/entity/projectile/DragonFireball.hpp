@@ -10,7 +10,7 @@
 #include "entity/projectile/Fireball.hpp"
 #include "internal/shared_ptr.hpp"
 #include "utils/HitResult.hpp"
-#include "world/Level.hpp"
+#include "world/level/Level.hpp"
 
 namespace mc
 {

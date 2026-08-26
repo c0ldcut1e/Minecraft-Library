@@ -19,7 +19,7 @@
 #include "item/ItemInstance.hpp"
 #include "utils/Common.hpp"
 #include "utils/Vec3.hpp"
-#include "world/Level.hpp"
+#include "world/level/Level.hpp"
 
 namespace mc
 {

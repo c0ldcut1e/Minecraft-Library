@@ -9,7 +9,7 @@
 #include "entity/Entity.hpp"
 #include "internal/shared_ptr.hpp"
 #include "nbt/CompoundTag.hpp"
-#include "world/Level.hpp"
+#include "world/level/Level.hpp"
 
 namespace mc
 {

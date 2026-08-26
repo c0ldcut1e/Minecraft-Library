@@ -14,9 +14,9 @@
 #include "internal/basic_string.hpp"
 #include "internal/shared_ptr.hpp"
 #include "utils/InteractionHand.hpp"
-#include "world/Level.hpp"
-#include "world/ServerLevel.hpp"
 #include "world/gamemode/ServerPlayerGameMode.hpp"
+#include "world/level/Level.hpp"
+#include "world/level/ServerLevel.hpp"
 
 namespace mc
 {

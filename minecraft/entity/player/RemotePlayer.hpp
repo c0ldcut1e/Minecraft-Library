@@ -7,7 +7,7 @@
 #include "AbstractClientPlayer.hpp"
 #include "MinecraftLib.hpp"
 #include "internal/basic_string.hpp"
-#include "world/Level.hpp"
+#include "world/level/Level.hpp"
 
 namespace mc
 {

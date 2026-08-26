@@ -16,7 +16,7 @@
 #include "sound/SoundEvent.hpp"
 #include "utils/GameType.hpp"
 #include "utils/InteractionHand.hpp"
-#include "world/MultiPlayerLevel.hpp"
+#include "world/level/MultiPlayerLevel.hpp"
 
 namespace mc
 {
