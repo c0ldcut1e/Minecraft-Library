@@ -23,6 +23,26 @@ namespace nn::pia::transport
             return MLINK_FUNC(Station *, 0x03560408, StationManager *, StationIndex)(this, stationIndex);
         }
 
+        Station *GetStation(uint64_t stationId)
+        {
+            return MLINK_FUNC(Station *, 0x03560470, StationManager *, uint64_t)(this, stationId);
+        }
+
+        Station *GetStationByStationIdWithoutConvert(uint64_t stationId)
+        {
+            return MLINK_FUNC(Station *, 0x035605D0, StationManager *, uint64_t)(this, stationId);
+        }
+
+        [[nodiscard]] uint16_t GetValidStationNum() const
+        {
+            return MLINK_FUNC(uint16_t, 0x03560740, const StationManager *)(this);
+        }
+
+        [[nodiscard]] uint32_t GetParticipatingStationBitmap(bool includeLocalStation) const
+        {
+            return MLINK_FUNC(uint32_t, 0x03560748, const StationManager *, bool)(this, includeLocalStation);
+        }
+
         uint32_t field_0x0;
         uint32_t field_0x4;
         uint32_t field_0x8;

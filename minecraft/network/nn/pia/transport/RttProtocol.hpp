@@ -17,9 +17,34 @@ namespace nn::pia::transport
             return MLINK_FUNC(int, 0x0356E714, RttProtocol *, StationIndex)(this, stationIndex);
         }
 
+        int GetRtt(StationIndex stationIndex, uint32_t sampleCount)
+        {
+            return MLINK_FUNC(int, 0x0356E740, RttProtocol *, StationIndex, uint32_t)(this, stationIndex, sampleCount);
+        }
+
         void request(StationIndex stationIndex)
         {
             MLINK_FUNC(void, 0x0356DEF4, RttProtocol *, StationIndex)(this, stationIndex);
+        }
+
+        void ResetRttMinMax(StationIndex stationIndex)
+        {
+            MLINK_FUNC(void, 0x0356E774, RttProtocol *, StationIndex)(this, stationIndex);
+        }
+
+        [[nodiscard]] int GetRttMin(StationIndex stationIndex) const
+        {
+            return MLINK_FUNC(int, 0x0356E798, const RttProtocol *, StationIndex)(this, stationIndex);
+        }
+
+        [[nodiscard]] int GetRttMax(StationIndex stationIndex) const
+        {
+            return MLINK_FUNC(int, 0x0356E7C4, const RttProtocol *, StationIndex)(this, stationIndex);
+        }
+
+        [[nodiscard]] uint32_t GetProtocolType() const
+        {
+            return MLINK_FUNC(uint32_t, 0x0356E804, const RttProtocol *)(this);
         }
 
         uint32_t field_0x0;
