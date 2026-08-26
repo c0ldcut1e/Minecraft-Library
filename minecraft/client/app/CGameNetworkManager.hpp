@@ -25,6 +25,11 @@ namespace mc
             MLINK_FUNC(void, 0x02D53CC0, CGameNetworkManager *)(this);
         }
 
+        ~CGameNetworkManager()
+        {
+            MLINK_FUNC(void, 0x02D53D74, CGameNetworkManager *)(this);
+        }
+
         static void FakeLocalPlayerJoined()
         {
             MLINK_FUNC(void, 0x02D5AD58)();
@@ -195,20 +200,33 @@ namespace mc
             return MLINK_FUNC(bool, 0x02D574E0, CGameNetworkManager *, int, uint32_t, FriendSessionInfo *)(this, userIndex, sessionId, sessionInfo);
         }
 
-        void SetSessionsUpdatedCallback(void (*callback)(void *), void *data)
+        void SetSessionsUpdatedCallback(void *(*callback)(void *), void *data)
         {
-            MLINK_FUNC(void, 0x02D574F8, CGameNetworkManager *, void (*)(void *), void *)(this, callback, data);
+            MLINK_FUNC(void, 0x02D574F8, CGameNetworkManager *, void *(*) (void *), void *)(this, callback, data);
         }
 
-        void GetFullFriendSessionInfo(FriendSessionInfo *sessionInfo, void (*callback)(bool, void *), void *data)
+        void GetFullFriendSessionInfo(FriendSessionInfo *sessionInfo, void *(*callback)(bool, void *), void *data)
         {
-            MLINK_FUNC(void, 0x02D57510, CGameNetworkManager *, FriendSessionInfo *, void (*)(bool, void *), void *)(this, sessionInfo, callback,
-                                                                                                                     data);
+            MLINK_FUNC(void, 0x02D57510, CGameNetworkManager *, FriendSessionInfo *, void *(*) (bool, void *), void *)(this, sessionInfo, callback,
+                                                                                                                       data);
         }
 
         int JoinGame(FriendSessionInfo *fsInfo, int localUsersMask, bool joinFromInvite)
         {
             return MLINK_FUNC(int, 0x02D57558, CGameNetworkManager *, FriendSessionInfo *, int, bool)(this, fsInfo, localUsersMask, joinFromInvite);
+        }
+
+        void HostGame(int localUsersMask, bool privateGame, bool publicJoinable, uint8_t difficulty, Minecraft::EMiniGameId miniGameId,
+                      uint32_t gameModeId, uint32_t *gameModeSettings)
+        {
+            MLINK_FUNC(void, 0x02D57258, CGameNetworkManager *, int, bool, bool, uint8_t, Minecraft::EMiniGameId, uint32_t,
+                       uint32_t *)(this, localUsersMask, privateGame, publicJoinable, difficulty, miniGameId, gameModeId, gameModeSettings);
+        }
+
+        void FindAndJoinGame(int localUsersMask, Minecraft::EMiniGameId miniGameId, uint32_t gameModeId, uint32_t *gameModeSettings, uint32_t *result)
+        {
+            MLINK_FUNC(void, 0x02D576E0, CGameNetworkManager *, int, Minecraft::EMiniGameId, uint32_t, uint32_t *,
+                       uint32_t *)(this, localUsersMask, miniGameId, gameModeId, gameModeSettings, result);
         }
 
         void LeaveGame(bool keepSession)
@@ -384,6 +402,16 @@ namespace mc
         bool IsNetworkThreadRunning()
         {
             return MLINK_FUNC(bool, 0x02D57A44, CGameNetworkManager *)(this);
+        }
+
+        void TryToConnectOnline(int (*callback)(void *, bool, int), void *data, bool showProgress)
+        {
+            MLINK_FUNC(void, 0x02D58178, CGameNetworkManager *, int (*)(void *, bool, int), void *, bool)(this, callback, data, showProgress);
+        }
+
+        static void _LeaveGame()
+        {
+            MLINK_FUNC(void, 0x02D58190)();
         }
 
         void renderQueueMeter()

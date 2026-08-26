@@ -52,6 +52,16 @@ namespace mc
             return MLink::DereferencePointerFromOffset<CPlatformNetworkManagerNintendo>(0x104C6FE4);
         }
 
+        CPlatformNetworkManagerNintendo()
+        {
+            MLINK_FUNC(void, 0x0346B20C, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        ~CPlatformNetworkManagerNintendo()
+        {
+            MLINK_FUNC(void, 0x0346E3D0, CPlatformNetworkManagerNintendo *)(this);
+        }
+
         static NetworkPlayerNintendo *getNetworkPlayer(NQRNetworkPlayer *player)
         {
             return MLINK_FUNC(NetworkPlayerNintendo *, 0x03467F04, NQRNetworkPlayer *)(player);
@@ -70,6 +80,16 @@ namespace mc
         void Terminate()
         {
             MLINK_FUNC(void, 0x0346B3F0, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        int CorrectErrorIDS(int errorId)
+        {
+            return MLINK_FUNC(int, 0x0346B418, CPlatformNetworkManagerNintendo *, int)(this, errorId);
+        }
+
+        void TickSearch()
+        {
+            MLINK_FUNC(void, 0x0346B420, CPlatformNetworkManagerNintendo *)(this);
         }
 
         void DoWork()
@@ -93,9 +113,9 @@ namespace mc
             MLINK_FUNC(void, 0x0346E040, CPlatformNetworkManagerNintendo *)(this);
         }
 
-        void GetFullFriendSessionInfo(FriendSessionInfo *friendSessionInfo, void (*callback)(bool success, void *data), void *data)
+        void GetFullFriendSessionInfo(FriendSessionInfo *friendSessionInfo, void *(*callback)(bool success, void *data), void *data)
         {
-            MLINK_FUNC(void, 0x0346E01C, CPlatformNetworkManagerNintendo *, FriendSessionInfo *, void (*)(bool, void *),
+            MLINK_FUNC(void, 0x0346E01C, CPlatformNetworkManagerNintendo *, FriendSessionInfo *, void *(*) (bool, void *),
                        void *)(this, friendSessionInfo, callback, data);
         }
 
@@ -169,6 +189,16 @@ namespace mc
             return MLINK_FUNC(bool, 0x0346BAB8, CPlatformNetworkManagerNintendo *)(this);
         }
 
+        bool ShouldMessageForFullSession()
+        {
+            return MLINK_FUNC(bool, 0x0346BA70, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        void LeaveGame(bool keepSession)
+        {
+            MLINK_FUNC(void, 0x0346BB38, CPlatformNetworkManagerNintendo *, bool)(this, keepSession);
+        }
+
         bool IsInSession()
         {
             return MLINK_FUNC(bool, 0x0346BD4C, CPlatformNetworkManagerNintendo *)(this);
@@ -209,6 +239,16 @@ namespace mc
             return MLINK_FUNC(bool, 0x0346BDF0, CPlatformNetworkManagerNintendo *, int)(this, userIndex);
         }
 
+        void SendInviteGUI(int userIndex)
+        {
+            MLINK_FUNC(void, 0x0346BE04, CPlatformNetworkManagerNintendo *, int)(this, userIndex);
+        }
+
+        bool IsAddingPlayer()
+        {
+            return MLINK_FUNC(bool, 0x0346BE18, CPlatformNetworkManagerNintendo *)(this);
+        }
+
         void SystemFlagReset()
         {
             MLINK_FUNC(void, 0x0346BE20, CPlatformNetworkManagerNintendo *)(this);
@@ -232,6 +272,11 @@ namespace mc
         void SystemFlagAddPlayer(INetworkPlayer *player)
         {
             MLINK_FUNC(void, 0x0346D070, CPlatformNetworkManagerNintendo *, INetworkPlayer *)(this, player);
+        }
+
+        void SystemFlagRemovePlayer(INetworkPlayer *player)
+        {
+            MLINK_FUNC(void, 0x03469758, CPlatformNetworkManagerNintendo *, INetworkPlayer *)(this, player);
         }
 
         void AddLocalPlayerByUserIndex(int userIndex)
@@ -262,6 +307,28 @@ namespace mc
         void ResetLeavingGame()
         {
             MLINK_FUNC(void, 0x0346C27C, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        void RegisterPlayerChangedCallback(int index, void *(*callback)(void *, INetworkPlayer *, bool), void *data)
+        {
+            MLINK_FUNC(void, 0x0346C288, CPlatformNetworkManagerNintendo *, int, void *(*) (void *, INetworkPlayer *, bool), void *)(this, index,
+                                                                                                                                     callback, data);
+        }
+
+        void UnRegisterPlayerChangedCallback(int index, void *(*callback)(void *, INetworkPlayer *, bool), void *data)
+        {
+            MLINK_FUNC(void, 0x0346C29C, CPlatformNetworkManagerNintendo *, int, void *(*) (void *, INetworkPlayer *, bool), void *)(this, index,
+                                                                                                                                     callback, data);
+        }
+
+        void HandleSignInChange()
+        {
+            MLINK_FUNC(void, 0x0346C2C4, CPlatformNetworkManagerNintendo *)(this);
+        }
+
+        void _RunNetworkGame()
+        {
+            MLINK_FUNC(void, 0x0346C2C8, CPlatformNetworkManagerNintendo *)(this);
         }
 
         bool usingLanMode()
@@ -339,12 +406,43 @@ namespace mc
             return MLINK_FUNC(int, 0x0346C528, CPlatformNetworkManagerNintendo *, INetworkPlayer *)(this, player);
         }
 
+        bool GetGameSessionInfo(int userIndex, uint32_t sessionId, FriendSessionInfo *sessionInfo)
+        {
+            return MLINK_FUNC(bool, 0x0346E008, CPlatformNetworkManagerNintendo *, int, uint32_t, FriendSessionInfo *)(this, userIndex, sessionId,
+                                                                                                                       sessionInfo);
+        }
+
+        void SetSessionsUpdatedCallback(void *(*callback)(void *), void *data)
+        {
+            MLINK_FUNC(void, 0x0346E010, CPlatformNetworkManagerNintendo *, void *(*) (void *), void *)(this, callback, data);
+        }
+
+        void SetSessionTexturePackParentId(int texturePackParentId)
+        {
+            MLINK_FUNC(void, 0x0346D704, CPlatformNetworkManagerNintendo *, int)(this, texturePackParentId);
+        }
+
+        void SetSessionSubTexturePackId(int subTexturePackId)
+        {
+            MLINK_FUNC(void, 0x0346D70C, CPlatformNetworkManagerNintendo *, int)(this, subTexturePackId);
+        }
+
+        void SetSessionGameModeId(int gameModeId)
+        {
+            MLINK_FUNC(void, 0x0346D714, CPlatformNetworkManagerNintendo *, int)(this, gameModeId);
+        }
+
+        void Notify(int notificationType, uint32_t value)
+        {
+            MLINK_FUNC(void, 0x0346D724, CPlatformNetworkManagerNintendo *, int, uint32_t)(this, notificationType, value);
+        }
+
         void UpdateAndSetGameSessionData(INetworkPlayer *player)
         {
             MLINK_FUNC(void, 0x0346C88C, CPlatformNetworkManagerNintendo *, INetworkPlayer *)(this, player);
         }
 
-        void (*sessionsUpdatedCallback)(void *data);
+        void *(*sessionsUpdatedCallback)(void *data);
 
         MC_CHECK_SIZE(PlayerFlags, 0xC);
         MC_CHECK_SIZE(FriendSessionEntry, 0x24);

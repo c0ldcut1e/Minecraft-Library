@@ -19,6 +19,58 @@ namespace nn::pia::session
             return MLink::DereferencePointerFromOffset<Session>(0x104D1CEC);
         }
 
+        [[nodiscard]] bool IsPostponeNotice() const
+        {
+            return MLINK_FUNC(bool, 0x0351E040, const Session *)(this);
+        }
+
+        [[nodiscard]] uint8_t GetStatus() const
+        {
+            return MLINK_FUNC(uint8_t, 0x0351E048, const Session *)(this);
+        }
+
+        void UpdateSessionStationInfo(uint32_t stationIndex)
+        {
+            MLINK_FUNC(void, 0x0351E094, Session *, uint32_t)(this, stationIndex);
+        }
+
+        void ResetSessionSystemPassword()
+        {
+            MLINK_FUNC(void, 0x0351E490, Session *)(this);
+        }
+
+        void ClearWaitingStationIndex()
+        {
+            MLINK_FUNC(void, 0x0351E688, Session *)(this);
+        }
+
+        void Cleanup()
+        {
+            MLINK_FUNC(void, 0x0351E694, Session *)(this);
+        }
+
+        void ResetInternalAsyncState()
+        {
+            MLINK_FUNC(void, 0x0351EA8C, Session *)(this);
+        }
+
+        [[nodiscard]] bool IsJoinRandomSessionCompleted() const
+        {
+            return MLINK_FUNC(bool, 0x0351ED38, const Session *)(this);
+        }
+
+        [[nodiscard]] bool IsBrowseSessionCompleted() const
+        {
+            return MLINK_FUNC(bool, 0x0351F028, const Session *)(this);
+        }
+
+        [[nodiscard]] Result GetBrowseSessionResult() const
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0351F030, const Session *, Result *)(this, &result);
+            return result;
+        }
+
         Result CreateSessionAsync(const inet::NexCreateSessionSetting *createSessionSetting)
         {
             Result result;
@@ -33,9 +85,26 @@ namespace nn::pia::session
             return result;
         }
 
+        [[nodiscard]] bool IsJoinSessionCompleted() const
+        {
+            return MLINK_FUNC(bool, 0x0351F458, const Session *)(this);
+        }
+
+        [[nodiscard]] Result GetJoinSessionResult() const
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0351F460, const Session *, Result *)(this, &result);
+            return result;
+        }
+
         uint32_t GetJointSessionId()
         {
             return MLINK_FUNC(uint32_t, 0x0352046C, Session *)(this);
+        }
+
+        [[nodiscard]] uint64_t GetJointSessionHostStationId() const
+        {
+            return MLINK_FUNC(uint64_t, 0x035204A4, const Session *)(this);
         }
 
         [[nodiscard]] Result GetLeaveSessionResult() const
@@ -43,6 +112,65 @@ namespace nn::pia::session
             Result result;
             MLINK_FUNC(void, 0x0351F630, const Session *, Result *)(this, &result);
             return result;
+        }
+
+        [[nodiscard]] bool IsUpdateSessionSettingCompleted() const
+        {
+            return MLINK_FUNC(bool, 0x0351F92C, const Session *)(this);
+        }
+
+        [[nodiscard]] Result GetUpdateSessionSettingResult() const
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0351F934, const Session *, Result *)(this, &result);
+            return result;
+        }
+
+        [[nodiscard]] bool IsHost() const
+        {
+            return MLINK_FUNC(bool, 0x0351F93C, const Session *)(this);
+        }
+
+        [[nodiscard]] bool IsOwner() const
+        {
+            return MLINK_FUNC(bool, 0x0351FEE0, const Session *)(this);
+        }
+
+        [[nodiscard]] uint16_t GetValidStationIdNum() const
+        {
+            return MLINK_FUNC(uint16_t, 0x0351FF18, const Session *)(this);
+        }
+
+        [[nodiscard]] uint16_t GetStationNum() const
+        {
+            return MLINK_FUNC(uint16_t, 0x0351FF20, const Session *)(this);
+        }
+
+        [[nodiscard]] uint32_t GetMatchmakeSessionParticipantNum() const
+        {
+            return MLINK_FUNC(uint32_t, 0x0351FF24, const Session *)(this);
+        }
+
+        [[nodiscard]] uint32_t GetMatchmakeSessionStationNum() const
+        {
+            return MLINK_FUNC(uint32_t, 0x0351FF48, const Session *)(this);
+        }
+
+        [[nodiscard]] Result CheckConnectionError() const
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0351FF6C, const Session *, Result *)(this, &result);
+            return result;
+        }
+
+        [[nodiscard]] bool IsJointSessionHost() const
+        {
+            return MLINK_FUNC(bool, 0x035202F0, const Session *)(this);
+        }
+
+        [[nodiscard]] bool IsHostMigrationEnabled() const
+        {
+            return MLINK_FUNC(bool, 0x035203F4, const Session *)(this);
         }
 
         [[nodiscard]] bool IsCreateSessionCompleted() const
@@ -53,6 +181,26 @@ namespace nn::pia::session
         [[nodiscard]] bool IsLeaveSessionCompleted() const
         {
             return MLINK_FUNC(bool, 0x0351F628, const Session *)(this);
+        }
+
+        [[nodiscard]] bool IsProcessingJoin() const
+        {
+            return MLINK_FUNC(bool, 0x03520650, const Session *)(this);
+        }
+
+        void SetSyncClockPulseInterval(int interval)
+        {
+            MLINK_FUNC(void, 0x03520B00, Session *, int)(this, interval);
+        }
+
+        [[nodiscard]] uint32_t GetLocalPlayerCount() const
+        {
+            return MLINK_FUNC(uint32_t, 0x03521904, const Session *)(this);
+        }
+
+        [[nodiscard]] uint16_t GetParticipantNum() const
+        {
+            return MLINK_FUNC(uint16_t, 0x03521928, const Session *)(this);
         }
 
         Result LeaveSessionAsync()

@@ -23,10 +23,10 @@ namespace mc
             MLINK_FUNC(void, 0x0346E040, CPlatformNetworkManager *)(this);
         }
 
-        void GetFullFriendSessionInfo(FriendSessionInfo *friendSessionInfo, void (*callback)(bool success, void *data), void *data)
+        void GetFullFriendSessionInfo(FriendSessionInfo *friendSessionInfo, void *(*callback)(bool success, void *data), void *data)
         {
-            MLINK_FUNC(void, 0x0346E01C, CPlatformNetworkManager *, FriendSessionInfo *, void (*)(bool, void *), void *)(this, friendSessionInfo,
-                                                                                                                         callback, data);
+            MLINK_FUNC(void, 0x0346E01C, CPlatformNetworkManager *, FriendSessionInfo *, void *(*) (bool, void *), void *)(this, friendSessionInfo,
+                                                                                                                           callback, data);
         }
 
         static void CancelJoinGame()
