@@ -2,14 +2,83 @@
 
 #include <cstdint>
 
+#include "mlink/MLink.hpp"
+
+#include "AccountManagementProtocolClient.hpp"
 #include "Credentials.hpp"
 #include "MinecraftLib.hpp"
+#include "StreamManager.hpp"
 
 namespace nn::nex
 {
     class BackEndServices
     {
     public:
+        [[nodiscard]] bool TerminateJobIsInProgress() const
+        {
+            return MLINK_FUNC(bool, 0x037B9EC4, const BackEndServices *)(this);
+        }
+
+        void TerminateImpl()
+        {
+            MLINK_FUNC(void, 0x037B9FBC, BackEndServices *)(this);
+        }
+
+        [[nodiscard]] StreamManager *GetStreamManager()
+        {
+            return MLINK_FUNC(StreamManager *, 0x037BA6BC, BackEndServices *)(this);
+        }
+
+        [[nodiscard]] AccountManagementProtocolClient *GetAuthenticationClient()
+        {
+            return MLINK_FUNC(AccountManagementProtocolClient *, 0x037BC008, BackEndServices *)(this);
+        }
+
+        [[nodiscard]] bool IsConnected() const
+        {
+            return MLINK_FUNC(bool, 0x037BA74C, const BackEndServices *)(this);
+        }
+
+        void ReleaseCredentials()
+        {
+            MLINK_FUNC(void, 0x037BBFC4, BackEndServices *)(this);
+        }
+
+        void PostLogoutCleanup()
+        {
+            MLINK_FUNC(void, 0x037BC004, BackEndServices *)(this);
+        }
+
+        void CreateStreamManager()
+        {
+            MLINK_FUNC(void, 0x037BCC40, BackEndServices *)(this);
+        }
+
+        [[nodiscard]] bool LoginJobIsInProgress() const
+        {
+            return MLINK_FUNC(bool, 0x037BCD1C, const BackEndServices *)(this);
+        }
+
+        [[nodiscard]] bool LogoutJobIsInProgress() const
+        {
+            return MLINK_FUNC(bool, 0x037BCD44, const BackEndServices *)(this);
+        }
+
+        void SetEffectiveLoginTimeout(int timeout)
+        {
+            MLINK_FUNC(void, 0x037BCD6C, BackEndServices *, int)(this, timeout);
+        }
+
+        [[nodiscard]] bool EffectiveTimeoutIsSet() const
+        {
+            return MLINK_FUNC(bool, 0x037BCD74, const BackEndServices *)(this);
+        }
+
+        void CancelLoginJob()
+        {
+            MLINK_FUNC(void, 0x037BEA68, BackEndServices *)(this);
+        }
+
         uint32_t field_0x0;
         uint32_t field_0x4;
         uint32_t field_0x8;
