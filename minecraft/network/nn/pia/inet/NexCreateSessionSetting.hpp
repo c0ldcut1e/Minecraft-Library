@@ -5,10 +5,11 @@
 #include "mlink/MLink.hpp"
 
 #include "network/nn/pia/Result.hpp"
+#include "network/nn/pia/session/CreateSessionSetting.hpp"
 
 namespace nn::pia::inet
 {
-    class NexCreateSessionSetting
+    class NexCreateSessionSetting : public session::CreateSessionSetting
     {
     public:
         static NexCreateSessionSetting *Create()
@@ -32,11 +33,6 @@ namespace nn::pia::inet
         void SetGameMode(uint32_t gameMode)
         {
             MLINK_FUNC(void, 0x035738CC, NexCreateSessionSetting *, uint32_t)(this, gameMode);
-        }
-
-        void SetMaxParticipantNum(uint16_t participantCount)
-        {
-            MLINK_FUNC(void, 0x03506BD4, NexCreateSessionSetting *, uint16_t)(this, participantCount);
         }
 
         void SetOpenSession(bool openSession)

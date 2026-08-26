@@ -4,9 +4,11 @@
 
 #include "mlink/MLink.hpp"
 
+#include "network/nn/pia/session/SessionSearchCriteria.hpp"
+
 namespace nn::pia::lan
 {
-    class LanSessionSearchCriteria
+    class LanSessionSearchCriteria : public session::SessionSearchCriteria
     {
     public:
         void SetMaxParticipantNum(uint16_t participantCount)

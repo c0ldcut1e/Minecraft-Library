@@ -7,7 +7,10 @@
 #include "MinecraftLib.hpp"
 #include "internal/VTable.hpp"
 #include "network/nn/pia/Result.hpp"
-#include "network/nn/pia/inet/NexCreateSessionSetting.hpp"
+#include "network/nn/pia/session/CreateSessionSetting.hpp"
+#include "network/nn/pia/session/JoinSessionSetting.hpp"
+#include "network/nn/pia/session/SessionSearchCriteria.hpp"
+#include "network/nn/pia/session/UpdateSessionSetting.hpp"
 
 namespace nn::pia::session
 {
@@ -71,10 +74,17 @@ namespace nn::pia::session
             return result;
         }
 
-        Result CreateSessionAsync(const inet::NexCreateSessionSetting *createSessionSetting)
+        Result BrowseSessionAsync(const SessionSearchCriteria *searchCriteria)
         {
             Result result;
-            MLINK_FUNC(void, 0x0351F058, Session *, Result *, const inet::NexCreateSessionSetting *)(this, &result, createSessionSetting);
+            MLINK_FUNC(void, 0x0351EDE8, Session *, Result *, const SessionSearchCriteria *)(this, &result, searchCriteria);
+            return result;
+        }
+
+        Result CreateSessionAsync(const CreateSessionSetting *createSessionSetting)
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0351F058, Session *, Result *, const CreateSessionSetting *)(this, &result, createSessionSetting);
             return result;
         }
 
@@ -94,6 +104,13 @@ namespace nn::pia::session
         {
             Result result;
             MLINK_FUNC(void, 0x0351F460, const Session *, Result *)(this, &result);
+            return result;
+        }
+
+        Result JoinSessionAsync(const JoinSessionSetting *joinSessionSetting)
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0351F284, Session *, Result *, const JoinSessionSetting *)(this, &result, joinSessionSetting);
             return result;
         }
 
@@ -123,6 +140,13 @@ namespace nn::pia::session
         {
             Result result;
             MLINK_FUNC(void, 0x0351F934, const Session *, Result *)(this, &result);
+            return result;
+        }
+
+        Result UpdateSessionSettingAsync(const UpdateSessionSetting *updateSessionSetting)
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0351F8C4, Session *, Result *, const UpdateSessionSetting *)(this, &result, updateSessionSetting);
             return result;
         }
 
