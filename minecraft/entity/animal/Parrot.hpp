@@ -58,6 +58,8 @@ namespace mc
             return MLINK_FUNC(bool, 0x027885CC, Parrot *)(this);
         }
 
+        uint32_t field_0x790;
+        uint32_t field_0x794;
         uint32_t field_0x798;
         uint32_t field_0x79C;
         uint32_t field_0x7A0;

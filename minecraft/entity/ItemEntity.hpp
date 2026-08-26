@@ -91,14 +91,6 @@ namespace mc
         uint32_t field_0x394;
         uint32_t field_0x398;
         uint32_t field_0x39C;
-        uint32_t field_0x3A0;
-        uint32_t field_0x3A4;
-        uint32_t field_0x3A8;
-        uint32_t field_0x3AC;
-        uint32_t field_0x3B0;
-        uint32_t field_0x3B4;
-        uint32_t field_0x3B8;
-        uint32_t field_0x3BC;
     };
-    MC_CHECK_SIZE(ItemEntity, 0x3C0);
+    MC_CHECK_SIZE(ItemEntity, 0x3A0);
 } // namespace mc

@@ -161,6 +161,7 @@
 #include "entity/player/PlayerUID.hpp"
 #include "entity/player/RemotePlayer.hpp"
 #include "entity/player/ServerPlayer.hpp"
+#include "entity/projectile/AbstractRotatedItemProjectile.hpp"
 #include "entity/projectile/Arrow.hpp"
 #include "entity/projectile/DragonFireball.hpp"
 #include "entity/projectile/EvocationFangs.hpp"

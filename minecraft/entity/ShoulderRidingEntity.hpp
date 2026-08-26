@@ -32,8 +32,6 @@ namespace mc
 
         uint32_t field_0x788;
         uint32_t field_0x78C;
-        uint32_t field_0x790;
-        uint32_t field_0x794;
     };
-    MC_CHECK_SIZE(ShoulderRidingEntity, 0x798);
+    MC_CHECK_SIZE(ShoulderRidingEntity, 0x790);
 } // namespace mc

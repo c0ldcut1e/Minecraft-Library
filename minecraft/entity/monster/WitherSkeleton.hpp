@@ -6,6 +6,8 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/monster/AbstractSkeleton.hpp"
+#include "entity/monster/WitherBoss.hpp"
+#include "internal/shared_ptr.hpp"
 #include "world/Level.hpp"
 
 namespace mc
@@ -42,6 +44,8 @@ namespace mc
         {
             MLINK_FUNC(void, 0x02A494D8, WitherSkeleton *)(this);
         }
+
+        mboost::shared_ptr<WitherBoss> witherParent;
     };
-    MC_CHECK_SIZE(WitherSkeleton, 0x740);
+    MC_CHECK_SIZE(WitherSkeleton, 0x748);
 } // namespace mc
