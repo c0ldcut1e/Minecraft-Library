@@ -11,5 +11,10 @@ namespace mc
         {
             return MLINK_FUNC(const wchar_t *, 0x02F24864, int)(stringId);
         }
+
+        static void loadStringTable()
+        {
+            MLINK_FUNC(void, 0x02F27BD4)();
+        }
     };
 } // namespace mc
