@@ -22,6 +22,7 @@
 #include "utils/MCRandom.hpp"
 #include "utils/ParticleType.hpp"
 #include "utils/Vec3.hpp"
+#include "world/border/WorldBorder.hpp"
 
 namespace mc
 {
@@ -45,7 +46,6 @@ namespace mc
     class Packet;
     class SavedData;
     class SavedDataStorage;
-    class WorldBorder;
     class HitResult;
     class LevelChunk;
 

@@ -7,6 +7,7 @@
 #include "MinecraftLib.hpp"
 #include "ServerLevel.hpp"
 #include "internal/shared_ptr.hpp"
+#include "world/border/WorldBorder.hpp"
 
 namespace mc
 {
