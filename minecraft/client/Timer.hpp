@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+#include "mlink/MLink.hpp"
+
 #include "MinecraftLib.hpp"
 
 namespace mc
@@ -9,6 +11,16 @@ namespace mc
     class Timer
     {
     public:
+        Timer(float ticksPerSecond)
+        {
+            MLINK_FUNC(void, 0x033A1538, Timer *, float)(this, ticksPerSecond);
+        }
+
+        void advanceTime()
+        {
+            MLINK_FUNC(void, 0x033A1618, Timer *)(this);
+        }
+
         float ticksPerSecond;
         uint32_t field_0x4;
         double field_0x8;
