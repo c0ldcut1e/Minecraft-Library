@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+#include "mlink/MLink.hpp"
+
 #include "MinecraftLib.hpp"
 
 namespace nn::pia::inet
@@ -9,11 +11,174 @@ namespace nn::pia::inet
     class NexSessionInfo
     {
     public:
+        NexSessionInfo()
+        {
+            MLINK_FUNC(void, 0x03580E08, NexSessionInfo *)(this);
+        }
+
+        ~NexSessionInfo()
+        {
+            MLINK_FUNC(void, 0x03580F20, NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] uint32_t GetGameMode() const
+        {
+            return MLINK_FUNC(uint32_t, 0x03580F34, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] uint32_t GetSessionId() const
+        {
+            return MLINK_FUNC(uint32_t, 0x03580F3C, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] uint16_t GetCurrentParticipantNum() const
+        {
+            return MLINK_FUNC(uint16_t, 0x03580F4C, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] uint16_t GetMinParticipantNum() const
+        {
+            return MLINK_FUNC(uint16_t, 0x03580F54, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] uint16_t GetMaxParticipantNum() const
+        {
+            return MLINK_FUNC(uint16_t, 0x03580F5C, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] bool IsOpened() const
+        {
+            return MLINK_FUNC(bool, 0x03580F64, const NexSessionInfo *)(this);
+        }
+
+        void GetApplicationData(void *data, uint32_t size) const
+        {
+            MLINK_FUNC(void, 0x03580F6C, const NexSessionInfo *, void *, uint32_t)(this, data, size);
+        }
+
+        [[nodiscard]] uint32_t GetApplicationDataSize() const
+        {
+            return MLINK_FUNC(uint32_t, 0x0358104C, const NexSessionInfo *)(this);
+        }
+
+        bool GetAttribute(uint8_t index, uint32_t *attribute) const
+        {
+            return MLINK_FUNC(bool, 0x03581054, const NexSessionInfo *, uint8_t, uint32_t *)(this, index, attribute);
+        }
+
+        [[nodiscard]] bool IsRestrictedByUserPassword() const
+        {
+            return MLINK_FUNC(bool, 0x03581118, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] bool IsRestrictedBySystemPassword() const
+        {
+            return MLINK_FUNC(bool, 0x03581120, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] uint32_t GetSessionType() const
+        {
+            return MLINK_FUNC(uint32_t, 0x03581128, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] bool IsAutoCloseSession() const
+        {
+            return MLINK_FUNC(bool, 0x03581130, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] uint64_t GetHostPrincipalId() const
+        {
+            return MLINK_FUNC(uint64_t, 0x03581138, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] uint64_t GetTargetPrincipalId() const
+        {
+            return MLINK_FUNC(uint64_t, 0x03581144, const NexSessionInfo *)(this);
+        }
+
+        [[nodiscard]] uint8_t GetSelectionPriority() const
+        {
+            return MLINK_FUNC(uint8_t, 0x03581150, const NexSessionInfo *)(this);
+        }
+
+        void Clear()
+        {
+            MLINK_FUNC(void, 0x03581160, NexSessionInfo *)(this);
+        }
+
+        void SetGameMode(uint32_t gameMode)
+        {
+            MLINK_FUNC(void, 0x03581218, NexSessionInfo *, uint32_t)(this, gameMode);
+        }
+
+        void SetSessionId(uint32_t newSessionId)
+        {
+            MLINK_FUNC(void, 0x03581220, NexSessionInfo *, uint32_t)(this, newSessionId);
+        }
+
+        void SetCurrentParticipantNum(uint16_t participantCount)
+        {
+            MLINK_FUNC(void, 0x03581228, NexSessionInfo *, uint16_t)(this, participantCount);
+        }
+
+        void SetMinParticipantNum(uint16_t participantCount)
+        {
+            MLINK_FUNC(void, 0x03581230, NexSessionInfo *, uint16_t)(this, participantCount);
+        }
+
+        void SetMaxParticipantNum(uint16_t participantCount)
+        {
+            MLINK_FUNC(void, 0x03581238, NexSessionInfo *, uint16_t)(this, participantCount);
+        }
+
+        void SetOpen(bool open)
+        {
+            MLINK_FUNC(void, 0x03581240, NexSessionInfo *, bool)(this, open);
+        }
+
+        void SetAttribute(uint8_t index, uint32_t attribute)
+        {
+            MLINK_FUNC(void, 0x03581248, NexSessionInfo *, uint8_t, uint32_t)(this, index, attribute);
+        }
+
+        void SetApplicationData(const void *data, uint32_t size)
+        {
+            MLINK_FUNC(void, 0x03581260, NexSessionInfo *, const void *, uint32_t)(this, data, size);
+        }
+
+        void SetUserPasswordEnabled(bool enabled)
+        {
+            MLINK_FUNC(void, 0x035812D4, NexSessionInfo *, bool)(this, enabled);
+        }
+
+        void SetSystemPasswordEnabled(bool enabled)
+        {
+            MLINK_FUNC(void, 0x035812DC, NexSessionInfo *, bool)(this, enabled);
+        }
+
+        void SetHostPrincipalId(uint64_t principalId)
+        {
+            MLINK_FUNC(void, 0x035812F0, NexSessionInfo *, uint64_t)(this, principalId);
+        }
+
+        void SetTargetPrincipalId(uint64_t principalId)
+        {
+            MLINK_FUNC(void, 0x035812FC, NexSessionInfo *, uint64_t)(this, principalId);
+        }
+
+        void SetSelectionPriority(uint8_t priority)
+        {
+            MLINK_FUNC(void, 0x03581308, NexSessionInfo *, uint8_t)(this, priority);
+        }
+
         uint32_t field_0x0;
-        uint32_t gamemode;
+        uint32_t gameMode;
         uint32_t sessionId;
-        uint32_t currentParticipantNum;
-        uint32_t maxParticipantNum;
+        uint16_t currentParticipantCount;
+        uint16_t minimumParticipantCount;
+        uint16_t maximumParticipantCount;
+        uint8_t isOpen;
+        uint8_t field_0x13;
         uint32_t field_0x14;
         uint32_t field_0x18;
         uint32_t field_0x1C;
