@@ -1,7 +1,9 @@
 #pragma once
 
-#include "platform/Platform.hpp"
 #include <cstdint>
+
+// Uncomment this if this library is used on Cemu
+// #define PLATFORM_CEMU
 
 #define MLINK_FUNC(ret, address, ...) reinterpret_cast<ret (*)(__VA_ARGS__)>(address)
 
