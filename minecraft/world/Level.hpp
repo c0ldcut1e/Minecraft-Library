@@ -311,6 +311,21 @@ namespace mc
             return MLINK_FUNC(int, 0x0254BF24, Level *, int, int)(this, x, z);
         }
 
+        int getBrightness(LightLayer::variety layer, const BlockPos &pos)
+        {
+            return MLINK_FUNC(int, 0x0254C7B0, Level *, LightLayer::variety, const BlockPos &)(this, layer, pos);
+        }
+
+        int getBrightness(const BlockPos &pos, int skyDarken)
+        {
+            return MLINK_FUNC(int, 0x0254C9BC, Level *, const BlockPos &, int)(this, pos, skyDarken);
+        }
+
+        int getBrightness(const BlockPos &pos)
+        {
+            return MLINK_FUNC(int, 0x0254CA2C, Level *, const BlockPos &)(this, pos);
+        }
+
         HitResult *clip(const Vec3 &start, const Vec3 &end, bool unk3, bool unk4, bool unk5, bool unk6, void *unk7, bool unk8)
         {
             return MLINK_FUNC(HitResult *, 0x0254DC20, Level *, const Vec3 &, const Vec3 &, bool, bool, bool, bool, void *,
@@ -612,6 +627,11 @@ namespace mc
         void forceAddBlockTick(const BlockPos &pos, Block *block, int delay, int priority)
         {
             MLINK_FUNC(void, 0x02556750, Level *, const BlockPos &, Block *, int, int)(this, pos, block, delay, priority);
+        }
+
+        bool hasTickNextTick(const BlockPos &pos, Block *block)
+        {
+            return MLINK_FUNC(bool, 0x02556740, Level *, const BlockPos &, Block *)(this, pos, block);
         }
 
         void tick(mboost::shared_ptr<Entity> entity)

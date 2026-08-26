@@ -13,6 +13,7 @@
 #include "entity/player/PlayerUID.hpp"
 #include "internal/basic_string.hpp"
 #include "internal/shared_ptr.hpp"
+#include "internal/vector.hpp"
 #include "network/packet/clientbound/ClientboundLevelParticlesPacket.hpp"
 #include "utils/ParticleType.hpp"
 #include "world/chunk/ChunkSource.hpp"
@@ -248,6 +249,26 @@ namespace mc
             MLINK_FUNC(void, 0x032B6178, ServerLevel *)(this);
         }
 
+        void Suspend()
+        {
+            MLINK_FUNC(void, 0x032B6ABC, ServerLevel *)(this);
+        }
+
+        void saveToDisc(ProgressListener *progressListener, bool flush)
+        {
+            MLINK_FUNC(void, 0x032B6B2C, ServerLevel *, ProgressListener *, bool)(this, progressListener, flush);
+        }
+
+        void removeDuplicateAndPendingEntity(const mboost::shared_ptr<Entity> &entity)
+        {
+            MLINK_FUNC(void, 0x032B6FFC, ServerLevel *, const mboost::shared_ptr<Entity> &)(this, entity);
+        }
+
+        void addEntities(mstd::vector<mboost::shared_ptr<Entity>> *entitiesToAdd)
+        {
+            MLINK_FUNC(void, 0x032B7598, ServerLevel *, mstd::vector<mboost::shared_ptr<Entity>> *)(this, entitiesToAdd);
+        }
+
         void setInitialSpawn(LevelSettings *settings)
         {
             MLINK_FUNC(void, 0x032B673C, ServerLevel *, LevelSettings *)(this, settings);
@@ -300,6 +321,16 @@ namespace mc
         {
             MLINK_FUNC(void, 0x032BB2AC, ServerLevel *, mboost::shared_ptr<Entity>, double, double, double, float, bool, bool, bool, bool, bool,
                        float)(this, source, x, y, z, radius, causesFire, breaksBlocks, affectsEntities, destroyBlocks, isUnderwater, knockback);
+        }
+
+        void blockEvent(const BlockPos &pos, Block *block, int event, int parameter)
+        {
+            MLINK_FUNC(void, 0x032BC99C, ServerLevel *, const BlockPos &, Block *, int, int)(this, pos, block, event, parameter);
+        }
+
+        void closeLevelStorage()
+        {
+            MLINK_FUNC(void, 0x032BCA58, ServerLevel *)(this);
         }
 
         void tickWeather(bool force)
