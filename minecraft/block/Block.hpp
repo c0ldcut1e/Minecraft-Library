@@ -512,7 +512,7 @@ namespace mc
         MC_VFUNC(void, Block, GetInteractTooltip);
         MC_VFUNC(void, Block, GetHitTooltip);
         MC_VFUNC(void, Block, getMapColor);
-        MC_VFUNC(uint32_t, Block, getBlockState, int);
+        MC_VFUNC(BlockState *, Block, getBlockState, int);
         MC_VFUNC(uint32_t, Block, convertBlockStateToLegacyData, uint32_t);
         MC_VFUNC(void, Block, setPropertyValueFromString);
         MC_VFUNC(void, Block, fillVirtualBlockStateProperties);
