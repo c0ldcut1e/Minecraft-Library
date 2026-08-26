@@ -33,6 +33,11 @@ namespace mc
             MLINK_FUNC(void, 0x03472024, uint64_t)(stationId);
         }
 
+        static void RemovePlayer(NQRNetworkPlayer *player)
+        {
+            MLINK_FUNC(void, 0x03472774, NQRNetworkPlayer *)(player);
+        }
+
         static void RemoveAllPlayers()
         {
             MLINK_FUNC(void, 0x034729D0)();

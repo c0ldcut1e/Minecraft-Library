@@ -43,6 +43,11 @@ namespace mc
                        const char *, const wchar_t *)(this, manager, type, isHost, stationId, localPlayerIdx, uid, name, wname);
         }
 
+        ~NQRNetworkPlayer()
+        {
+            MLINK_FUNC(void, 0x03467558, NQRNetworkPlayer *, uint32_t)(this, 0);
+        }
+
         void ConnectionComplete()
         {
             MLINK_FUNC(void, 0x03467650, NQRNetworkPlayer *)(this);
