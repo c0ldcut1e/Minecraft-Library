@@ -12,11 +12,6 @@ namespace mc
     class Material
     {
     public:
-        static void staticCtor()
-        {
-            MLINK_FUNC(void, 0x0253B7A8)();
-        }
-
         Material(const MaterialColor *color)
         {
             MLINK_FUNC(void, 0x0253B6C8, Material *, const MaterialColor *)(this, color);
@@ -25,6 +20,11 @@ namespace mc
         ~Material()
         {
             MLINK_FUNC(void, 0x026022F4, Material *, uint32_t)(this, 0);
+        }
+
+        static void staticCtor()
+        {
+            MLINK_FUNC(void, 0x0253B7A8)();
         }
 
         Material *replaceable()

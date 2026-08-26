@@ -10,16 +10,16 @@ namespace mc
     class SoundType
     {
     public:
-        static void staticCtor()
-        {
-            MLINK_FUNC(void, 0x029494D0)();
-        }
-
         SoundType(float volume, float pitch, const SoundEvent *breakSound, const SoundEvent *stepSound, const SoundEvent *placeSound,
                   const SoundEvent *hitSound, const SoundEvent *fallSound)
         {
             MLINK_FUNC(void, 0x02949424, SoundType *, float, float, const SoundEvent *, const SoundEvent *, const SoundEvent *, const SoundEvent *,
                        const SoundEvent *)(this, volume, pitch, breakSound, stepSound, placeSound, hitSound, fallSound);
+        }
+
+        static void staticCtor()
+        {
+            MLINK_FUNC(void, 0x029494D0)();
         }
 
         const SoundEvent *getPlaceSound()

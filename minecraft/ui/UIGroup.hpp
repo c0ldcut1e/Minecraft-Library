@@ -13,8 +13,8 @@ namespace mc
     public:
         UILayer *layers[8];
         MC_UNDEFINED_TYPE(void *, UIComponent_Tooltips *) tooltips;
-        MC_UNDEFINED_TYPE(void *, UIComponent_TutorialPopup *) * tutorialPopup;
-        MC_UNDEFINED_TYPE(void *, UIComponent_PressStartToPlay *) * pressStartToPlay;
+        MC_UNDEFINED_TYPE(void **, UIComponent_TutorialPopup *) tutorialPopup;
+        MC_UNDEFINED_TYPE(void **, UIComponent_PressStartToPlay *) pressStartToPlay;
         UIScene_HUD *hud;
         uint32_t field_0x30;
         uint32_t viewportType;

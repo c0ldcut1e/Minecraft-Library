@@ -8,6 +8,7 @@
 #include "Level.hpp"
 #include "MinecraftLib.hpp"
 #include "block/BlockPos.hpp"
+#include "block/BlockState.hpp"
 #include "client/ClientScoreboard.hpp"
 #include "entity/Entity.hpp"
 #include "entity/vehicle/Minecart.hpp"
@@ -185,17 +186,15 @@ namespace mc
             MLINK_FUNC(void, 0x031FE25C, MultiPlayerLevel *, mstd::vector<mboost::shared_ptr<Entity>> *)(this, entities);
         }
 
-        void setBlock(const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * state, int flags, bool updateNeighbors)
+        void setBlock(const BlockPos &pos, const BlockState *state, int flags, bool updateNeighbors)
         {
-            MLINK_FUNC(void, 0x031FE5EC, MultiPlayerLevel *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, int,
-                       bool)(this, pos, state, flags, updateNeighbors);
+            MLINK_FUNC(void, 0x031FE5EC, MultiPlayerLevel *, const BlockPos &, const BlockState *, int, bool)(this, pos, state, flags,
+                                                                                                              updateNeighbors);
         }
 
-        void doSetBlockAndData(const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * state,
-                               const MC_UNDEFINED_TYPE(uint32_t, BlockState) * extraState)
+        void doSetBlockAndData(const BlockPos &pos, const BlockState *state, const BlockState *extraState)
         {
-            MLINK_FUNC(void, 0x031FE600, MultiPlayerLevel *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *,
-                       const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, pos, state, extraState);
+            MLINK_FUNC(void, 0x031FE600, MultiPlayerLevel *, const BlockPos &, const BlockState *, const BlockState *)(this, pos, state, extraState);
         }
 
         void disconnect(bool save)

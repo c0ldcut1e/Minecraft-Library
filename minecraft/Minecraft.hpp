@@ -9,6 +9,7 @@
 #include "block/BlockDestructionProgress.hpp"
 #include "block/BlockImpl.hpp"
 #include "block/BlockPos.hpp"
+#include "block/BlockState.hpp"
 #include "block/Material.hpp"
 #include "block/MaterialColor.hpp"
 #include "block/SoundType.hpp"

@@ -21,11 +21,6 @@ namespace mc
     class AbstractRotatedItemProjectile : public Entity
     {
     public:
-        static void staticCtor()
-        {
-            MLINK_FUNC(void, 0x0205C9D4)();
-        }
-
         AbstractRotatedItemProjectile() = default;
 
         AbstractRotatedItemProjectile(Level *level)
@@ -46,6 +41,11 @@ namespace mc
         ~AbstractRotatedItemProjectile()
         {
             MLINK_FUNC(void, 0x020B0D28, AbstractRotatedItemProjectile *, uint32_t)(this, 0);
+        }
+
+        static void staticCtor()
+        {
+            MLINK_FUNC(void, 0x0205C9D4)();
         }
 
         void shoot(double x, double y, double z, float velocity, float inaccuracy)
