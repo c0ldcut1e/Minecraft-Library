@@ -39,6 +39,7 @@
 #include "client/resource/ElementStorage.hpp"
 #include "client/resource/NonNullList.hpp"
 #include "client/resource/ResourceLocation.hpp"
+#include "client/resource/StringTable.hpp"
 #include "client/resource/texture/Texture.hpp"
 #include "client/resource/texture/TextureAtlas.hpp"
 #include "client/resource/texture/TextureAtlasSprite.hpp"
