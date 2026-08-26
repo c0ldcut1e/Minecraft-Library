@@ -17,6 +17,7 @@
 #include "client/C4JEvent.hpp"
 #include "client/C4JEventArray.hpp"
 #include "client/C4JThreadImpl.hpp"
+#include "client/FrameTimer.hpp"
 #include "client/L10N.hpp"
 #include "client/Minecraft.hpp"
 #include "client/Timer.hpp"
