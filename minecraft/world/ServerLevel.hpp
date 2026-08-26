@@ -33,6 +33,8 @@ namespace mc
     class ServerLevel : public Level
     {
     public:
+        ServerLevel() = default;
+
         static void runUpdate(void *context)
         {
             MLINK_FUNC(void, 0x032A9638, void *)(context);

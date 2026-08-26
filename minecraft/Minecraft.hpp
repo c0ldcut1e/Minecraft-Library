@@ -457,6 +457,7 @@
 #include "utils/ePARTICLE_TYPE.hpp"
 #include "world/Dimension.hpp"
 #include "world/Level.hpp"
+#include "world/DerivedServerLevel.hpp"
 #include "world/LevelData.hpp"
 #include "world/LevelRuleset.hpp"
 #include "world/MultiPlayerLevel.hpp"
