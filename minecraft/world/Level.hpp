@@ -5,11 +5,16 @@
 
 #include "mlink/MLink.hpp"
 
+#include "Difficulty.hpp"
 #include "Dimension.hpp"
+#include "LevelData.hpp"
+#include "LevelSettings.hpp"
+#include "LevelSource.hpp"
 #include "MinecraftLib.hpp"
 #include "block/Block.hpp"
 #include "block/BlockPos.hpp"
 #include "chunk/ChunkSource.hpp"
+#include "chunk/LevelChunk.hpp"
 #include "client/resource/ArrayWithLength.hpp"
 #include "internal/basic_string.hpp"
 #include "internal/shared_ptr.hpp"
@@ -18,6 +23,7 @@
 #include "sound/SoundSource.hpp"
 #include "utils/AABB.hpp"
 #include "utils/Direction.hpp"
+#include "utils/HitResult.hpp"
 #include "utils/LightLayer.hpp"
 #include "utils/MCRandom.hpp"
 #include "utils/ParticleType.hpp"
@@ -28,28 +34,11 @@ namespace mc
 {
     class Block;
     class BlockEntity;
-    class BlockState;
     class Entity;
     class LivingEntity;
     class Player;
 
-    class AABB;
-    class BoundingBox;
-    class CompoundTag;
-    class Difficulty;
-    class EntityTickCache;
-    class LevelStorage;
-    class LevelData;
-    class LevelListener;
-    class LevelSettings;
-    class Material;
-    class Packet;
-    class SavedData;
-    class SavedDataStorage;
-    class HitResult;
-    class LevelChunk;
-
-    class Level
+    class Level : public LevelSource
     {
     public:
         Level() = default;
@@ -133,10 +122,11 @@ namespace mc
             MLINK_FUNC(void, 0x02544D3C, Level *)(this);
         }
 
-        Level(mboost::shared_ptr<LevelStorage> levelStorage, LevelData *levelData, Dimension *dimension, bool isClientSide)
+        Level(mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)> levelStorage, LevelData *levelData, Dimension *dimension,
+              bool isClientSide)
         {
-            MLINK_FUNC(void, 0x02545A34, Level *, mboost::shared_ptr<LevelStorage>, LevelData *, Dimension *, bool)(this, levelStorage, levelData,
-                                                                                                                    dimension, isClientSide);
+            MLINK_FUNC(void, 0x02545A34, Level *, mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)>, LevelData *, Dimension *,
+                       bool)(this, levelStorage, levelData, dimension, isClientSide);
         }
 
         ~Level()
@@ -209,14 +199,16 @@ namespace mc
             return MLINK_FUNC(bool, 0x025475E0, Level *, int, int)(this, chunkX, chunkZ);
         }
 
-        void setBlock(const BlockPos &pos, const BlockState *state, int flags, bool updateNeighbors)
+        void setBlock(const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * state, int flags, bool updateNeighbors)
         {
-            MLINK_FUNC(void, 0x02547678, Level *, const BlockPos &, const BlockState *, int, bool)(this, pos, state, flags, updateNeighbors);
+            MLINK_FUNC(void, 0x02547678, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, int,
+                       bool)(this, pos, state, flags, updateNeighbors);
         }
 
-        void setExtraBlock(const BlockPos &pos, const BlockState *state, int flags, bool updateNeighbors)
+        void setExtraBlock(const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * state, int flags, bool updateNeighbors)
         {
-            MLINK_FUNC(void, 0x0254769C, Level *, const BlockPos &, const BlockState *, int, bool)(this, pos, state, flags, updateNeighbors);
+            MLINK_FUNC(void, 0x0254769C, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, int,
+                       bool)(this, pos, state, flags, updateNeighbors);
         }
 
         void setBlockBrightnessChanged(const BlockPos &pos)
@@ -259,10 +251,11 @@ namespace mc
             MLINK_FUNC(void, 0x0254A3C8, Level *, const BlockPos &, Block *, bool)(this, pos, block, updateNeighbors);
         }
 
-        void internalSetBlock(bool isExtraBlock, const BlockPos &pos, const BlockState *state, int flags, bool updateNeighbors)
+        void internalSetBlock(bool isExtraBlock, const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * state, int flags,
+                              bool updateNeighbors)
         {
-            MLINK_FUNC(void, 0x0254A3D8, Level *, bool, const BlockPos &, const BlockState *, int, bool)(this, isExtraBlock, pos, state, flags,
-                                                                                                         updateNeighbors);
+            MLINK_FUNC(void, 0x0254A3D8, Level *, bool, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, int,
+                       bool)(this, isExtraBlock, pos, state, flags, updateNeighbors);
         }
 
         void setData(int x, int y, int z, int data, int flags, bool updateNeighbors)
@@ -275,15 +268,16 @@ namespace mc
             MLINK_FUNC(void, 0x0254B014, Level *, const BlockPos &, bool)(this, pos, dropResources);
         }
 
-        void setBlockAndUpdate(const BlockPos &pos, const BlockState *state)
+        void setBlockAndUpdate(const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * state)
         {
-            MLINK_FUNC(void, 0x0254B144, Level *, const BlockPos &, const BlockState *)(this, pos, state);
+            MLINK_FUNC(void, 0x0254B144, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, pos, state);
         }
 
-        void sendBlockUpdated(const BlockPos &pos, const BlockState *oldState, const BlockState *newState, int flags, bool updateNeighbors)
+        void sendBlockUpdated(const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * oldState,
+                              const MC_UNDEFINED_TYPE(uint32_t, BlockState) * newState, int flags, bool updateNeighbors)
         {
-            MLINK_FUNC(void, 0x0254B15C, Level *, const BlockPos &, const BlockState *, const BlockState *, int, bool)(this, pos, oldState, newState,
-                                                                                                                       flags, updateNeighbors);
+            MLINK_FUNC(void, 0x0254B15C, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *,
+                       const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, int, bool)(this, pos, oldState, newState, flags, updateNeighbors);
         }
 
         void updateNeighborsAtExceptFromFacing(const BlockPos &pos, Block *block, const Direction *skipDirection)
@@ -359,9 +353,9 @@ namespace mc
             return MLINK_FUNC(uint32_t, 0x0254CCAC, Level *, int, int, int)(this, pos.x, pos.y, pos.z);
         }
 
-        const BlockState *getBlockState(const BlockPos &pos)
+        const MC_UNDEFINED_TYPE(uint32_t, BlockState) * getBlockState(const BlockPos &pos)
         {
-            return MLINK_FUNC(const BlockState *, 0x0254CA88, Level *, const BlockPos &)(this, pos);
+            return MLINK_FUNC(const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, 0x0254CA88, Level *, const BlockPos &)(this, pos);
         }
 
         LevelChunk *getChunk(int chunkX, int chunkZ)
@@ -574,14 +568,14 @@ namespace mc
             MLINK_FUNC(void, 0x02551E10, Level *, mboost::shared_ptr<Entity>)(this, entity);
         }
 
-        void addListener(LevelListener *listener)
+        void addListener(MC_UNDEFINED_TYPE(uint32_t, LevelListener) * listener)
         {
-            MLINK_FUNC(void, 0x0255272C, Level *, LevelListener *)(this, listener);
+            MLINK_FUNC(void, 0x0255272C, Level *, MC_UNDEFINED_TYPE(uint32_t, LevelListener) *)(this, listener);
         }
 
-        void removeListener(LevelListener *listener)
+        void removeListener(MC_UNDEFINED_TYPE(uint32_t, LevelListener) * listener)
         {
-            MLINK_FUNC(void, 0x025527D0, Level *, LevelListener *)(this, listener);
+            MLINK_FUNC(void, 0x025527D0, Level *, MC_UNDEFINED_TYPE(uint32_t, LevelListener) *)(this, listener);
         }
 
         bool isInsideWorldBorder(mboost::shared_ptr<Entity> entity)
@@ -859,9 +853,9 @@ namespace mc
             MLINK_FUNC(void, 0x0256B2AC, Level *, const BlockPos &, Block *, int, int)(this, pos, block, event, parameter);
         }
 
-        LevelStorage *getLevelStorage()
+        MC_UNDEFINED_TYPE(uint32_t, LevelStorage) * getLevelStorage()
         {
-            return MLINK_FUNC(LevelStorage *, 0x0256B330, Level *)(this);
+            return MLINK_FUNC(MC_UNDEFINED_TYPE(uint32_t, LevelStorage) *, 0x0256B330, Level *)(this);
         }
 
         void updateSleepingPlayerList()
@@ -934,14 +928,14 @@ namespace mc
             return MLINK_FUNC(bool, 0x0256B78C, Level *, const BlockPos &)(this, pos);
         }
 
-        void setSavedDataStorage(SavedDataStorage *storage)
+        void setSavedDataStorage(MC_UNDEFINED_TYPE(uint32_t, SavedDataStorage) * storage)
         {
-            MLINK_FUNC(void, 0x0256B7C8, Level *, SavedDataStorage *)(this, storage);
+            MLINK_FUNC(void, 0x0256B7C8, Level *, MC_UNDEFINED_TYPE(uint32_t, SavedDataStorage) *)(this, storage);
         }
 
-        SavedDataStorage *getSavedDataStorage()
+        MC_UNDEFINED_TYPE(uint32_t, SavedDataStorage) * getSavedDataStorage()
         {
-            return MLINK_FUNC(SavedDataStorage *, 0x0256B7D0, Level *)(this);
+            return MLINK_FUNC(MC_UNDEFINED_TYPE(uint32_t, SavedDataStorage) *, 0x0256B7D0, Level *)(this);
         }
 
         int getMaxBuildHeight()
@@ -1029,7 +1023,6 @@ namespace mc
             return MLINK_FUNC(bool, 0x02602750, Level *)(this);
         }
 
-        uint32_t field_0x0;
         uint32_t field_0x4;
         uint32_t field_0x8;
         uint32_t field_0xC;
@@ -1103,7 +1096,7 @@ namespace mc
         uint32_t field_0x140;
         uint32_t field_0x144;
         uint32_t field_0x148;
-        LevelStorage *levelStorage;
+        MC_UNDEFINED_TYPE(uint32_t, LevelStorage) * levelStorage;
         uint32_t field_0x150;
         LevelData *levelData;
         uint32_t field_0x158;

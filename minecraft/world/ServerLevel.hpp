@@ -16,18 +16,17 @@
 #include "internal/vector.hpp"
 #include "network/packet/clientbound/ClientboundLevelParticlesPacket.hpp"
 #include "utils/ParticleType.hpp"
+#include "world/BlockEventData.hpp"
+#include "world/LevelData.hpp"
+#include "world/LevelSettings.hpp"
+#include "world/NaturalMobSpawner.hpp"
+#include "world/PlayerChunkMap.hpp"
+#include "world/PortalForcer.hpp"
 #include "world/chunk/ChunkSource.hpp"
 
 namespace mc
 {
-    class BlockEventData;
-    class LevelSettings;
     class MinecraftServer;
-    class MobCategory;
-    class NaturalMobSpawner;
-    class PlayerChunkMap;
-    class PortalForcer;
-    class ProgressListener;
     class ServerPlayer;
 
     class ServerLevel : public Level
@@ -45,9 +44,10 @@ namespace mc
             MLINK_FUNC(void, 0x032A9FA8)();
         }
 
-        ServerLevel(MinecraftServer *server, mboost::shared_ptr<LevelStorage> levelStorage, LevelData *levelData, int dimensionId)
+        ServerLevel(MinecraftServer *server, mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)> levelStorage, LevelData *levelData,
+                    int dimensionId)
         {
-            MLINK_FUNC(void, 0x032AAC64, ServerLevel *, MinecraftServer *, mboost::shared_ptr<LevelStorage>, LevelData *,
+            MLINK_FUNC(void, 0x032AAC64, ServerLevel *, MinecraftServer *, mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)>, LevelData *,
                        int)(this, server, levelStorage, levelData, dimensionId);
         }
 
@@ -106,9 +106,10 @@ namespace mc
             MLINK_FUNC(void, 0x032AE690, ServerLevel *)(this);
         }
 
-        void save(bool flush, ProgressListener *progressListener, bool skipPlayerData)
+        void save(bool flush, MC_UNDEFINED_TYPE(uint32_t, ProgressListener) * progressListener, bool skipPlayerData)
         {
-            MLINK_FUNC(void, 0x032AE7CC, ServerLevel *, bool, ProgressListener *, bool)(this, flush, progressListener, skipPlayerData);
+            MLINK_FUNC(void, 0x032AE7CC, ServerLevel *, bool, MC_UNDEFINED_TYPE(uint32_t, ProgressListener) *, bool)(this, flush, progressListener,
+                                                                                                                     skipPlayerData);
         }
 
         void doBlockEvent(BlockEventData *event)
@@ -256,9 +257,9 @@ namespace mc
             MLINK_FUNC(void, 0x032B6ABC, ServerLevel *)(this);
         }
 
-        void saveToDisc(ProgressListener *progressListener, bool flush)
+        void saveToDisc(MC_UNDEFINED_TYPE(uint32_t, ProgressListener) * progressListener, bool flush)
         {
-            MLINK_FUNC(void, 0x032B6B2C, ServerLevel *, ProgressListener *, bool)(this, progressListener, flush);
+            MLINK_FUNC(void, 0x032B6B2C, ServerLevel *, MC_UNDEFINED_TYPE(uint32_t, ProgressListener) *, bool)(this, progressListener, flush);
         }
 
         void removeDuplicateAndPendingEntity(const mboost::shared_ptr<Entity> &entity)
@@ -401,9 +402,11 @@ namespace mc
             MLINK_FUNC(void, 0x032BFD00, ServerLevel *, mboost::shared_ptr<ServerPlayer> *, const PlayerUID &)(this, &player, uid);
         }
 
-        void queueSendBlockUpdate(int x, int y, int z, const BlockState *oldState, const BlockState *newState)
+        void queueSendBlockUpdate(int x, int y, int z, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * oldState,
+                                  const MC_UNDEFINED_TYPE(uint32_t, BlockState) * newState)
         {
-            MLINK_FUNC(void, 0x032C0454, ServerLevel *, int, int, int, const BlockState *, const BlockState *)(this, x, y, z, oldState, newState);
+            MLINK_FUNC(void, 0x032C0454, ServerLevel *, int, int, int, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *,
+                       const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, x, y, z, oldState, newState);
         }
 
         bool atBlockEntityLimit(Block *block)
@@ -411,9 +414,10 @@ namespace mc
             return MLINK_FUNC(bool, 0x032C0544, ServerLevel *, Block *)(this, block);
         }
 
-        void setBlock(const BlockPos &pos, const BlockState *state, int flags, bool updateNeighbors)
+        void setBlock(const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * state, int flags, bool updateNeighbors)
         {
-            MLINK_FUNC(void, 0x032C0628, ServerLevel *, const BlockPos &, const BlockState *, int, bool)(this, pos, state, flags, updateNeighbors);
+            MLINK_FUNC(void, 0x032C0628, ServerLevel *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, int,
+                       bool)(this, pos, state, flags, updateNeighbors);
         }
 
         void addEntity(mboost::shared_ptr<Entity> entity)

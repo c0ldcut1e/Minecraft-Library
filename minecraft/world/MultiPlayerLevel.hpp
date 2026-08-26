@@ -14,6 +14,7 @@
 #include "network/packet/Packet.hpp"
 #include "sound/SoundSource.hpp"
 #include "world/chunk/ClientChunkCache.hpp"
+#include "world/chunk/LevelChunk.hpp"
 
 namespace mc
 {
@@ -28,11 +29,12 @@ namespace mc
     class MultiPlayerLevel : public Level
     {
     public:
-        MultiPlayerLevel(mboost::shared_ptr<LevelStorage> levelStorage, ClientPacketListener *packetListener, LevelSettings *settings,
-                         int dimensionId, const Difficulty *difficulty, int gameType)
+        MultiPlayerLevel(mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)> levelStorage, ClientPacketListener *packetListener,
+                         LevelSettings *settings, int dimensionId, const Difficulty *difficulty, int gameType)
         {
-            MLINK_FUNC(void, 0x031F9D44, MultiPlayerLevel *, mboost::shared_ptr<LevelStorage>, ClientPacketListener *, LevelSettings *, int,
-                       const Difficulty *, int)(this, levelStorage, packetListener, settings, dimensionId, difficulty, gameType);
+            MLINK_FUNC(void, 0x031F9D44, MultiPlayerLevel *, mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)>, ClientPacketListener *,
+                       LevelSettings *, int, const Difficulty *,
+                       int)(this, levelStorage, packetListener, settings, dimensionId, difficulty, gameType);
         }
 
         MultiPlayerLevel(ClientPacketListener *packetListener, LevelSettings *settings, int dimensionId, const Difficulty *difficulty, int gameType)
@@ -184,15 +186,17 @@ namespace mc
             MLINK_FUNC(void, 0x031FE25C, MultiPlayerLevel *, mstd::vector<mboost::shared_ptr<Entity>> *)(this, entities);
         }
 
-        void setBlock(const BlockPos &pos, const BlockState *state, int flags, bool updateNeighbors)
+        void setBlock(const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * state, int flags, bool updateNeighbors)
         {
-            MLINK_FUNC(void, 0x031FE5EC, MultiPlayerLevel *, const BlockPos &, const BlockState *, int, bool)(this, pos, state, flags,
-                                                                                                              updateNeighbors);
+            MLINK_FUNC(void, 0x031FE5EC, MultiPlayerLevel *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, int,
+                       bool)(this, pos, state, flags, updateNeighbors);
         }
 
-        void doSetBlockAndData(const BlockPos &pos, const BlockState *state, const BlockState *extraState)
+        void doSetBlockAndData(const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * state,
+                               const MC_UNDEFINED_TYPE(uint32_t, BlockState) * extraState)
         {
-            MLINK_FUNC(void, 0x031FE600, MultiPlayerLevel *, const BlockPos &, const BlockState *, const BlockState *)(this, pos, state, extraState);
+            MLINK_FUNC(void, 0x031FE600, MultiPlayerLevel *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *,
+                       const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, pos, state, extraState);
         }
 
         void disconnect(bool save)

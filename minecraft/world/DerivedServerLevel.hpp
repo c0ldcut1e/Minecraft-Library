@@ -70,9 +70,10 @@ namespace mc
         };
         MC_CHECK_SIZE(DerivedLevelBorderChangeListener, 0x8);
 
-        DerivedServerLevel(MinecraftServer *server, mboost::shared_ptr<LevelStorage> levelStorage, int dimensionId, ServerLevel *parentLevel)
+        DerivedServerLevel(MinecraftServer *server, mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)> levelStorage, int dimensionId,
+                           ServerLevel *parentLevel)
         {
-            MLINK_FUNC(void, 0x030A8E2C, DerivedServerLevel *, MinecraftServer *, mboost::shared_ptr<LevelStorage>, int,
+            MLINK_FUNC(void, 0x030A8E2C, DerivedServerLevel *, MinecraftServer *, mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)>, int,
                        ServerLevel *)(this, server, levelStorage, dimensionId, parentLevel);
         }
 
