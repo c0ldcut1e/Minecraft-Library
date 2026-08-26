@@ -57,6 +57,7 @@ namespace mc
         {
             MLINK_FUNC(void, 0x02544674)();
         }
+
         static void destroyLightingCache()
         {
             MLINK_FUNC(void, 0x025446D0)();

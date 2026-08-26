@@ -5,6 +5,7 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "client/Minecraft.hpp"
 
 namespace mc
 {
@@ -25,26 +26,32 @@ namespace mc
         {
             MLINK_FUNC(void, 0x03079990, ClientScoreboard *)(this);
         }
-        int getActivePlayerCount(MC_UNDEFINED_TYPE(uint32_t, Minecraft::EMiniGameId) miniGameId)
+
+        int getActivePlayerCount(Minecraft::EMiniGameId miniGameId)
         {
-            return MLINK_FUNC(int, 0x03079B24, ClientScoreboard *, MC_UNDEFINED_TYPE(uint32_t, Minecraft::EMiniGameId))(this, miniGameId);
+            return MLINK_FUNC(int, 0x03079B24, ClientScoreboard *, Minecraft::EMiniGameId)(this, miniGameId);
         }
+
         bool hasStats()
         {
             return MLINK_FUNC(bool, 0x0307CF1C, ClientScoreboard *)(this);
         }
+
         bool hasWinner(int round)
         {
             return MLINK_FUNC(bool, 0x0307CFAC, ClientScoreboard *, int)(this, round);
         }
+
         int getRoundLength(uint32_t round)
         {
             return MLINK_FUNC(int, 0x0307C0E0, ClientScoreboard *, uint32_t)(this, round);
         }
+
         bool glideHasOverallWinner()
         {
             return MLINK_FUNC(bool, 0x0307D51C, ClientScoreboard *)(this);
         }
+
         bool getGlideOverallWinner(bool includeTies)
         {
             return MLINK_FUNC(bool, 0x0307D6D0, ClientScoreboard *, bool)(this, includeTies);

@@ -28,6 +28,7 @@ namespace mc
         {
             MLINK_FUNC(void, 0x022215A0, ClientboundSetPassengersPacket *, mboost::shared_ptr<Entity>)(this, entity);
         }
+
         ~ClientboundSetPassengersPacket()
         {
             MLINK_FUNC(void, 0x02221450, ClientboundSetPassengersPacket *, uint32_t)(this, 0);

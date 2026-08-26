@@ -32,6 +32,7 @@ namespace mboost
                 detail->add_ref_copy();
             }
         }
+
         ~not_null_ptr()
         {
             if (detail != nullptr)

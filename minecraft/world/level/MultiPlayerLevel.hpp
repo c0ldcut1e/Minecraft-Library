@@ -9,7 +9,6 @@
 #include "MinecraftLib.hpp"
 #include "block/BlockPos.hpp"
 #include "block/BlockState.hpp"
-#include "client/ClientScoreboard.hpp"
 #include "entity/Entity.hpp"
 #include "entity/vehicle/Minecart.hpp"
 #include "internal/shared_ptr.hpp"
@@ -24,6 +23,7 @@
 
 namespace mc
 {
+    class ClientScoreboard;
     class ClientPacketListener;
 
     class MultiPlayerLevel : public Level

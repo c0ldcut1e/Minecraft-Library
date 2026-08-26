@@ -29,6 +29,7 @@ namespace mc
         {
             MLINK_FUNC(void, 0x0302811C, mc::BufferedImage *, int, int, int)(this, width, height, type);
         }
+
         ~BufferedImage()
         {
             MLINK_FUNC(void, 0x03029B44, mc::BufferedImage *)(this);

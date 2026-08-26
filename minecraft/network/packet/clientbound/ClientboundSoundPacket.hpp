@@ -48,6 +48,7 @@ namespace mc
             MLINK_FUNC(void, 0x0222931C, ClientboundSoundPacket *, ESoundInstances, const SoundEvent *, float, float, bool,
                        int)(this, soundInstance, sound, volume, pitch, looping, entityId);
         }
+
         ~ClientboundSoundPacket()
         {
             MLINK_FUNC(void, 0x022815B4, ClientboundSoundPacket *, uint32_t)(this, 0);

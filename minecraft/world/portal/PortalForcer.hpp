@@ -37,24 +37,29 @@ namespace mc
         {
             MLINK_FUNC(void, 0x0272F9C0, PortalForcer *)(this);
         }
+
         bool findPortal(mboost::shared_ptr<Entity> entity, float yRotation, int searchRadius, int portalRadius)
         {
             return MLINK_FUNC(bool, 0x0272FB98, PortalForcer *, mboost::shared_ptr<Entity>, float, int, int)(this, entity, yRotation, searchRadius,
                                                                                                              portalRadius);
         }
+
         bool createPortal(mboost::shared_ptr<Entity> entity)
         {
             return MLINK_FUNC(bool, 0x02731354, PortalForcer *, mboost::shared_ptr<Entity>)(this, entity);
         }
+
         bool force(mboost::shared_ptr<Entity> entity, float yRotation, int searchRadius, int portalRadius)
         {
             return MLINK_FUNC(bool, 0x02732DC4, PortalForcer *, mboost::shared_ptr<Entity>, float, int, int)(this, entity, yRotation, searchRadius,
                                                                                                              portalRadius);
         }
+
         bool isBlocked(const BlockPos &pos)
         {
             return MLINK_FUNC(bool, 0x02733588, PortalForcer *, const BlockPos &)(this, pos);
         }
+
         void tick(uint64_t time)
         {
             MLINK_FUNC(void, 0x02733628, PortalForcer *, uint64_t)(this, time);

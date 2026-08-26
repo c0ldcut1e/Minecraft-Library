@@ -22,6 +22,7 @@ namespace mc
             MLINK_FUNC(ByteArrayInputStream *, 0x021421F4, ByteArrayInputStream *, ArrayWithLength<uint8_t>, uint32_t, uint32_t)(this, bytes, offset,
                                                                                                                                  size);
         }
+
         ~ByteArrayInputStream()
         {
             MLINK_FUNC(void, 0x0214231C, ByteArrayInputStream *)(this);

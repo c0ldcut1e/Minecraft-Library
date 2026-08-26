@@ -17,6 +17,7 @@ namespace mc
             MLINK_FUNC(void, 0x0218BD3C, BossEvent *, const mstd::basic_string<wchar_t> &, int, const mstd::basic_string<wchar_t> &, unsigned int,
                        unsigned int)(this, id, nameId, name, 0, 0);
         }
+
         ~BossEvent()
         {
             MLINK_FUNC(void, 0x021A7EE4, BossEvent *)(this);

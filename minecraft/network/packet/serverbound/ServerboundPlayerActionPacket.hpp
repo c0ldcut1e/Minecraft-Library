@@ -31,6 +31,7 @@ namespace mc
             MLINK_FUNC(void, 0x028AEC5C, ServerboundPlayerActionPacket *, Action, const BlockPos &, const Direction *, int)(this, action, pos, dir,
                                                                                                                             arg5);
         }
+
         ~ServerboundPlayerActionPacket()
         {
             MLINK_FUNC(void, 0x028D0530, ServerboundPlayerActionPacket *)(this);

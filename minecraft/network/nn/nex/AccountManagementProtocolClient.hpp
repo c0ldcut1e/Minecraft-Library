@@ -17,6 +17,7 @@ namespace nn::nex
         {
             MLINK_FUNC(AccountManagementProtocolClient *, 0x037A491C, AccountManagementProtocolClient *, uint16_t)(this, protocolId);
         }
+
         ~AccountManagementProtocolClient()
         {
             MLINK_FUNC(void, 0x037DD4E4, AccountManagementProtocolClient *, uint32_t)(this, 2);

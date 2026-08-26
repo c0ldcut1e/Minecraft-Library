@@ -17,6 +17,7 @@ namespace nn::nex
         {
             MLINK_FUNC(TicketGrantingProtocolClient *, 0x037F7AE0, TicketGrantingProtocolClient *, uint16_t)(this, protocolId);
         }
+
         ~TicketGrantingProtocolClient()
         {
             MLINK_FUNC(void, 0x038066AC, TicketGrantingProtocolClient *, uint32_t)(this, 2);

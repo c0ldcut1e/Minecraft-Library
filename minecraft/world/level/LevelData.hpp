@@ -67,42 +67,52 @@ namespace mc
         {
             return MLINK_FUNC(uint64_t, 0x025C28C4, LevelData *)(this);
         }
+
         int getXSpawn()
         {
             return MLINK_FUNC(int, 0x025C28D0, LevelData *)(this);
         }
+
         int getYSpawn()
         {
             return MLINK_FUNC(int, 0x025C28D8, LevelData *)(this);
         }
+
         int getZSpawn()
         {
             return MLINK_FUNC(int, 0x025C28E0, LevelData *)(this);
         }
+
         int getXStronghold()
         {
             return MLINK_FUNC(int, 0x025C28E8, LevelData *)(this);
         }
+
         int getZStronghold()
         {
             return MLINK_FUNC(int, 0x025C28F0, LevelData *)(this);
         }
+
         int getXStrongholdEndPortal()
         {
             return MLINK_FUNC(int, 0x025C28F8, LevelData *)(this);
         }
+
         int getZStrongholdEndPortal()
         {
             return MLINK_FUNC(int, 0x025C2900, LevelData *)(this);
         }
+
         uint64_t getGameTime()
         {
             return MLINK_FUNC(uint64_t, 0x025C2908, LevelData *)(this);
         }
+
         uint64_t getDayTime()
         {
             return MLINK_FUNC(uint64_t, 0x025C2914, LevelData *)(this);
         }
+
         uint64_t getSizeOnDisk()
         {
             return MLINK_FUNC(uint64_t, 0x025C2920, LevelData *)(this);
@@ -112,66 +122,82 @@ namespace mc
         {
             MLINK_FUNC(void, 0x025C2934, LevelData *, uint64_t)(this, value);
         }
+
         void setXSpawn(int value)
         {
             MLINK_FUNC(void, 0x025C2940, LevelData *, int)(this, value);
         }
+
         void setYSpawn(int value)
         {
             MLINK_FUNC(void, 0x025C2948, LevelData *, int)(this, value);
         }
+
         void setZSpawn(int value)
         {
             MLINK_FUNC(void, 0x025C2950, LevelData *, int)(this, value);
         }
+
         void setHasStronghold()
         {
             MLINK_FUNC(void, 0x025C2958, LevelData *)(this);
         }
+
         bool getHasStronghold()
         {
             return MLINK_FUNC(bool, 0x025C2964, LevelData *)(this);
         }
+
         void setXStronghold(int value)
         {
             MLINK_FUNC(void, 0x025C296C, LevelData *, int)(this, value);
         }
+
         void setZStronghold(int value)
         {
             MLINK_FUNC(void, 0x025C2974, LevelData *, int)(this, value);
         }
+
         void setHasStrongholdEndPortal()
         {
             MLINK_FUNC(void, 0x025C297C, LevelData *)(this);
         }
+
         bool getHasStrongholdEndPortal()
         {
             return MLINK_FUNC(bool, 0x025C2988, LevelData *)(this);
         }
+
         void setXStrongholdEndPortal(int value)
         {
             MLINK_FUNC(void, 0x025C2990, LevelData *, int)(this, value);
         }
+
         void setZStrongholdEndPortal(int value)
         {
             MLINK_FUNC(void, 0x025C2998, LevelData *, int)(this, value);
         }
+
         void setGameTime(uint64_t value)
         {
             MLINK_FUNC(void, 0x025C29A0, LevelData *, uint64_t)(this, value);
         }
+
         void setDayTime(uint64_t value)
         {
             MLINK_FUNC(void, 0x025C29AC, LevelData *, uint64_t)(this, value);
         }
+
         void setSizeOnDisk(uint64_t value)
         {
             MLINK_FUNC(void, 0x025C29B8, LevelData *, uint64_t)(this, value);
         }
+
         void setLoadedPlayerTag(CompoundTag *tag)
         {
             MLINK_FUNC(void, 0x025C29C4, LevelData *, CompoundTag *)(this, tag);
         }
+
         void setSpawn(const BlockPos &pos)
         {
             MLINK_FUNC(void, 0x025C29C8, LevelData *, const BlockPos &)(this, pos);
@@ -191,174 +217,217 @@ namespace mc
         {
             return MLINK_FUNC(int, 0x025C2A78, LevelData *)(this);
         }
+
         void setVersion(int value)
         {
             MLINK_FUNC(void, 0x025C2A80, LevelData *, int)(this, value);
         }
+
         uint64_t getLastPlayed()
         {
             return MLINK_FUNC(uint64_t, 0x025C2A88, LevelData *)(this);
         }
+
         int getClearWeatherTime()
         {
             return MLINK_FUNC(int, 0x025C2A94, LevelData *)(this);
         }
+
         void setClearWeatherTime(int value)
         {
             MLINK_FUNC(void, 0x025C2A9C, LevelData *, int)(this, value);
         }
+
         bool isThundering()
         {
             return MLINK_FUNC(bool, 0x025C2AA4, LevelData *)(this);
         }
+
         void setThundering(bool value)
         {
             MLINK_FUNC(void, 0x025C2AAC, LevelData *, bool)(this, value);
         }
+
         int getThunderTime()
         {
             return MLINK_FUNC(int, 0x025C2AB4, LevelData *)(this);
         }
+
         void setThunderTime(int value)
         {
             MLINK_FUNC(void, 0x025C2ABC, LevelData *, int)(this, value);
         }
+
         bool isRaining()
         {
             return MLINK_FUNC(bool, 0x025C2AC4, LevelData *)(this);
         }
+
         void setRaining(bool value)
         {
             MLINK_FUNC(void, 0x025C2ACC, LevelData *, bool)(this, value);
         }
+
         int getRainTime()
         {
             return MLINK_FUNC(int, 0x025C2AD4, LevelData *)(this);
         }
+
         void setRainTime(int value)
         {
             MLINK_FUNC(void, 0x025C2ADC, LevelData *, int)(this, value);
         }
+
         GameType *getGameType()
         {
             return MLINK_FUNC(GameType *, 0x025C2AE4, LevelData *)(this);
         }
+
         bool isGenerateMapFeatures()
         {
             return MLINK_FUNC(bool, 0x025C2AEC, LevelData *)(this);
         }
+
         void setGenerateMapFeatures(bool value)
         {
             MLINK_FUNC(void, 0x025C2AF4, LevelData *, bool)(this, value);
         }
+
         bool getSpawnBonusChest()
         {
             return MLINK_FUNC(bool, 0x025C2AFC, LevelData *)(this);
         }
+
         void setGameType(const GameType *gameType)
         {
             MLINK_FUNC(void, 0x025C2B04, LevelData *, const GameType *)(this, gameType);
         }
+
         bool useNewSeaLevel()
         {
             return MLINK_FUNC(bool, 0x025C2B84, LevelData *)(this);
         }
+
         bool getHasBeenInCreative()
         {
             return MLINK_FUNC(bool, 0x025C2B8C, LevelData *)(this);
         }
+
         void setHasBeenInCreative(bool value)
         {
             MLINK_FUNC(void, 0x025C2B94, LevelData *, bool)(this, value);
         }
+
         LevelType *getGeneratorType()
         {
             return MLINK_FUNC(LevelType *, 0x025C2B9C, LevelData *)(this);
         }
+
         void setGeneratorType(LevelType *type)
         {
             MLINK_FUNC(void, 0x025C2BA4, LevelData *, LevelType *)(this, type);
         }
+
         SuperflatConfig *getGeneratorOptions()
         {
             return MLINK_FUNC(SuperflatConfig *, 0x025C2BD4, LevelData *)(this);
         }
+
         void setGeneratorOptions(SuperflatConfig *options)
         {
             MLINK_FUNC(void, 0x025C2BDC, LevelData *, SuperflatConfig *)(this, options);
         }
+
         bool isHardcore()
         {
             return MLINK_FUNC(bool, 0x025C2BE4, LevelData *)(this);
         }
+
         void setHardcore(bool value)
         {
             MLINK_FUNC(void, 0x025C2BEC, LevelData *, bool)(this, value);
         }
+
         bool getAllowCommands()
         {
             return MLINK_FUNC(bool, 0x025C2BF4, LevelData *)(this);
         }
+
         void setAllowCommands(bool value)
         {
             MLINK_FUNC(void, 0x025C2BFC, LevelData *, bool)(this, value);
         }
+
         bool isInitialized()
         {
             return MLINK_FUNC(bool, 0x025C2C04, LevelData *)(this);
         }
+
         void setInitialized(bool value)
         {
             MLINK_FUNC(void, 0x025C2C0C, LevelData *, bool)(this, value);
         }
+
         const Difficulty *getDifficulty()
         {
             return MLINK_FUNC(const Difficulty *, 0x025C2C1C, LevelData *)(this);
         }
+
         void setDifficulty(const Difficulty *difficulty)
         {
             MLINK_FUNC(void, 0x025C2C24, LevelData *, const Difficulty *)(this, difficulty);
         }
+
         int getCloudHeight()
         {
             return MLINK_FUNC(int, 0x025C2C78, LevelData *)(this);
         }
+
         void setCloudHeight(int value)
         {
             MLINK_FUNC(void, 0x025C2C80, LevelData *, int)(this, value);
         }
+
         bool isDifficultyLocked()
         {
             return MLINK_FUNC(bool, 0x025C2C88, LevelData *)(this);
         }
+
         void setDifficultyLocked(bool value)
         {
             MLINK_FUNC(void, 0x025C2C90, LevelData *, bool)(this, value);
         }
+
         int getXZSize()
         {
             return MLINK_FUNC(int, 0x025C2D98, LevelData *)(this);
         }
+
         int getHellScale()
         {
             return MLINK_FUNC(int, 0x025C2DA0, LevelData *)(this);
         }
+
         void setModernEnd()
         {
             MLINK_FUNC(void, 0x025C2DA8, LevelData *)(this);
         }
+
         bool getModernEnd()
         {
             return MLINK_FUNC(bool, 0x025C2DB4, LevelData *)(this);
         }
+
         uint8_t getBiomeScale()
         {
             return MLINK_FUNC(uint8_t, 0x025C2DBC, LevelData *)(this);
         }
+
         int getBiomeCentreXChunk()
         {
             return MLINK_FUNC(int, 0x025C2DC4, LevelData *)(this);
         }
+
         int getBiomeCentreZChunk()
         {
             return MLINK_FUNC(int, 0x025C2DCC, LevelData *)(this);

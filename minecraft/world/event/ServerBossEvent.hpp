@@ -20,6 +20,7 @@ namespace mc
             MLINK_FUNC(void, 0x0331BBA8, ServerBossEvent *, int, const mstd::basic_string<wchar_t> &, unsigned int, unsigned int)(this, nameId, name,
                                                                                                                                   0, 0);
         }
+
         ~ServerBossEvent()
         {
             MLINK_FUNC(void, 0x03330910, ServerBossEvent *)(this);

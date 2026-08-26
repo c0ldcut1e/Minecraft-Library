@@ -22,10 +22,12 @@ namespace mc
         {
             MLINK_FUNC(void, 0x026AEE8C, NaturalMobSpawner *, int, int)(this, x, z);
         }
+
         void addEdgeChunkPos(int x, int z)
         {
             MLINK_FUNC(void, 0x026AEF90, NaturalMobSpawner *, int, int)(this, x, z);
         }
+
         void tick(ServerLevel *level, bool spawnHostileMobs, bool spawnPeacefulMobs, bool spawnAnimals)
         {
             MLINK_FUNC(void, 0x026B08B0, NaturalMobSpawner *, ServerLevel *, bool, bool, bool)(this, level, spawnHostileMobs, spawnPeacefulMobs,

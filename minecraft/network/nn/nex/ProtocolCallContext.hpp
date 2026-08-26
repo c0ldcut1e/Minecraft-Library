@@ -25,6 +25,7 @@ namespace nn::nex
         {
             MLINK_FUNC(ProtocolCallContext *, 0x037E2C98, ProtocolCallContext *, Credentials *)(this, credentials);
         }
+
         ~ProtocolCallContext()
         {
             MLINK_FUNC(void, 0x037E2D40, ProtocolCallContext *, uint32_t)(this, 2);

@@ -22,6 +22,7 @@ namespace mc
             MLINK_FUNC(void, 0x28B25B8, ServerboundUseItemOnPacket *, const BlockPos &, const Direction *, InteractionHand::EInteractionHand, float,
                        float, float)(this, pos, dir, hand, unk1, unk2, unk3);
         }
+
         ~ServerboundUseItemOnPacket()
         {
             MLINK_FUNC(void, 0x028D0B18, ServerboundUseItemOnPacket *)(this);

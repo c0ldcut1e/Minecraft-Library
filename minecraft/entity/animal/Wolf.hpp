@@ -39,6 +39,7 @@ namespace mc
         {
             MLINK_FUNC(void, 0x02A81AE0, Wolf *)(this);
         }
+
         void setAngry(bool angry)
         {
             MLINK_FUNC(void, 0x02A81C44, Wolf *, bool)(this, angry);

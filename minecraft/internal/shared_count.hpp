@@ -21,6 +21,7 @@ namespace mboost::detail
                 pi->add_ref_copy();
             }
         }
+
         ~shared_count()
         {
             if (pi != nullptr)

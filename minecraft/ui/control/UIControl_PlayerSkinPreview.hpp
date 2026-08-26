@@ -20,6 +20,7 @@ namespace mc
             memset(native, 0, sizeof(native));
             initialized = false;
         }
+
         ~UIControl_PlayerSkinPreview()
         {
             if (initialized)

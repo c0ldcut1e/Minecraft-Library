@@ -22,6 +22,7 @@ namespace mc
         {
             MLINK_FUNC(DataOutputStream *, 0x02293E44, DataOutputStream *, OutputStream *)(this, stream);
         }
+
         ~DataOutputStream()
         {
             MLINK_FUNC(void, 0x0228A6AC, DataOutputStream *)(this);

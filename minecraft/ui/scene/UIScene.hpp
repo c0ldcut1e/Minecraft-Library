@@ -33,6 +33,7 @@ namespace mc
         {
             MLINK_FUNC(void, 0x02E39FD8, UIScene *, int, UILayer *)(this, sceneId, layer);
         }
+
         ~UIScene()
         {
             MLINK_FUNC(void, 0x02E30050, UIScene *)(this);

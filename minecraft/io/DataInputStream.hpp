@@ -22,6 +22,7 @@ namespace mc
         {
             MLINK_FUNC(DataInputStream *, 0x0221089C, DataInputStream *, InputStream *)(this, stream);
         }
+
         ~DataInputStream()
         {
             MLINK_FUNC(void, 0x0220B778, DataInputStream *)(this);

@@ -33,6 +33,7 @@ namespace nn::nex
         {
             MLINK_FUNC(String *, 0x036F6660, String *, const String &)(this, other);
         }
+
         ~String()
         {
             MLINK_FUNC(void, 0x036F75F4, String *, uint32_t)(this, 2);

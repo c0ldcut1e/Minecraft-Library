@@ -20,18 +20,22 @@ namespace mc
         {
             return MLINK_FUNC(const BlockPos &, 0x0214A518, BlockEventData *)(this);
         }
+
         int getParamA()
         {
             return MLINK_FUNC(int, 0x0214A534, BlockEventData *)(this);
         }
+
         int getParamB()
         {
             return MLINK_FUNC(int, 0x0214A53C, BlockEventData *)(this);
         }
+
         Block *getBlock()
         {
             return MLINK_FUNC(Block *, 0x0214A544, BlockEventData *)(this);
         }
+
         bool equals(BlockEventData &other)
         {
             return MLINK_FUNC(bool, 0x0214A54C, BlockEventData *, BlockEventData &)(this, other);

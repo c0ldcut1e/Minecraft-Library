@@ -28,22 +28,27 @@ namespace mc
         {
             return MLINK_FUNC(int, 0x02652544, MobCategory *)(this);
         }
+
         int getMaxInstancesPerLevel()
         {
             return MLINK_FUNC(int, 0x02652550, MobCategory *)(this);
         }
+
         int getMaxInstancesPerLevelWithBreeding()
         {
             return MLINK_FUNC(int, 0x02652558, MobCategory *)(this);
         }
+
         bool isFriendly()
         {
             return MLINK_FUNC(bool, 0x02652560, MobCategory *)(this);
         }
+
         bool isSingleType()
         {
             return MLINK_FUNC(bool, 0x02652568, MobCategory *)(this);
         }
+
         bool isPersistent()
         {
             return MLINK_FUNC(bool, 0x02652570, MobCategory *)(this);

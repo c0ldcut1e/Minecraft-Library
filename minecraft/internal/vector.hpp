@@ -35,6 +35,7 @@ namespace mstd
                 this->at(i) = copy[i];
             }
         }
+
         ~vector()
         {
             _delete();

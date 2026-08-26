@@ -45,6 +45,7 @@ namespace mc
         {
             MLINK_FUNC(void, 0x030FB90C, GameRenderer *, Minecraft *, MC_UNDEFINED_TYPE(void *, ResourceManager *))(this, minecraft, resourceManager);
         }
+
         ~GameRenderer()
         {
             MLINK_FUNC(void, 0x030FC6A8, GameRenderer *)(this);

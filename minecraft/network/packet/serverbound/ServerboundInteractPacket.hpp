@@ -32,6 +32,7 @@ namespace mc
         {
             MLINK_FUNC(void, 0x028AC244, ServerboundInteractPacket *, const mboost::shared_ptr<Entity> &)(this, entity);
         }
+
         ~ServerboundInteractPacket()
         {
             MLINK_FUNC(void, 0x028AC5A8, ServerboundInteractPacket *)(this);
