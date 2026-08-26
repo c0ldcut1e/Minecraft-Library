@@ -20,7 +20,6 @@ namespace mc
         LIST_TAG       = 0x9,
         COMPOUND_TAG   = 0xA,
     };
-
     class VTable_Tag;
 
     class Tag

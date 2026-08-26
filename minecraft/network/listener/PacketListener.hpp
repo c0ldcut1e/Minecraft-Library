@@ -26,7 +26,6 @@ namespace mc
 {
     class ClientboundSoundPacket;
     class PlayerInfoPacket;
-
     class VTable_PacketListener;
 
     class PacketListener

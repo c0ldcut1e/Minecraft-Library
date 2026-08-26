@@ -21,7 +21,6 @@
 namespace mc
 {
     class GameType;
-
     class MinecraftServer;
     class ServerGamePacketListenerImpl;
     class ServerPlayerGameMode;

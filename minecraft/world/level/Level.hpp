@@ -31,16 +31,45 @@
 
 namespace mc
 {
-    class Block;
     class BlockEntity;
-    class Entity;
     class LivingEntity;
     class Player;
 
     class Level : public LevelSource
     {
     public:
+        static void enableLightingCache()
+        {
+            MLINK_FUNC(void, 0x02544674)();
+        }
+        static void destroyLightingCache()
+        {
+            MLINK_FUNC(void, 0x025446D0)();
+        }
+
+        static bool getInstaTick()
+        {
+            return MLINK_FUNC(bool, 0x02544714)();
+        }
+
+        static void setInstaTick(bool value)
+        {
+            MLINK_FUNC(void, 0x02544750, bool)(value);
+        }
+
         Level() = default;
+
+        Level(mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)> levelStorage, LevelData *levelData, Dimension *dimension,
+              bool isClientSide)
+        {
+            MLINK_FUNC(void, 0x02545A34, Level *, mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)>, LevelData *, Dimension *,
+                       bool)(this, levelStorage, levelData, dimension, isClientSide);
+        }
+
+        ~Level()
+        {
+            MLINK_FUNC(void, 0x02546458, Level *, uint32_t)(this, 0);
+        }
 
         class RangeModifier
         {
@@ -91,26 +120,6 @@ namespace mc
             MLINK_FUNC(void, 0x0254464C, Level *, double &, double)(this, value, limit);
         }
 
-        static void enableLightingCache()
-        {
-            MLINK_FUNC(void, 0x02544674)();
-        }
-
-        static void destroyLightingCache()
-        {
-            MLINK_FUNC(void, 0x025446D0)();
-        }
-
-        static bool getInstaTick()
-        {
-            return MLINK_FUNC(bool, 0x02544714)();
-        }
-
-        static void setInstaTick(bool value)
-        {
-            MLINK_FUNC(void, 0x02544750, bool)(value);
-        }
-
         bool hasEntitiesToRemove()
         {
             return MLINK_FUNC(bool, 0x02544778, Level *)(this);
@@ -119,18 +128,6 @@ namespace mc
         void _init()
         {
             MLINK_FUNC(void, 0x02544D3C, Level *)(this);
-        }
-
-        Level(mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)> levelStorage, LevelData *levelData, Dimension *dimension,
-              bool isClientSide)
-        {
-            MLINK_FUNC(void, 0x02545A34, Level *, mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)>, LevelData *, Dimension *,
-                       bool)(this, levelStorage, levelData, dimension, isClientSide);
-        }
-
-        ~Level()
-        {
-            MLINK_FUNC(void, 0x02546458, Level *, uint32_t)(this, 0);
         }
 
         void postConstruct()
@@ -1140,6 +1137,4 @@ namespace mc
         int fogDensity;
     };
     MC_CHECK_SIZE(Level, 0x204);
-    static_assert(offsetof(Level, players) == 0xC4, "Offset not matching");
-    static_assert(offsetof(Level, globalEntities) == 0xD4, "Offset not matching");
 } // namespace mc

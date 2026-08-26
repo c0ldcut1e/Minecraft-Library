@@ -32,8 +32,6 @@ namespace mc
     class ServerLevel : public Level
     {
     public:
-        ServerLevel() = default;
-
         static void runUpdate(void *context)
         {
             MLINK_FUNC(void, 0x032A9638, void *)(context);
@@ -43,6 +41,8 @@ namespace mc
         {
             MLINK_FUNC(void, 0x032A9FA8)();
         }
+
+        ServerLevel() = default;
 
         ServerLevel(MinecraftServer *server, mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, LevelStorage)> levelStorage, LevelData *levelData,
                     int dimensionId)

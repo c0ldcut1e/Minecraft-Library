@@ -11,7 +11,6 @@
 namespace mc
 {
     class ServerConnection;
-
     class PlayerList;
 
     class MinecraftServer

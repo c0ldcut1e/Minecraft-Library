@@ -128,6 +128,4 @@ namespace mc
         uint32_t field_0xA4;
     };
     MC_CHECK_SIZE(MapItemSavedData, 0xA8);
-
-    // static_assert(sizeof(MapItemSavedData) == 0xA8);
 } // namespace mc

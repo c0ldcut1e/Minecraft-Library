@@ -27,9 +27,7 @@ namespace mc
     class ItemInHandRenderer;
     class LocalPlayer;
     class MultiplayerLocalPlayer;
-
     class ClientPacketListener;
-
     class ItemRenderer;
 
     class Minecraft

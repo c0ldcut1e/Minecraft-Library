@@ -24,7 +24,6 @@
 namespace mc
 {
     class PlayerInfoPacket;
-
     class Connection;
     class MinecraftServer;
     class ServerPlayer;

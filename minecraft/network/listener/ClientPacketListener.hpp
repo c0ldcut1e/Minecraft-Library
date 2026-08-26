@@ -18,7 +18,6 @@
 namespace mc
 {
     class Minecraft;
-
     class ClientboundSoundPacket;
 
     class ClientPacketListener : public PacketListener

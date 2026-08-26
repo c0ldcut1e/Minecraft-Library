@@ -19,7 +19,6 @@
 namespace mc
 {
     class Connection;
-
     class MinecraftServer;
     class ServerConnection;
     class ServerPlayer;

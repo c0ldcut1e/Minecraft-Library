@@ -29,7 +29,6 @@ namespace mc
         MoverType_SHULKER_BOX = 3,
         MoverType_SHULKER     = 4,
     };
-
     class VTable_Entity;
 
     class Entity

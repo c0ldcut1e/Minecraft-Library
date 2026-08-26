@@ -43,7 +43,6 @@ namespace mc
         uint32_t field_0xC;
         VTable_Recipe *vtable;
     };
-
     class CraftingContainer;
 
     class VTable_Recipe : public VTable

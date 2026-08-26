@@ -12,9 +12,7 @@
 namespace mc
 {
     class PlayerList;
-
     class MinecraftServer;
-
     class ServerConnectionListener;
     class ServerGamePacketListenerImpl;
 

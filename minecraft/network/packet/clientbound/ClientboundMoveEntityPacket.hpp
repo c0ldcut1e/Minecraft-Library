@@ -15,9 +15,7 @@ namespace mc
     {
     public:
         class PosRot;
-
         class Pos;
-
         class Rot;
 
         ClientboundMoveEntityPacket()
