@@ -7,24 +7,23 @@
 #include "Level.hpp"
 #include "MinecraftLib.hpp"
 #include "block/BlockPos.hpp"
+#include "client/ClientScoreboard.hpp"
 #include "entity/Entity.hpp"
 #include "entity/vehicle/Minecart.hpp"
 #include "internal/shared_ptr.hpp"
 #include "internal/vector.hpp"
+#include "nbt/CompoundTag.hpp"
 #include "network/packet/Packet.hpp"
+#include "sound/SoundEvent.hpp"
 #include "sound/SoundSource.hpp"
+#include "world/Difficulty.hpp"
+#include "world/LevelSettings.hpp"
 #include "world/chunk/ClientChunkCache.hpp"
 #include "world/chunk/LevelChunk.hpp"
 
 namespace mc
 {
     class ClientPacketListener;
-    class ClientScoreboard;
-    class ClientboundBlockEntityDataPacket;
-    class CompoundTag;
-    class Difficulty;
-    class LevelSettings;
-    class SoundEvent;
 
     class MultiPlayerLevel : public Level
     {
@@ -277,9 +276,10 @@ namespace mc
             return MLINK_FUNC(bool, 0x031FFCC8, MultiPlayerLevel *)(this);
         }
 
-        void QueueBlockEntityDataPacket(const mboost::shared_ptr<ClientboundBlockEntityDataPacket> &packet)
+        void QueueBlockEntityDataPacket(const mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, ClientboundBlockEntityDataPacket)> &packet)
         {
-            MLINK_FUNC(void, 0x031FFCDC, MultiPlayerLevel *, const mboost::shared_ptr<ClientboundBlockEntityDataPacket> &)(this, packet);
+            MLINK_FUNC(void, 0x031FFCDC, MultiPlayerLevel *,
+                       const mboost::shared_ptr<MC_UNDEFINED_TYPE(uint32_t, ClientboundBlockEntityDataPacket)> &)(this, packet);
         }
 
         void BlockUntilSafeToChangeSaveData(bool wait)
