@@ -14,5 +14,10 @@ namespace mc
         {
             MLINK_FUNC(void, 0x026539A0, MinecartRideable *, Level *, double, double, double)(this, level, xPos, yPos, zPos);
         }
+
+        static MinecartRideable *Create(Level *level)
+        {
+            return MLINK_FUNC(MinecartRideable *, 0x023E6418, Level *)(level);
+        }
     };
 } // namespace mc

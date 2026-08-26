@@ -5,12 +5,12 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
-#include "entity/animal/AbstractHorse.hpp"
+#include "entity/animal/AbstractChestedHorse.hpp"
 #include "world/Level.hpp"
 
 namespace mc
 {
-    class Mule : public AbstractHorse
+    class Mule : public AbstractChestedHorse
     {
     public:
         Mule(Level *level)
