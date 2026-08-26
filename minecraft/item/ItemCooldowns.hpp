@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 #include "mlink/MLink.hpp"
 
 #include "Item.hpp"
@@ -29,6 +31,11 @@ namespace mc
             MLINK_FUNC(void, 0x024A49A4, ItemCooldowns *)(this);
         }
 
+        ~ItemCooldowns()
+        {
+            MLINK_FUNC(void, 0x024A4C28, ItemCooldowns *, uint32_t)(this, 0);
+        }
+
         void addCooldown(Item *item, int duration)
         {
             MLINK_FUNC(void, 0x024A5E40, ItemCooldowns *, Item *, int)(this, item, duration);
@@ -47,6 +54,16 @@ namespace mc
         void removeCooldown(Item *item)
         {
             MLINK_FUNC(void, 0x024A5ED8, ItemCooldowns *, Item *)(this, item);
+        }
+
+        void onCooldownStarted(Item *item, int duration)
+        {
+            MLINK_FUNC(void, 0x024A5F70, ItemCooldowns *, Item *, int)(this, item, duration);
+        }
+
+        void onCooldownEnded(Item *item)
+        {
+            MLINK_FUNC(void, 0x024A5F74, ItemCooldowns *, Item *)(this, item);
         }
 
         void tick()
