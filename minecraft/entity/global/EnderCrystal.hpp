@@ -7,6 +7,7 @@
 #include "MinecraftLib.hpp"
 #include "entity/Entity.hpp"
 #include "entity/global/GlobalEntity.hpp"
+#include "internal/shared_ptr.hpp"
 #include "world/Level.hpp"
 
 namespace mc
@@ -32,6 +33,11 @@ namespace mc
         static uint64_t GetType()
         {
             return MLINK_FUNC(uint64_t, 0x023E5A8C)();
+        }
+
+        static void CreateShared(mboost::shared_ptr<Entity> *out, EnderCrystal *crystal)
+        {
+            MLINK_FUNC(mboost::shared_ptr<Entity> *, 0x0308C644, mboost::shared_ptr<Entity> *, EnderCrystal *)(out, crystal);
         }
 
         void defineSynchedData()
