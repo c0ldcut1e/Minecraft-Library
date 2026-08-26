@@ -6,7 +6,6 @@
 
 #include "MinecraftLib.hpp"
 #include "entity/Entity.hpp"
-#include "entity/global/GlobalEntity.hpp"
 #include "internal/shared_ptr.hpp"
 #include "world/Level.hpp"
 
