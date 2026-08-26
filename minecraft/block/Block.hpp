@@ -5,15 +5,20 @@
 #include "mlink/MLink.hpp"
 
 #include "BlockPos.hpp"
+#include "Material.hpp"
+#include "MaterialColor.hpp"
 #include "MinecraftLib.hpp"
+#include "SoundType.hpp"
 #include "client/resource/texture/TextureAtlasSprite.hpp"
 #include "internal/VTable.hpp"
 #include "internal/basic_string.hpp"
+#include "internal/shared_ptr.hpp"
 #include "item/Item.hpp"
 #include "utils/AABB.hpp"
 #include "utils/Common.hpp"
 #include "utils/Direction.hpp"
 #include "utils/MCRandom.hpp"
+#include "world/level/LevelSource.hpp"
 
 namespace mc
 {
@@ -22,13 +27,6 @@ namespace mc
     class Block
     {
     public:
-        Block() = default;
-
-        Block(void *material)
-        {
-            MLINK_FUNC(void, 0x020C9644, mc::Block *, void *)(this, material);
-        }
-
         static Block *byId(int blockId)
         {
             return MLINK_FUNC(Block *, 0x02019F40, int)(blockId);
@@ -49,14 +47,115 @@ namespace mc
             MLINK_FUNC(void, 0x020C9A90, int, const mstd::basic_string<wchar_t> &, Block *)(blockId, str, block);
         }
 
-        uint32_t defaultBlockState()
+        static void createNewThreadStorage()
         {
-            return MLINK_FUNC(uint32_t, 0x020C9700, Block *)(this);
+            MLINK_FUNC(void, 0x020C9318)();
         }
 
-        AABB *getOutlineAABB(uint32_t blockState, Level *level, const BlockPos &pos)
+        static void releaseThreadStorage()
         {
-            return MLINK_FUNC(AABB *, 0x020E7B9C, Block *, uint32_t, Level *, const BlockPos &)(this, blockState, level, pos);
+            MLINK_FUNC(void, 0x020C93E8)();
+        }
+
+        static void staticCtor()
+        {
+            MLINK_FUNC(void, 0x020CA378)();
+        }
+
+        static int getId(const Block *block)
+        {
+            return MLINK_FUNC(int, 0x020E6100, const Block *)(block);
+        }
+
+        static Block *byString(const mstd::basic_string<wchar_t> &name)
+        {
+            return MLINK_FUNC(Block *, 0x020E63C8, const mstd::basic_string<wchar_t> &)(name);
+        }
+
+        static bool isMatching(const Block *first, const Block *second)
+        {
+            return MLINK_FUNC(bool, 0x020EB194, const Block *, const Block *)(first, second);
+        }
+
+        Block() = default;
+
+        Block(Material *material)
+        {
+            MLINK_FUNC(void, 0x020C9644, Block *, Material *)(this, material);
+        }
+
+        Block(Material *material, const MaterialColor *color)
+        {
+            MLINK_FUNC(void, 0x020C9890, Block *, Material *, const MaterialColor *)(this, material, color);
+        }
+
+        ~Block()
+        {
+            MLINK_FUNC(void, 0x020BD410, Block *, uint32_t)(this, 0);
+        }
+
+        MC_UNDEFINED_TYPE(uint32_t, BlockState) * defaultBlockState()
+        {
+            return MLINK_FUNC(MC_UNDEFINED_TYPE(uint32_t, BlockState) *, 0x020C9700, Block *)(this);
+        }
+
+        AABB *getOutlineAABB(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, Level *level, const BlockPos &pos)
+        {
+            return MLINK_FUNC(AABB *, 0x020E7B9C, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, Level *,
+                              const BlockPos &)(this, blockState, level, pos);
+        }
+
+        bool isTopSolidBlocking(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(bool, 0x020E6554, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        uint32_t getLightEmission(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(uint32_t, 0x020B16CC, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        void particlesSurviveWithin()
+        {
+            MLINK_FUNC(void, 0x020B16D4, Block *)(this);
+        }
+
+        bool shouldBlockTick(Level *level, const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(bool, 0x020B16DC, Block *, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, level, pos,
+                                                                                                                                     blockState);
+        }
+
+        bool isLiquidBlock()
+        {
+            return MLINK_FUNC(bool, 0x020B16E4, Block *)(this);
+        }
+
+        bool canProvideSupport(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, const Direction *direction, uint32_t supportType)
+        {
+            return MLINK_FUNC(bool, 0x020E65D8, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, const Direction *,
+                              uint32_t)(this, blockState, direction, supportType);
+        }
+
+        bool isValidSpawn(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, mboost::shared_ptr<Entity> entity)
+        {
+            return MLINK_FUNC(bool, 0x020E685C, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *,
+                              mboost::shared_ptr<Entity>)(this, blockState, entity);
+        }
+
+        MC_UNDEFINED_TYPE(uint32_t, BlockState) * getBlockState(int data)
+        {
+            return MLINK_FUNC(MC_UNDEFINED_TYPE(uint32_t, BlockState) *, 0x020E701C, Block *, int)(this, data);
+        }
+
+        int convertBlockStateToLegacyData(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(int, 0x020E702C, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        void clearDerivedInit()
+        {
+            MLINK_FUNC(void, 0x020E7168, Block *)(this);
         }
 
         bool isIndestructible()
@@ -79,9 +178,303 @@ namespace mc
             MLINK_FUNC(void, 0x020C9A84, Block *, int, int)(this, param_1, param_2);
         }
 
-        void setSoundType(const void *soundType)
+        void setDestroyTime(float time)
         {
-            MLINK_FUNC(void, 0x020C9888, mc::Block *, const void *)(this, soundType);
+            MLINK_FUNC(void, 0x020C943C, Block *, float)(this, time);
+        }
+
+        void calculateIsWaterBlocking()
+        {
+            MLINK_FUNC(void, 0x020C9460, Block *)(this);
+        }
+
+        void setThickness(float thickness)
+        {
+            MLINK_FUNC(void, 0x020C94F0, Block *, float)(this, thickness);
+        }
+
+        void setSoundType(const SoundType *soundType)
+        {
+            MLINK_FUNC(void, 0x020C9888, Block *, const SoundType *)(this, soundType);
+        }
+
+        void setIndestructible()
+        {
+            MLINK_FUNC(void, 0x020C9B58, Block *)(this);
+        }
+
+        void sendBlockData(uint8_t data)
+        {
+            MLINK_FUNC(void, 0x020C9B9C, Block *, uint8_t)(this, data);
+        }
+
+        void setLightBlock(int lightBlock)
+        {
+            MLINK_FUNC(void, 0x020C9BA4, Block *, int)(this, lightBlock);
+        }
+
+        void setTicking(bool value)
+        {
+            MLINK_FUNC(void, 0x020C9C34, Block *, bool)(this, value);
+        }
+
+        int getId() const
+        {
+            return getId(this);
+        }
+
+        void setLightEmission(float lightEmission)
+        {
+            MLINK_FUNC(void, 0x020E71C8, Block *, float)(this, lightEmission);
+        }
+
+        void setExplodeable(float resistance)
+        {
+            MLINK_FUNC(void, 0x020E71F4, Block *, float)(this, resistance);
+        }
+
+        bool hasInHandRenderOffset()
+        {
+            return MLINK_FUNC(bool, 0x020E758C, Block *)(this);
+        }
+
+        bool isSolidBlockingCube(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(bool, 0x020E73B4, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        bool isSolidBlockingCubeAndNotSignalSource(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(bool, 0x020E7428, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        bool isViewBlocking(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(bool, 0x020E74B8, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        bool isCubeShaped(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(bool, 0x020E753C, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        bool hasCustomBreakingProgress(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(bool, 0x020E7544, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        bool isPathfindable(LevelSource *level, const BlockPos &pos)
+        {
+            return MLINK_FUNC(bool, 0x020E754C, Block *, LevelSource *, const BlockPos &)(this, level, pos);
+        }
+
+        int getRenderShape(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(int, 0x020E7584, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        bool mayReplaceWithPlace(LevelSource *level, const BlockPos &pos)
+        {
+            return MLINK_FUNC(bool, 0x020E7594, Block *, LevelSource *, const BlockPos &)(this, level, pos);
+        }
+
+        bool isTransparent(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(bool, 0x020E75A4, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        float getDestroySpeed(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, Level *level, const BlockPos &pos)
+        {
+            return MLINK_FUNC(float, 0x020E75C8, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, Level *,
+                              const BlockPos &)(this, blockState, level, pos);
+        }
+
+        uint32_t getBaseItemType()
+        {
+            return MLINK_FUNC(uint32_t, 0x020E759C, Block *)(this);
+        }
+
+        bool isTicking()
+        {
+            return MLINK_FUNC(bool, 0x020E75E8, Block *)(this);
+        }
+
+        bool isSlabBlock()
+        {
+            return MLINK_FUNC(bool, 0x020E75F0, Block *)(this);
+        }
+
+        bool isWaterBlocking()
+        {
+            return MLINK_FUNC(bool, 0x020E75F8, Block *)(this);
+        }
+
+        bool canContainLiquid(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(bool, 0x020E7600, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        bool isStrippable()
+        {
+            return MLINK_FUNC(bool, 0x020E7638, Block *)(this);
+        }
+
+        MC_UNDEFINED_TYPE(uint32_t, BlockState) * getStrippedBlock(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(MC_UNDEFINED_TYPE(uint32_t, BlockState) *, 0x020E7640, Block *,
+                              const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        bool liquidCanFlowIntoFromDirection(LevelSource *level, const BlockPos &pos, const Direction *direction)
+        {
+            return MLINK_FUNC(bool, 0x020E7648, Block *, LevelSource *, const BlockPos &, const Direction *)(this, level, pos, direction);
+        }
+
+        bool isSolidFace(LevelSource *level, const BlockPos &pos, const Direction *direction)
+        {
+            return MLINK_FUNC(bool, 0x020E7B40, Block *, LevelSource *, const BlockPos &, const Direction *)(this, level, pos, direction);
+        }
+
+        AABB *getClipAABB(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, LevelSource *level, const BlockPos &pos)
+        {
+            return MLINK_FUNC(AABB *, 0x020E8300, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, LevelSource *,
+                              const BlockPos &)(this, blockState, level, pos);
+        }
+
+        bool isSolidRender(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(bool, 0x020E831C, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        bool mayPick(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, bool value)
+        {
+            return MLINK_FUNC(bool, 0x020E8324, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, bool)(this, blockState, value);
+        }
+
+        bool mayPick()
+        {
+            return MLINK_FUNC(bool, 0x020E8334, Block *)(this);
+        }
+
+        void randomTick(Level *level, const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, MCRandom *random)
+        {
+            MLINK_FUNC(void, 0x020E833C, Block *, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *,
+                       MCRandom *)(this, level, pos, blockState, random);
+        }
+
+        void tick(Level *level, const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, MCRandom *random)
+        {
+            MLINK_FUNC(void, 0x020E834C, Block *, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *,
+                       MCRandom *)(this, level, pos, blockState, random);
+        }
+
+        void animateTick(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, Level *level, const BlockPos &pos, MCRandom *random)
+        {
+            MLINK_FUNC(void, 0x020E8350, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, Level *, const BlockPos &,
+                       MCRandom *)(this, blockState, level, pos, random);
+        }
+
+        void destroy(Level *level, const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            MLINK_FUNC(void, 0x020E8354, Block *, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, level, pos,
+                                                                                                                              blockState);
+        }
+
+        void neighborChanged(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, Level *level, const BlockPos &pos, Block *neighbor,
+                             const BlockPos &neighborPos)
+        {
+            MLINK_FUNC(void, 0x020E8358, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, Level *, const BlockPos &, Block *,
+                       const BlockPos &)(this, blockState, level, pos, neighbor, neighborPos);
+        }
+
+        void onPlace(Level *level, const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            MLINK_FUNC(void, 0x020E8368, Block *, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, level, pos,
+                                                                                                                              blockState);
+        }
+
+        void onRemove(Level *level, const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            MLINK_FUNC(void, 0x020E836C, Block *, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, level, pos,
+                                                                                                                              blockState);
+        }
+
+        int getResourceCount(MCRandom *random)
+        {
+            return MLINK_FUNC(int, 0x020E8370, Block *, MCRandom *)(this, random);
+        }
+
+        Item *getResource(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, MCRandom *random, int fortune)
+        {
+            return MLINK_FUNC(Item *, 0x020E8378, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, MCRandom *, int)(this, blockState, random,
+                                                                                                                             fortune);
+        }
+
+        void spawnResources(Level *level, const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, int fortune)
+        {
+            MLINK_FUNC(void, 0x020E8540, Block *, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *,
+                       int)(this, level, pos, blockState, fortune);
+        }
+
+        void spawnResources(Level *level, const BlockPos &pos, const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState, float chance, int fortune)
+        {
+            MLINK_FUNC(void, 0x020E8C44, Block *, Level *, const BlockPos &, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *, float,
+                       int)(this, level, pos, blockState, chance, fortune);
+        }
+
+        void popExperience(Level *level, const BlockPos &pos, int amount)
+        {
+            MLINK_FUNC(void, 0x020E90AC, Block *, Level *, const BlockPos &, int)(this, level, pos, amount);
+        }
+
+        int getSpawnResourcesAuxValue(const MC_UNDEFINED_TYPE(uint32_t, BlockState) * blockState)
+        {
+            return MLINK_FUNC(int, 0x020E9634, Block *, const MC_UNDEFINED_TYPE(uint32_t, BlockState) *)(this, blockState);
+        }
+
+        float getExplosionResistance(mboost::shared_ptr<Entity> entity)
+        {
+            return MLINK_FUNC(float, 0x020E963C, Block *, mboost::shared_ptr<Entity>)(this, entity);
+        }
+
+        int getTickDelay(Level *level)
+        {
+            return MLINK_FUNC(int, 0x020E8360, Block *, Level *)(this, level);
+        }
+
+        void addLights(Level *level, const BlockPos &pos)
+        {
+            MLINK_FUNC(void, 0x020E835C, Block *, Level *, const BlockPos &)(this, level, pos);
+        }
+
+        int getRenderLayer()
+        {
+            return MLINK_FUNC(int, 0x020E9E14, Block *)(this);
+        }
+
+        bool isCollectStatistics()
+        {
+            return MLINK_FUNC(bool, 0x020EAC6C, Block *)(this);
+        }
+
+        void setNotCollectStatistics()
+        {
+            MLINK_FUNC(void, 0x020EAC74, Block *)(this);
+        }
+
+        bool canInstantlyTick()
+        {
+            return MLINK_FUNC(bool, 0x020EB174, Block *)(this);
+        }
+
+        bool isMatching(const Block *other)
+        {
+            return MLINK_FUNC(bool, 0x020EB184, Block *, const Block *)(this, other);
+        }
+
+        const SoundType *getSoundType()
+        {
+            return MLINK_FUNC(const SoundType *, 0x020EC924, Block *)(this);
         }
 
         uint32_t field_0x0;
@@ -94,29 +487,26 @@ namespace mc
         uint32_t field_0x1C;
         uint32_t field_0x20;
         uint32_t field_0x24;
-        uint32_t field_0x28;
+        uint32_t blockId;
         uint32_t field_0x2C;
         uint32_t field_0x30;
         uint32_t field_0x34;
-        uint32_t lightEmission;
+        uint32_t field_0x38;
         uint32_t field_0x3C;
-        float destroySpeed;
+        uint32_t field_0x40;
         uint32_t field_0x44;
-        uint8_t field_0x48;
-        bool ticking;
-        uint8_t field_0x4A;
-        uint8_t field_0x4B;
-        uint32_t material;
-        uint32_t baseItemType;
+        uint32_t field_0x48;
+        uint32_t field_0x4C;
+        uint32_t field_0x50;
         uint32_t field_0x54;
         uint32_t field_0x58;
-        const void *soundType;
+        const SoundType *soundType;
         uint32_t field_0x60;
-        uint32_t field_0x64;
+        Material *material;
         uint32_t field_0x68;
         uint32_t field_0x6C;
         uint32_t field_0x70;
-        uint32_t _defaultBlockState;
+        MC_UNDEFINED_TYPE(uint32_t, BlockState) * _defaultBlockState;
         uint32_t field_0x78;
         uint32_t field_0x7C;
         TextureAtlasSprite *texture;
