@@ -12,14 +12,13 @@
 #include "internal/shared_ptr.hpp"
 #include "network/packet/DisconnectPacket.hpp"
 #include "network/packet/Packet.hpp"
+#include "network/packet/clientbound/ClientboundCustomPayloadPacket.hpp"
 #include "network/packet/clientbound/ClientboundSoundPacket.hpp"
+#include "network/packet/serverbound/ServerboundCustomPayloadPacket.hpp"
 #include "utils/Common.hpp"
 
 namespace mc
 {
-    class Minecraft;
-    class ClientboundSoundPacket;
-
     class ClientPacketListener : public PacketListener
     {
     public:
@@ -31,6 +30,11 @@ namespace mc
         void handleSoundEvent(const mboost::shared_ptr<ClientboundSoundPacket> &packet)
         {
             MLINK_FUNC(void, 0x0306EB2C, ClientPacketListener *, const mboost::shared_ptr<ClientboundSoundPacket> &)(this, packet);
+        }
+
+        void handleCustomPayload(mboost::shared_ptr<ClientboundCustomPayloadPacket> packet)
+        {
+            MLINK_FUNC(void, 0x03070298, ClientPacketListener *, mboost::shared_ptr<ClientboundCustomPayloadPacket>)(this, packet);
         }
 
         void send(const mboost::shared_ptr<Packet> &packet)
@@ -129,8 +133,8 @@ namespace mc
         MC_VFUNC(void, ClientPacketListener, handleContainerOpen, mboost::shared_ptr<Packet>);
         MC_VFUNC(void, ClientPacketListener, handleContainerSetData, mboost::shared_ptr<Packet>);
         MC_VFUNC(void, ClientPacketListener, handleContainerSetSlot, mboost::shared_ptr<Packet>);
-        MC_VFUNC(void, ClientPacketListener, handleCustomPayload1, mboost::shared_ptr<Packet>);
-        MC_VFUNC(void, ClientPacketListener, handleCustomPayload2, mboost::shared_ptr<Packet>);
+        MC_VFUNC(void, ClientPacketListener, handleCustomPayload1, mboost::shared_ptr<ClientboundCustomPayloadPacket>);
+        MC_VFUNC(void, ClientPacketListener, handleCustomPayload2, mboost::shared_ptr<ServerboundCustomPayloadPacket>);
         MC_VFUNC(void, ClientPacketListener, handleDisconnect, mboost::shared_ptr<Packet>);
         MC_VFUNC(void, ClientPacketListener, handleEntityActionAtPosition, mboost::shared_ptr<Packet>);
         MC_VFUNC(void, ClientPacketListener, handleEntityEvent, mboost::shared_ptr<Packet>);

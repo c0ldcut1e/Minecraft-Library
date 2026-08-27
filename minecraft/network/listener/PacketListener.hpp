@@ -10,6 +10,7 @@
 #include "network/packet/Packet.hpp"
 #include "network/packet/ServerSettingsChangedPacket.hpp"
 #include "network/packet/clientbound/ClientboundChatPacket.hpp"
+#include "network/packet/clientbound/ClientboundCustomPayloadPacket.hpp"
 #include "network/packet/clientbound/ClientboundKeepAlivePacket.hpp"
 #include "network/packet/clientbound/ClientboundLoginPacket.hpp"
 #include "network/packet/clientbound/ClientboundPlayerAbilitiesPacket.hpp"
@@ -18,6 +19,7 @@
 #include "network/packet/clientbound/ClientboundRespawnPacket.hpp"
 #include "network/packet/clientbound/ClientboundSetEntityDataPacket.hpp"
 #include "network/packet/clientbound/ClientboundSetHealthPacket.hpp"
+#include "network/packet/serverbound/ServerboundCustomPayloadPacket.hpp"
 #include "network/packet/serverbound/ServerboundKeepAlivePacket.hpp"
 #include "network/packet/serverbound/ServerboundMovePlayerPacket.hpp"
 #include "utils/Common.hpp"
@@ -76,8 +78,8 @@ namespace mc
         MC_VFUNC(void, PacketListener, handleContainerOpen, mboost::shared_ptr<Packet>);
         MC_VFUNC(void, PacketListener, handleContainerSetData, mboost::shared_ptr<Packet>);
         MC_VFUNC(void, PacketListener, handleContainerSetSlot, mboost::shared_ptr<Packet>);
-        MC_VFUNC(void, PacketListener, handleCustomPayload1, mboost::shared_ptr<Packet>);
-        MC_VFUNC(void, PacketListener, handleCustomPayload2, mboost::shared_ptr<Packet>);
+        MC_VFUNC(void, PacketListener, handleCustomPayload1, mboost::shared_ptr<ClientboundCustomPayloadPacket>);
+        MC_VFUNC(void, PacketListener, handleCustomPayload2, mboost::shared_ptr<ServerboundCustomPayloadPacket>);
         MC_VFUNC(void, PacketListener, handleDisconnect, mboost::shared_ptr<DisconnectPacket>);
         MC_VFUNC(void, PacketListener, handleEntityActionAtPosition, mboost::shared_ptr<Packet>);
         MC_VFUNC(void, PacketListener, handleEntityEvent, mboost::shared_ptr<Packet>);

@@ -12,6 +12,7 @@
 #include "network/packet/clientbound/ClientboundChatPacket.hpp"
 #include "network/packet/clientbound/ClientboundSoundPacket.hpp"
 #include "network/packet/serverbound/ServerboundContainerClickPacket.hpp"
+#include "network/packet/serverbound/ServerboundCustomPayloadPacket.hpp"
 #include "network/packet/serverbound/ServerboundMovePlayerPacket.hpp"
 #include "network/packet/serverbound/ServerboundPlayerAbilitiesPacket.hpp"
 #include "network/packet/serverbound/ServerboundPlayerActionPacket.hpp"
@@ -65,6 +66,17 @@ namespace mc
         void handlePlayerAbilities(const mboost::shared_ptr<ServerboundPlayerAbilitiesPacket> &packet)
         {
             MLINK_FUNC(void, 0x032EF2A4, ServerGamePacketListenerImpl *, const mboost::shared_ptr<ServerboundPlayerAbilitiesPacket> &)(this, packet);
+        }
+
+        void NameItemOnAnvil(const mboost::shared_ptr<ServerboundCustomPayloadPacket> &packet, bool value)
+        {
+            MLINK_FUNC(void, 0x032EF3E8, ServerGamePacketListenerImpl *, const mboost::shared_ptr<ServerboundCustomPayloadPacket> &,
+                       bool)(this, packet, value);
+        }
+
+        void handleCustomPayload(mboost::shared_ptr<ServerboundCustomPayloadPacket> packet)
+        {
+            MLINK_FUNC(void, 0x032EF71C, ServerGamePacketListenerImpl *, mboost::shared_ptr<ServerboundCustomPayloadPacket>)(this, packet);
         }
 
         void handlePlayerAction(const mboost::shared_ptr<ServerboundPlayerActionPacket> &packet)
