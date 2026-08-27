@@ -16,8 +16,13 @@ namespace mc
             MLINK_FUNC(void, 0x027CD034, Packet *)(this);
         }
 
-        uint32_t creationTimeLow;
+        [[nodiscard]] uint64_t GetTime() const
+        {
+            return (static_cast<uint64_t>(creationTimeHigh) << 32) | creationTimeLow;
+        }
+
         uint32_t creationTimeHigh;
+        uint32_t creationTimeLow;
         uint32_t field_0x8;
         void *vtbl;
     };
