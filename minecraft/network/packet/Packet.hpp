@@ -16,11 +16,9 @@ namespace mc
             MLINK_FUNC(void, 0x027CD034, Packet *)(this);
         }
 
-        uint64_t time;
-        uint8_t field_0x8;
-        uint8_t field_0x9;
-        uint8_t field_0xA;
-        uint8_t field_0xB;
+        uint32_t creationTimeLow;
+        uint32_t creationTimeHigh;
+        uint32_t field_0x8;
         void *vtbl;
     };
     MC_CHECK_SIZE(Packet, 0x10);
