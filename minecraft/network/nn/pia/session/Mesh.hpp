@@ -13,9 +13,26 @@ namespace nn::pia::session
     class Mesh
     {
     public:
+        enum class AsyncProcessingName : uint32_t
+        {
+        };
+
+        enum class State : uint32_t
+        {
+        };
+
+        enum class DisconnectReason : uint32_t
+        {
+        };
+
         static Mesh *GetInstance()
         {
             return MLink::DereferencePointerFromOffset<Mesh>(0x104D1CE4);
+        }
+
+        static void DestroyInstance()
+        {
+            MLINK_FUNC(void, 0x035087BC)();
         }
 
         StationIndex GetHostStationIndex()
@@ -26,6 +43,65 @@ namespace nn::pia::session
         StationIndex GetLocalStationIndex()
         {
             return MLINK_FUNC(StationIndex, 0x0350A9D8, Mesh *)(this);
+        }
+
+        [[nodiscard]] bool IsValidStationIndex(StationIndex stationIndex) const
+        {
+            return MLINK_FUNC(bool, 0x03507F64, const Mesh *, StationIndex)(this, stationIndex);
+        }
+
+        void CleanupStationsJobs()
+        {
+            MLINK_FUNC(void, 0x03507D28, Mesh *)(this);
+        }
+
+        void CleanupJobs()
+        {
+            MLINK_FUNC(void, 0x03507D9C, Mesh *)(this);
+        }
+
+        void ResetStationIndexUsage()
+        {
+            MLINK_FUNC(void, 0x035084AC, Mesh *)(this);
+        }
+
+        void SetMeshState(State state)
+        {
+            MLINK_FUNC(void, 0x035084BC, Mesh *, State)(this, state);
+        }
+
+        void CleanupStatus()
+        {
+            MLINK_FUNC(void, 0x03508528, Mesh *)(this);
+        }
+
+        void Cleanup()
+        {
+            MLINK_FUNC(void, 0x035086FC, Mesh *)(this);
+        }
+
+        void ResetInternalAsyncState()
+        {
+            MLINK_FUNC(void, 0x03509638, Mesh *)(this);
+        }
+
+        Result CreateMeshAsync()
+        {
+            Result result;
+            MLINK_FUNC(void, 0x03509688, Mesh *, Result *)(this, &result);
+            return result;
+        }
+
+        [[nodiscard]] bool IsAsyncProcessCompleted(AsyncProcessingName process) const
+        {
+            return MLINK_FUNC(bool, 0x03509750, const Mesh *, AsyncProcessingName)(this, process);
+        }
+
+        [[nodiscard]] Result GetAsyncProcessResult(AsyncProcessingName process) const
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0350978C, const Mesh *, Result *, AsyncProcessingName)(this, &result, process);
+            return result;
         }
 
         [[nodiscard]] bool IsCreateMeshCompleted() const
@@ -139,6 +215,36 @@ namespace nn::pia::session
             Result result;
             MLINK_FUNC(void, 0x0350A9E0, const Mesh *, Result *)(this, &result);
             return result;
+        }
+
+        [[nodiscard]] DisconnectReason GetDisconnectReason() const
+        {
+            return MLINK_FUNC(DisconnectReason, 0x0350AA58, const Mesh *)(this);
+        }
+
+        [[nodiscard]] uint32_t GetNetworkTopologyType() const
+        {
+            return MLINK_FUNC(uint32_t, 0x0350ACF8, const Mesh *)(this);
+        }
+
+        [[nodiscard]] uint32_t GetHostMigrationMode() const
+        {
+            return MLINK_FUNC(uint32_t, 0x0350AE1C, const Mesh *)(this);
+        }
+
+        [[nodiscard]] uint32_t GetJoinMeshState() const
+        {
+            return MLINK_FUNC(uint32_t, 0x0350AE24, const Mesh *)(this);
+        }
+
+        [[nodiscard]] State GetMeshState() const
+        {
+            return MLINK_FUNC(State, 0x0350AED4, const Mesh *)(this);
+        }
+
+        void SetFatalError(DisconnectReason reason)
+        {
+            MLINK_FUNC(void, 0x0350AC8C, Mesh *, DisconnectReason)(this, reason);
         }
 
         void SetSyncClockPulseInterval(int interval)

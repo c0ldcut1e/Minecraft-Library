@@ -8,7 +8,10 @@
 #include "internal/VTable.hpp"
 #include "network/nn/pia/Result.hpp"
 #include "network/nn/pia/session/CreateSessionSetting.hpp"
+#include "network/nn/pia/session/ISessionInfo.hpp"
+#include "network/nn/pia/session/JoinRandomSessionSetting.hpp"
 #include "network/nn/pia/session/JoinSessionSetting.hpp"
+#include "network/nn/pia/session/SessionInfoList.hpp"
 #include "network/nn/pia/session/SessionSearchCriteria.hpp"
 #include "network/nn/pia/session/UpdateSessionSetting.hpp"
 
@@ -17,6 +20,14 @@ namespace nn::pia::session
     class Session
     {
     public:
+        enum class AsyncProcessingName : uint32_t
+        {
+        };
+
+        enum class SessionOpenStatus : uint32_t
+        {
+        };
+
         static Session *GetInstance()
         {
             return MLink::DereferencePointerFromOffset<Session>(0x104D1CEC);
@@ -57,9 +68,35 @@ namespace nn::pia::session
             MLINK_FUNC(void, 0x0351EA8C, Session *)(this);
         }
 
+        Result JoinRandomSessionAsync(const JoinRandomSessionSetting *joinRandomSessionSetting)
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0351EADC, Session *, Result *, const JoinRandomSessionSetting *)(this, &result, joinRandomSessionSetting);
+            return result;
+        }
+
+        [[nodiscard]] bool IsAsyncProcessCompleted(AsyncProcessingName process) const
+        {
+            return MLINK_FUNC(bool, 0x0351ED04, const Session *, AsyncProcessingName)(this, process);
+        }
+
+        [[nodiscard]] Result GetAsyncProcessResult(AsyncProcessingName process) const
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0351ED40, const Session *, Result *, AsyncProcessingName)(this, &result, process);
+            return result;
+        }
+
         [[nodiscard]] bool IsJoinRandomSessionCompleted() const
         {
             return MLINK_FUNC(bool, 0x0351ED38, const Session *)(this);
+        }
+
+        [[nodiscard]] Result GetJoinRandomSessionResult() const
+        {
+            Result result;
+            MLINK_FUNC(void, 0x0351EDE0, const Session *, Result *)(this, &result);
+            return result;
         }
 
         [[nodiscard]] bool IsBrowseSessionCompleted() const
@@ -72,6 +109,11 @@ namespace nn::pia::session
             Result result;
             MLINK_FUNC(void, 0x0351F030, const Session *, Result *)(this, &result);
             return result;
+        }
+
+        [[nodiscard]] SessionInfoList *GetBrowsedSessionInfoList()
+        {
+            return MLINK_FUNC(SessionInfoList *, 0x0351F038, Session *)(this);
         }
 
         Result BrowseSessionAsync(const SessionSearchCriteria *searchCriteria)
@@ -122,6 +164,16 @@ namespace nn::pia::session
         [[nodiscard]] uint64_t GetJointSessionHostStationId() const
         {
             return MLINK_FUNC(uint64_t, 0x035204A4, const Session *)(this);
+        }
+
+        [[nodiscard]] SessionOpenStatus GetJointSessionOpenStatus() const
+        {
+            return MLINK_FUNC(SessionOpenStatus, 0x035204C8, const Session *)(this);
+        }
+
+        [[nodiscard]] const ISessionInfo *GetJointSessionInfo() const
+        {
+            return MLINK_FUNC(const ISessionInfo *, 0x03520520, const Session *)(this);
         }
 
         [[nodiscard]] Result GetLeaveSessionResult() const
@@ -197,6 +249,16 @@ namespace nn::pia::session
             return MLINK_FUNC(bool, 0x035203F4, const Session *)(this);
         }
 
+        [[nodiscard]] SessionOpenStatus GetSessionOpenStatus() const
+        {
+            return MLINK_FUNC(SessionOpenStatus, 0x035201F4, const Session *)(this);
+        }
+
+        [[nodiscard]] const ISessionInfo *GetSessionInfo() const
+        {
+            return MLINK_FUNC(const ISessionInfo *, 0x03520248, const Session *)(this);
+        }
+
         [[nodiscard]] bool IsCreateSessionCompleted() const
         {
             return MLINK_FUNC(bool, 0x0351F274, const Session *)(this);
@@ -217,6 +279,26 @@ namespace nn::pia::session
             MLINK_FUNC(void, 0x03520B00, Session *, int)(this, interval);
         }
 
+        [[nodiscard]] uint32_t GetSessionDisconnectReason() const
+        {
+            return MLINK_FUNC(uint32_t, 0x03520B14, const Session *)(this);
+        }
+
+        [[nodiscard]] uint32_t GetJointSessionProcessType() const
+        {
+            return MLINK_FUNC(uint32_t, 0x03520B1C, const Session *)(this);
+        }
+
+        void SetHostMigrationOccurred(bool occurred)
+        {
+            MLINK_FUNC(void, 0x03520B68, Session *, bool)(this, occurred);
+        }
+
+        [[nodiscard]] uint8_t *GetMatchmakeAnalysisToken()
+        {
+            return MLINK_FUNC(uint8_t *, 0x03520B70, Session *)(this);
+        }
+
         [[nodiscard]] uint32_t GetLocalPlayerCount() const
         {
             return MLINK_FUNC(uint32_t, 0x03521904, const Session *)(this);
@@ -225,6 +307,16 @@ namespace nn::pia::session
         [[nodiscard]] uint16_t GetParticipantNum() const
         {
             return MLINK_FUNC(uint16_t, 0x03521928, const Session *)(this);
+        }
+
+        [[nodiscard]] bool IsPlayersCountedAsParticipants() const
+        {
+            return MLINK_FUNC(bool, 0x035218E0, const Session *)(this);
+        }
+
+        [[nodiscard]] bool IsPreparedForCleanup() const
+        {
+            return MLINK_FUNC(bool, 0x03521930, const Session *)(this);
         }
 
         Result LeaveSessionAsync()

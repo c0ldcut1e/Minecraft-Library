@@ -8,15 +8,15 @@
 
 namespace nn::pia::session
 {
-    class ISessionInfo
+    class ISessionInfoList
     {
     public:
-        ~ISessionInfo()
+        ~ISessionInfoList()
         {
-            MLINK_FUNC(void, 0x03581368, ISessionInfo *, uint32_t)(this, 2);
+            MLINK_FUNC(void, 0x0357FFA4, ISessionInfoList *, uint32_t)(this, 2);
         }
 
         void *vtable;
     };
-    MC_CHECK_SIZE(ISessionInfo, 0x4);
+    MC_CHECK_SIZE(ISessionInfoList, 0x4);
 } // namespace nn::pia::session

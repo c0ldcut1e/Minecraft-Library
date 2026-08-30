@@ -101,7 +101,7 @@ namespace nn::nex
         }
 
         wchar_t *text;
-        uint32_t data[3];
+        void *vtable;
     };
-    MC_CHECK_SIZE(String, 0x10);
+    MC_CHECK_SIZE(String, 0x8);
 } // namespace nn::nex

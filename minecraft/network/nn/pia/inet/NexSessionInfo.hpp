@@ -5,10 +5,11 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "network/nn/pia/session/ISessionInfo.hpp"
 
 namespace nn::pia::inet
 {
-    class NexSessionInfo
+    class NexSessionInfo : public session::ISessionInfo
     {
     public:
         NexSessionInfo()
@@ -171,7 +172,6 @@ namespace nn::pia::inet
             MLINK_FUNC(void, 0x03581308, NexSessionInfo *, uint8_t)(this, priority);
         }
 
-        uint32_t field_0x0;
         uint32_t gameMode;
         uint32_t sessionId;
         uint16_t currentParticipantCount;
