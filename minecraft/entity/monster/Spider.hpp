@@ -81,7 +81,6 @@ namespace mc
             return MLINK_FUNC(float, 0x0294697C, Spider *)(this);
         }
 
-    protected:
         Spider() = default;
     };
     MC_CHECK_SIZE(Spider, 0x730);

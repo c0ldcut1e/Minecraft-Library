@@ -5,9 +5,13 @@
 #include "mlink/MLink.hpp"
 
 #include "LivingEntity.hpp"
+#include "MinecraftLib.hpp"
+#include "world/level/pathfinder/BlockPathTypes.hpp"
 
 namespace mc
 {
+    class PathNavigation;
+
     class Mob : public LivingEntity
     {
     public:
@@ -16,13 +20,23 @@ namespace mc
             MLINK_FUNC(void, 0x02651EC4, Mob *, bool)(this, value);
         }
 
+        float getPathfindingMalus(const BlockPathTypes *pathType)
+        {
+            return MLINK_FUNC(float, 0x02645640, Mob *, const BlockPathTypes *)(this, pathType);
+        }
+
+        void setPathfindingMalus(const BlockPathTypes *pathType, float malus)
+        {
+            MLINK_FUNC(void, 0x02646138, Mob *, const BlockPathTypes *, float)(this, pathType, malus);
+        }
+
         uint32_t field_0x5F0;
         uint32_t field_0x5F4;
         uint32_t field_0x5F8;
         uint32_t field_0x5FC;
         uint32_t field_0x600;
         uint32_t field_0x604;
-        uint32_t field_0x608;
+        PathNavigation *pathNavigation;
         uint32_t field_0x60C;
         uint32_t field_0x610;
         uint32_t field_0x614;

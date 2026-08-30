@@ -48,7 +48,6 @@ namespace mc
             return MLINK_FUNC(float, 0x02277818, Cow *)(this);
         }
 
-    protected:
         Cow() = default;
     };
     MC_CHECK_SIZE(Cow, 0x780);

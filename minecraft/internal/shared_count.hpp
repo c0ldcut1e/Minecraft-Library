@@ -69,7 +69,6 @@ namespace mboost::detail
             return *this;
         }
 
-    private:
         sp_counted_base *pi;
     };
     MC_CHECK_SIZE(shared_count, 0x4);

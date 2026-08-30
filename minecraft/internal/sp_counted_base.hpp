@@ -57,7 +57,6 @@ namespace mboost::detail
         int weakCount{};
         uint32_t *vtable{};
 
-    private:
         using VirtualFunction = void (*)(sp_counted_base *countedBase);
 
         void callVirtual(uint32_t offset)

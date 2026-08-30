@@ -16,10 +16,9 @@ namespace mc
 {
     class Fireball : public Entity
     {
-    protected:
+    public:
         Fireball() = default;
 
-    public:
         Fireball(Level *level)
         {
             MLINK_FUNC(Fireball *, 0x023BD940, Fireball *, Level *)(this, level);
