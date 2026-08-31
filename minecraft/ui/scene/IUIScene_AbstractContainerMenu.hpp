@@ -21,6 +21,10 @@ namespace mc
         {
         };
 
+        enum ETapState : int
+        {
+        };
+
         [[nodiscard]] bool canTakeAll() const
         {
             return MLINK_FUNC(bool, 0x02DEC004, const IUIScene_AbstractContainerMenu *)(this);

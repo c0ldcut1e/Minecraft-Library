@@ -6,12 +6,13 @@
 
 #include "MinecraftLib.hpp"
 #include "internal/basic_string.hpp"
+#include "ui/control/UIControl_Base.hpp"
 #include "ui/fui/fuiRenderNode.hpp"
 #include "ui/scene/UIScene.hpp"
 
 namespace mc
 {
-    class UIControl_SlotList
+    class UIControl_SlotList : public UIControl_Base
     {
     public:
         UIControl_SlotList()
@@ -59,36 +60,7 @@ namespace mc
             MLINK_FUNC(void, 0x02E4EC94, UIControl_SlotList *, int, bool)(this, slot, visible);
         }
 
-        uint32_t field_0x0;
-        uint32_t field_0x4;
-        uint32_t field_0x8;
-        uint32_t field_0xC;
-        uint32_t field_0x10;
-        uint32_t field_0x14;
-        uint32_t field_0x18;
-        uint32_t field_0x1C;
-        uint32_t field_0x20;
-        uint32_t field_0x24;
-        uint32_t field_0x28;
-        uint32_t *field_0x2C;
-        uint32_t field_0x30;
-        uint32_t field_0x34;
-        uint32_t field_0x38;
-        uint32_t field_0x3C;
-        uint32_t field_0x40;
-        float field_0x44;
-        char field_0x48;
-        uint8_t field_0x49;
-        uint8_t field_0x4A;
-        uint8_t field_0x4B;
-        void *field_0x4C;
-        uint8_t field_0x50;
-        uint8_t field_0x51;
-        uint8_t field_0x52;
-        uint8_t field_0x53;
-        int field_0x54;
-        uint32_t field_0x58;
-        int field_0x5C;
+        int highlightedSlot;
     };
     MC_CHECK_SIZE(UIControl_SlotList, 0x60);
 } // namespace mc

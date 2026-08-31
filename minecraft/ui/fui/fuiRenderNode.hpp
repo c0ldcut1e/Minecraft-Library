@@ -2,11 +2,13 @@
 
 #include <cstdint>
 
+#include "mlink/MLink.hpp"
+
 #include "MinecraftLib.hpp"
 #include "fuiFile.hpp"
 #include "fuiObject.hpp"
+#include "fuiRGBA.hpp"
 #include "internal/VTable.hpp"
-#include "utils/Vec2f.hpp"
 
 namespace mc
 {
@@ -41,12 +43,66 @@ namespace mc
     class fuiRenderNode
     {
     public:
+        ~fuiRenderNode()
+        {
+            MLINK_FUNC(void, 0x02BAF014, fuiRenderNode *, uint32_t)(this, 0);
+        }
+
+        static fuiRenderNode *Construct(fuiRenderNode *storage, fuiRenderNode *parentRoot, fuiRenderNode *parent, fuiObject *object, uint32_t depth,
+                                        MC_UNDEFINED_TYPE(uint32_t, eFuiObjectType) objectType, uint8_t flags, fuiRGBA *color, uint8_t alpha,
+                                        bool useLargeBounds, fuiFile *file)
+        {
+            return MLINK_FUNC(fuiRenderNode *, 0x02BA8210, fuiRenderNode *, fuiRenderNode *, fuiRenderNode *, fuiObject *, uint32_t,
+                              MC_UNDEFINED_TYPE(uint32_t, eFuiObjectType), uint8_t, fuiRGBA *, uint8_t, bool,
+                              fuiFile *)(storage, parentRoot, parent, object, depth, objectType, flags, color, alpha, useLargeBounds, file);
+        }
+
+        void disableCtor()
+        {
+            MLINK_FUNC(void, 0x02BA8BA8, fuiRenderNode *)(this);
+        }
+
         void gather(bool playing)
         {
             if (vtable != nullptr && vtable->gather != nullptr)
             {
                 vtable->gather(this, playing);
             }
+        }
+
+        fuiRenderNode *getNodeFromPath(const char *path)
+        {
+            return MLINK_FUNC(fuiRenderNode *, 0x02BAF130, fuiRenderNode *, const char *)(this, path);
+        }
+
+        float getAlpha()
+        {
+            return MLINK_FUNC(float, 0x02BAF660, fuiRenderNode *)(this);
+        }
+
+        float getHeight()
+        {
+            return MLINK_FUNC(float, 0x02BAFC20, fuiRenderNode *)(this);
+        }
+
+        float getWidth()
+        {
+            return MLINK_FUNC(float, 0x02BAFBE4, fuiRenderNode *)(this);
+        }
+
+        float getX()
+        {
+            return MLINK_FUNC(float, 0x02BAF8F4, fuiRenderNode *)(this);
+        }
+
+        float getY()
+        {
+            return MLINK_FUNC(float, 0x02BAF8FC, fuiRenderNode *)(this);
+        }
+
+        bool isVisible()
+        {
+            return MLINK_FUNC(bool, 0x02BAF64C, fuiRenderNode *)(this);
         }
 
         void preRender()
@@ -73,6 +129,31 @@ namespace mc
             }
         }
 
+        void setAlpha(float alpha)
+        {
+            MLINK_FUNC(void, 0x02BAF658, fuiRenderNode *, float)(this, alpha);
+        }
+
+        void setHeight(float height)
+        {
+            MLINK_FUNC(void, 0x02BAFB50, fuiRenderNode *, float)(this, height);
+        }
+
+        void setScaleX(float scale)
+        {
+            MLINK_FUNC(void, 0x02BAF924, fuiRenderNode *, float)(this, scale);
+        }
+
+        void setScaleY(float scale)
+        {
+            MLINK_FUNC(void, 0x02BAFAB8, fuiRenderNode *, float)(this, scale);
+        }
+
+        void setWidth(float width)
+        {
+            MLINK_FUNC(void, 0x02BAF9BC, fuiRenderNode *, float)(this, width);
+        }
+
         void setX(float x)
         {
             if (vtable != nullptr && vtable->setX != nullptr)
@@ -89,37 +170,41 @@ namespace mc
             }
         }
 
-        uint32_t field_0x0;
-        uint32_t field_0x4;
-        uint32_t field_0x8;
+        uint32_t flags;
+        uint8_t objectFlags;
+        uint8_t field_0x5;
+        uint8_t field_0x6;
+        uint8_t field_0x7;
+        uint32_t depth;
         uint32_t field_0xC;
         fuiObject *object;
-        uint32_t field_0x14;
-        uint32_t field_0x18;
-        uint32_t field_0x1C;
-        uint32_t field_0x20;
-        uint32_t field_0x24;
-        Vec2f position;
-        uint32_t field_0x30;
+        MC_UNDEFINED_TYPE(uint32_t, eFuiObjectType) objectType;
+        float field_0x18;
+        float field_0x1C;
+        float field_0x20;
+        float field_0x24;
+        float field_0x28;
+        float field_0x2C;
+        float field_0x30;
         uint32_t field_0x34;
         uint32_t field_0x38;
-        uint32_t field_0x3C;
-        uint32_t field_0x40;
-        uint32_t field_0x44;
+        float field_0x3C;
+        float field_0x40;
+        float field_0x44;
         fuiFile *file;
-        uint32_t field_0x4C;
-        uint32_t field_0x50;
-        uint32_t field_0x54;
-        uint32_t field_0x58;
-        uint32_t field_0x5C;
-        uint32_t field_0x60;
-        uint32_t field_0x64;
-        uint32_t field_0x68;
-        uint32_t field_0x6C;
-        uint32_t field_0x70;
-        uint32_t field_0x74;
-        uint32_t field_0x78;
-        uint32_t field_0x7C;
+        float field_0x4C;
+        float field_0x50;
+        float field_0x54;
+        float field_0x58;
+        float field_0x5C;
+        float field_0x60;
+        float field_0x64;
+        float field_0x68;
+        float field_0x6C;
+        float field_0x70;
+        float field_0x74;
+        float field_0x78;
+        char field_0x7C;
         uint32_t field_0x80;
         uint32_t field_0x84;
         uint32_t field_0x88;
@@ -135,12 +220,15 @@ namespace mc
         uint32_t field_0xB0;
         uint32_t field_0xB4;
         uint32_t field_0xB8;
-        uint32_t field_0xBC;
-        uint32_t field_0xC0;
-        uint32_t field_0xC4;
-        uint32_t field_0xC8;
+        float field_0xBC;
+        float field_0xC0;
+        float field_0xC4;
+        float field_0xC8;
         uint32_t field_0xCC;
-        uint32_t field_0xD0;
+        uint8_t field_0xD0;
+        uint8_t field_0xD1;
+        uint8_t field_0xD2;
+        uint8_t field_0xD3;
         fuiRenderNode *parentRoot;
         fuiRenderNode *parent;
         FJ_FuiNode *fuiNode;
