@@ -145,8 +145,6 @@ namespace mstd
             return length;
         }
 
-        CharT inlineBuffer[16 / sizeof(CharT)];
-
         basic_string substr(uint32_t pos = 0, uint32_t count = npos) const;
 
         basic_string &operator=(const basic_string &other);
@@ -220,6 +218,7 @@ namespace mstd
 
         static constexpr uint32_t npos = 0xFFFFFFFF;
         uint32_t flags;
+        CharT inlineBuffer[16 / sizeof(CharT)];
         CharT *heapPtr;
         uint32_t length;
         uint32_t capacity;
