@@ -442,6 +442,7 @@
 #include "ui/UIStructs.hpp"
 #include "ui/control/UIControl.hpp"
 #include "ui/control/UIControl_Base.hpp"
+#include "ui/control/UIControl_SlotList.hpp"
 #include "ui/control/UIControl_BitmapIcon.hpp"
 #include "ui/control/UIControl_Button.hpp"
 #include "ui/control/UIControl_CheckBox.hpp"

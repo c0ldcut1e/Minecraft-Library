@@ -13,7 +13,6 @@ namespace mc
     struct LaunchMoreOptionsMenuInitData
     {
         mstd::vector<MC_UNDEFINED_TYPE(void *, LevelRules::LevelRulesetGroup *)> levelRulesets;
-
         bool onlineGame;
         bool inviteOnly;
         bool allowFriendsOfFriends;
