@@ -189,8 +189,8 @@ namespace mc
         uint32_t field_0x34;
         uint32_t field_0x38;
         float field_0x3C;
-        float field_0x40;
-        float field_0x44;
+        float globalX;
+        float globalY;
         fuiFile *file;
         float field_0x4C;
         float field_0x50;
