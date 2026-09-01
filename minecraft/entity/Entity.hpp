@@ -657,7 +657,7 @@ namespace mc
         MC_VFUNC(void, Entity, getVehicle);
         MC_VFUNC(void, Entity, getPistonPushReaction);
         MC_VFUNC(void, Entity, getSoundSource);
-        MC_VFUNC(void, Entity, isCreative);
+        MC_VFUNC(bool, Entity, isCreative);
         MC_VFUNC(void, Entity, isDespawnProtected);
         MC_VFUNC(void, Entity, setDespawnProtected);
         MC_VFUNC(void, Entity, couldWander);
