@@ -9,6 +9,7 @@
 #include "entity/player/LocalPlayer.hpp"
 #include "internal/basic_string.hpp"
 #include "internal/shared_ptr.hpp"
+#include "world/gamerule/GameRuleManager.hpp"
 
 namespace mc
 {
@@ -35,9 +36,24 @@ namespace mc
             return MLINK_FUNC(uint64_t, 0x02F27940, CMinecraftApp *, const mstd::basic_string<wchar_t> &, bool)(this, path, texturePackOverride);
         }
 
+        int GetFirstMiniGameType()
+        {
+            return MLINK_FUNC(int, 0x02F6E90C, CMinecraftApp *)(this);
+        }
+
+        LevelRuleset *getGameRuleDefinitions()
+        {
+            return MLINK_FUNC(LevelRuleset *, 0x02F671FC, CMinecraftApp *)(this);
+        }
+
         bool GetGameStarted()
         {
             return MLINK_FUNC(bool, 0x02F2A28C, CMinecraftApp *)(this);
+        }
+
+        LevelGenerationOptions *getLevelGenerationOptions()
+        {
+            return MLINK_FUNC(LevelGenerationOptions *, 0x02F67210, CMinecraftApp *)(this);
         }
 
         unsigned int GetPlayerColour(uint8_t networkSmallId)
@@ -370,11 +386,7 @@ namespace mc
         uint32_t field_0x40C;
         uint32_t field_0x410;
         uint32_t field_0x414;
-        uint32_t field_0x418;
-        uint32_t field_0x41C;
-        uint32_t field_0x420;
-        uint32_t field_0x424;
-        uint32_t field_0x428;
+        GameRuleManager gameRuleManager;
         uint32_t field_0x42C;
         uint32_t field_0x430;
         uint32_t field_0x434;
@@ -527,7 +539,7 @@ namespace mc
         uint32_t field_0x680;
         uint32_t field_0x684;
         uint32_t field_0x688;
-        uint32_t field_0x68C;
+        int firstMiniGameType;
         uint32_t field_0x690;
         uint32_t field_0x694;
         uint32_t field_0x698;

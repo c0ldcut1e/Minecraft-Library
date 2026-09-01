@@ -95,6 +95,11 @@ namespace mc
             return MLINK_FUNC(float, 0x027272C8, Player *)(this);
         }
 
+        double GetLiftForceModifier()
+        {
+            return MLINK_FUNC(double, 0x027CD4D0, Player *)(this);
+        }
+
         const HumanoidArm *getMainArm()
         {
             return MLINK_FUNC(const HumanoidArm *, 0x0272858C, mc::Player *)(this);
@@ -178,6 +183,11 @@ namespace mc
         void setGameMode(const GameType *gameType)
         {
             MLINK_FUNC(void, 0x02725A0C, mc::Player *, const GameType *)(this, gameType);
+        }
+
+        void SetLiftForceModifier(double liftForce)
+        {
+            MLINK_FUNC(void, 0x027CD4D8, Player *, double)(this, liftForce);
         }
 
         void setPlayerGamePrivilege(int privilege, uint32_t value)
@@ -340,8 +350,7 @@ namespace mc
         bool takeGlideCollisionDamage;
         uint8_t field_0x816;
         uint8_t field_0x817;
-        uint32_t field_0x818;
-        uint32_t field_0x81C;
+        double liftForceModifier;
         uint32_t field_0x820;
         uint32_t field_0x824;
         uint32_t field_0x828;

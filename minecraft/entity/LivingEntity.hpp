@@ -16,6 +16,8 @@
 #include "internal/vector.hpp"
 #include "item/ItemInstance.hpp"
 #include "utils/InteractionHand.hpp"
+#include "utils/Vec3.hpp"
+#include "world/gamerule/ThermalAreaRuleDefinition.hpp"
 #include "world/level/Level.hpp"
 
 namespace mc
@@ -23,6 +25,13 @@ namespace mc
     class LivingEntity : public Entity
     {
     public:
+        static void fallFlyingTravel(double &xa, double &ya, double &za, Vec3 *lookAngle, float &xRot, float &fallDistance, double &horizontalSpeed,
+                                     double liftForce)
+        {
+            MLINK_FUNC(void, 0x0258456C, double &, double &, double &, Vec3 *, float &, float &, double &,
+                       double)(xa, ya, za, lookAngle, xRot, fallDistance, horizontalSpeed, liftForce);
+        }
+
         static uint64_t GetType()
         {
             return MLINK_FUNC(uint64_t, 0x026027A4)();
@@ -36,6 +45,11 @@ namespace mc
         void addEffect(MobEffectInstance *effect)
         {
             MLINK_FUNC(void, 0x0257840C, LivingEntity *, MobEffectInstance *)(this, effect);
+        }
+
+        void CheckThermalAreas()
+        {
+            MLINK_FUNC(void, 0x025828AC, LivingEntity *)(this);
         }
 
         void completeUsingItem()
@@ -129,6 +143,11 @@ namespace mc
             MLINK_FUNC(void, 0x025787E0, LivingEntity *, MobEffect *)(this, effect);
         }
 
+        void ResetThermalVariables()
+        {
+            MLINK_FUNC(void, 0x0256E108, LivingEntity *)(this);
+        }
+
         void setHealth(float amount)
         {
             MLINK_FUNC(void, 0x02579530, LivingEntity *, float)(this, amount);
@@ -147,6 +166,11 @@ namespace mc
         void stopUsingItem()
         {
             MLINK_FUNC(void, 0x0258D75C, LivingEntity *)(this);
+        }
+
+        void travel(float xxa, float yya, float zza)
+        {
+            MLINK_FUNC(void, 0x02584860, LivingEntity *, float, float, float)(this, xxa, yya, zza);
         }
 
         void updatingUsingItem()
@@ -197,25 +221,35 @@ namespace mc
         uint32_t field_0x3F4;
         uint32_t field_0x3F8;
         uint32_t field_0x3FC;
-        uint32_t field_0x400;
-        uint32_t field_0x404;
-        uint32_t field_0x408;
-        uint32_t field_0x40C;
-        uint32_t field_0x410;
-        uint32_t field_0x414;
-        uint32_t field_0x418;
+        double thermalCurrentLift;
+        bool thermalRamping;
+        uint8_t field_0x409;
+        uint8_t field_0x40A;
+        uint8_t field_0x40B;
+        int thermalRampTick;
+        double thermalTargetLift;
+        bool thermalRampDirection;
+        uint8_t field_0x419;
+        uint8_t field_0x41A;
+        uint8_t field_0x41B;
         uint32_t field_0x41C;
-        uint32_t field_0x420;
-        uint32_t field_0x424;
-        uint32_t field_0x428;
+        double thermalCeilingY;
+        bool atThermalCeiling;
+        bool elytraSpeedBoostActive;
+        uint8_t field_0x42A;
+        uint8_t field_0x42B;
         uint32_t field_0x42C;
-        uint32_t field_0x430;
-        uint32_t field_0x434;
-        uint32_t field_0x438;
-        uint32_t field_0x43C;
-        uint32_t field_0x440;
-        uint32_t field_0x444;
-        uint32_t field_0x448;
+        double elytraSpeedBoostTarget;
+        ThermalAreaRuleDefinition *currentThermalArea;
+        bool elytraProximityWarning;
+        bool enteredThermalArea;
+        uint8_t field_0x43E;
+        uint8_t field_0x43F;
+        double elytraCollisionDistance;
+        bool wasInThermalArea;
+        uint8_t field_0x449;
+        uint8_t field_0x44A;
+        uint8_t field_0x44B;
         uint32_t field_0x44C;
         mstd::basic_string<wchar_t> field_0x450;
         uint32_t field_0x470;

@@ -1097,7 +1097,10 @@ namespace mc
         uint32_t field_0x15C;
         uint32_t field_0x160;
         uint32_t field_0x164;
-        uint32_t field_0x168;
+        bool isClientSide;
+        uint8_t field_0x169;
+        uint8_t field_0x16A;
+        uint8_t field_0x16B;
         uint32_t field_0x16C;
         uint32_t field_0x170;
         uint32_t field_0x174;
