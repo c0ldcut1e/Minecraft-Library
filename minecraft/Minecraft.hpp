@@ -546,6 +546,7 @@
 #include "world/gamemode/MiniGamePlayerSettings.hpp"
 #include "world/gamemode/MultiPlayerGameMode.hpp"
 #include "world/gamemode/ServerPlayerGameMode.hpp"
+#include "world/gamemode/minigames/MiniGameDef.hpp"
 #include "world/gamerule/ConsoleGameRules.hpp"
 #include "world/gamerule/GameRuleManager.hpp"
 #include "world/gamerule/LevelGenerationOptions.hpp"

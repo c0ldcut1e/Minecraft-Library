@@ -18,6 +18,7 @@
 #include "ui/Gui.hpp"
 #include "world/gamemode/ClientMasterGameMode.hpp"
 #include "world/gamemode/MultiPlayerGameMode.hpp"
+#include "world/gamemode/minigames/MiniGameDef.hpp"
 #include "world/level/Level.hpp"
 #include "world/level/MultiPlayerLevel.hpp"
 
@@ -83,6 +84,11 @@ namespace mc
         ItemRenderer *getItemRenderer()
         {
             return MLINK_FUNC(ItemRenderer *, 0x03176FF8, Minecraft *)(this);
+        }
+
+        MiniGameDef *GetMiniGame()
+        {
+            return MLINK_FUNC(MiniGameDef *, 0x0318D014, Minecraft *)(this);
         }
 
         MultiPlayerLevel *getLevel(int param_1)
@@ -242,7 +248,7 @@ namespace mc
         uint32_t field_0x244;
         uint32_t field_0x248;
         uint32_t field_0x24C;
-        void *minigameDef;
+        MiniGameDef *miniGameDef;
         ClientMasterGameMode *clientMasterGameMode;
         uint32_t field_0x258;
         uint32_t field_0x25C;
