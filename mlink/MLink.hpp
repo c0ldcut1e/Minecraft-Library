@@ -41,7 +41,11 @@ namespace MLink
 
     inline uint32_t CorrectPointerOffset(uint32_t offset)
     {
+#ifdef PLATFORM_CEMU
         return offset;
+#else
+        return offset + 0x502200;
+#endif // PLATFORM_CEMU
     }
 
     template<typename T>
