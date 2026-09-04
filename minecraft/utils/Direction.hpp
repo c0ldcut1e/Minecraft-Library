@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+#include "mlink/MLink.hpp"
+
 #include "MinecraftLib.hpp"
 #include "internal/basic_string.hpp"
 
@@ -46,5 +48,10 @@ namespace mc
         static Direction *west asm("0x109C46B0 - 0x502200");
 
         static Direction *east asm("0x109C46B4 - 0x502200");
+
+        Axis *getAxis()
+        {
+            return MLINK_FUNC(Axis *, 0x02298C78, Direction *)(this);
+        }
     };
 } // namespace mc

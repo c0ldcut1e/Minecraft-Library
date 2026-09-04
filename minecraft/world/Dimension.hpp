@@ -12,6 +12,7 @@
 namespace mc
 {
     class VTable_Dimension;
+    class FlatLevelSource;
     class Level;
     class ServerPlayer;
 
@@ -36,6 +37,11 @@ namespace mc
         void init()
         {
             MLINK_FUNC(void, 0x0229DCC8, Dimension *)(this);
+        }
+
+        FlatLevelSource *createFlatLevelSource()
+        {
+            return MLINK_FUNC(FlatLevelSource *, 0x0229E0E8, Dimension *)(this);
         }
 
         void updateLightRamp()
