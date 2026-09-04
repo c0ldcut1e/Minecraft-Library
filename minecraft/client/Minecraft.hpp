@@ -127,8 +127,8 @@ namespace mc
         uint32_t field_0x2C;
         LevelRenderer *levelRenderer;
         mboost::shared_ptr<MultiplayerLocalPlayer> player;
+        Level *level;
         MultiPlayerLevel **levels;
-        int playerCount;
         mboost::shared_ptr<mc::LocalPlayer> localPlayers[4];
         uint32_t field_0x64;
         uint32_t field_0x68;
