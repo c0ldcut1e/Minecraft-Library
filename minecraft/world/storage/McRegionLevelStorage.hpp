@@ -9,6 +9,7 @@
 #include "save/ConsoleSaveFile.hpp"
 #include "world/Dimension.hpp"
 #include "world/level/LevelData.hpp"
+#include "world/level/datafix/DataFixerUpper.hpp"
 
 namespace mc
 {
@@ -16,10 +17,10 @@ namespace mc
     {
     public:
         McRegionLevelStorage(ConsoleSaveFile *saveFile, File directory, const mstd::basic_string<wchar_t> &levelName, bool create,
-                             MC_UNDEFINED_TYPE(uint32_t *, DataFixerUpper) dataFixerUpper)
+                             DataFixerUpper *dataFixerUpper)
         {
             MLINK_FUNC(void, 0x025D6428, McRegionLevelStorage *, ConsoleSaveFile *, File, const mstd::basic_string<wchar_t> &, bool,
-                       MC_UNDEFINED_TYPE(uint32_t *, DataFixerUpper))(this, saveFile, directory, levelName, create, dataFixerUpper);
+                       DataFixerUpper *)(this, saveFile, directory, levelName, create, dataFixerUpper);
         }
 
         ~McRegionLevelStorage()
@@ -79,7 +80,7 @@ namespace mc
         uint32_t field_0x88;
         uint32_t field_0x8C;
         uint32_t field_0x90;
-        MC_UNDEFINED_TYPE(uint32_t *, DataFixerUpper) dataFixerUpper;
+        DataFixerUpper *dataFixerUpper;
         uint32_t field_0x98;
         uint32_t field_0x9C;
         uint32_t field_0xA0;

@@ -675,6 +675,11 @@ namespace mc
 
         static SoundEvent *portal_portal asm("0x109C66BC - 0x502200");
 
+        double getDistanceScalar()
+        {
+            return MLINK_FUNC(double, 0x0295A108, SoundEvent *)(this);
+        }
+
         static SoundEvent *portal_travel asm("0x109C66C0 - 0x502200");
 
         static SoundEvent *portal_trigger asm("0x109C66C4 - 0x502200");

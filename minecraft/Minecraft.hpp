@@ -572,6 +572,7 @@
 #include "world/level/LevelType.hpp"
 #include "world/level/MultiPlayerLevel.hpp"
 #include "world/level/ServerLevel.hpp"
+#include "world/level/datafix/DataFixerUpper.hpp"
 #include "world/level/event/BlockEventData.hpp"
 #include "world/level/pathfinder/AmphibiousNodeEvaluator.hpp"
 #include "world/level/pathfinder/BinaryHeap.hpp"

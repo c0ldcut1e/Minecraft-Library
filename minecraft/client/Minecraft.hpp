@@ -15,6 +15,7 @@
 #include "rendering/world/EntityRenderDispatcher.hpp"
 #include "rendering/world/LevelRenderer.hpp"
 #include "resource/texture/Textures.hpp"
+#include "sound/ConsoleSoundEngine.hpp"
 #include "ui/Gui.hpp"
 #include "world/gamemode/ClientMasterGameMode.hpp"
 #include "world/gamemode/MultiPlayerGameMode.hpp"
@@ -126,7 +127,7 @@ namespace mc
         uint32_t field_0x2C;
         LevelRenderer *levelRenderer;
         mboost::shared_ptr<MultiplayerLocalPlayer> player;
-        Level *level;
+        MultiPlayerLevel **levels;
         int playerCount;
         mboost::shared_ptr<mc::LocalPlayer> localPlayers[4];
         uint32_t field_0x64;
@@ -189,7 +190,7 @@ namespace mc
         HitResult *lookAtRay;
         Options *options;
         uint32_t field_0x154;
-        uint32_t field_0x158;
+        ConsoleSoundEngine *soundEngine;
         uint32_t field_0x15C;
         uint32_t field_0x160;
         uint32_t field_0x164;

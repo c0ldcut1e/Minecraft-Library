@@ -24,6 +24,7 @@
 #include "utils/EquipmentSlot.hpp"
 #include "utils/InteractionHand.hpp"
 #include "world/level/Level.hpp"
+#include "world/level/datafix/DataFixerUpper.hpp"
 
 namespace mc
 {
@@ -79,9 +80,9 @@ namespace mc
             MLINK_FUNC(void, 0x0247FE50, ItemInstance *, uint32_t)(this, 0);
         }
 
-        static void addDataWalkers(MC_UNDEFINED_TYPE(uint32_t *, DataFixerUpper) dataFixerUpper)
+        static void addDataWalkers(DataFixerUpper *dataFixerUpper)
         {
-            MLINK_FUNC(void, 0x02486D78, MC_UNDEFINED_TYPE(uint32_t *, DataFixerUpper))(dataFixerUpper);
+            MLINK_FUNC(void, 0x02486D78, DataFixerUpper *)(dataFixerUpper);
         }
 
         static void toShared(mboost::shared_ptr<ItemInstance> &result, ItemInstance *item)

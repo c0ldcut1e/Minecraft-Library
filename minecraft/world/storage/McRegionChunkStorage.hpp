@@ -6,11 +6,10 @@
 #include "save/ConsoleSaveFile.hpp"
 #include "world/chunk/LevelChunk.hpp"
 #include "world/level/Level.hpp"
+#include "world/level/datafix/DataFixerUpper.hpp"
 
 namespace mc
 {
-    class DataFixerUpper;
-
     class McRegionChunkStorage
     {
     public:
