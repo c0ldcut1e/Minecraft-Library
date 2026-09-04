@@ -100,9 +100,9 @@ namespace mc
             return MLink::DereferencePointerFromAddress<CInput>(0x1058EC6C);
         }
 
-        void GetText(const wchar_t *buffer, int length)
+        void GetText(wchar_t *buffer, int length)
         {
-            MLINK_FUNC(void, 0x0340A480, CInput *, const wchar_t *, uint32_t)(this, buffer, length);
+            MLINK_FUNC(void, 0x0340A480, CInput *, wchar_t *, uint32_t)(this, buffer, length);
         }
 
         VPADStatus *GetVPadStatus()
