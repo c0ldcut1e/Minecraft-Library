@@ -27,15 +27,6 @@ namespace mc
             Return   = 3,
         };
 
-        class Custom
-        {
-        public:
-            static uint64_t GetStationId(NQRNetworkPlayer *player)
-            {
-                return (static_cast<uint64_t>(player->stationIdHigh) << 32) | static_cast<uint64_t>(player->principalId);
-            }
-        };
-
         NQRNetworkPlayer(NQRNetworkManager *manager, eNQRNetworkPlayerType type, bool isHost, uint64_t stationId, int localPlayerIdx, PlayerUID *uid,
                          const char *name, const wchar_t *wname)
         {
@@ -46,6 +37,11 @@ namespace mc
         ~NQRNetworkPlayer()
         {
             MLINK_FUNC(void, 0x03467558, NQRNetworkPlayer *, uint32_t)(this, 0);
+        }
+
+        uint64_t GetStationId() const
+        {
+            return (static_cast<uint64_t>(stationIdHigh) << 32) | static_cast<uint64_t>(stationIdLow);
         }
 
         void ConnectionComplete()
@@ -216,7 +212,7 @@ namespace mc
         uint32_t field_0x8;
         uint32_t localPlayerIndex;
         uint32_t stationIdHigh;
-        uint32_t principalId;
+        uint32_t stationIdLow;
         uint8_t smallId;
         uint8_t field_0x19;
         uint8_t field_0x1A;
