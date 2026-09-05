@@ -96,9 +96,9 @@ namespace mc
             return MLINK_FUNC(int, 0x02328C5C, Entity *)(this);
         }
 
-        void getStringUUID(const mstd::basic_string<wchar_t> &str)
+        void getStringUUID(mstd::basic_string<wchar_t> &result)
         {
-            MLINK_FUNC(void, 0x0234651C, Entity *, const mstd::basic_string<wchar_t> &)(this, str);
+            MLINK_FUNC(void, 0x0234651C, Entity *, mstd::basic_string<wchar_t> &)(this, result);
         }
 
         void interpolateTurn(float yaw, float pitch)
