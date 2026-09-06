@@ -480,6 +480,7 @@
 #include "ui/fui/fuiRect.hpp"
 #include "ui/fui/fuiRenderNode.hpp"
 #include "ui/fui/fuiRenderNodeBitmap.hpp"
+#include "ui/fui/fuiRenderNodeEditText.hpp"
 #include "ui/fui/fuiRenderNodeTimeline.hpp"
 #include "ui/layer/UILayer.hpp"
 #include "ui/logic/MultiListSliderLogic.hpp"

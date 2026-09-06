@@ -37,6 +37,11 @@ namespace mc
             MLINK_FUNC(void, 0x0208C018, ArmorStand *, EquipmentSlot *, const mboost::shared_ptr<ItemInstance> &)(this, slot, item);
         }
 
+        void setMarker(bool value)
+        {
+            MLINK_FUNC(void, 0x0208D860, ArmorStand *, bool)(this, value);
+        }
+
         void setPoseIndex(int index)
         {
             MLINK_FUNC(void, 0x0208D974, ArmorStand *, int)(this, index);

@@ -86,6 +86,11 @@ namespace mc
             return MLINK_FUNC(float, 0x02AFB340, FJ_FuiNode *)(this);
         }
 
+        const char *getName()
+        {
+            return MLINK_FUNC(const char *, 0x02AFB3A4, FJ_FuiNode *)(this);
+        }
+
         int getNumChildren()
         {
             return MLINK_FUNC(int, 0x02AFB408, FJ_FuiNode *)(this);
