@@ -2,6 +2,8 @@
 
 #include "mlink/MLink.hpp"
 
+#include "entity/player/Abilities.hpp"
+
 namespace mc
 {
     class GameType
@@ -15,6 +17,11 @@ namespace mc
         int getId()
         {
             return MLINK_FUNC(int, 0x02456DCC, GameType *)(this);
+        }
+
+        void updatePlayerAbilities(Abilities *abilities)
+        {
+            MLINK_FUNC(void, 0x02456E24, GameType *, Abilities *)(this, abilities);
         }
     };
 } // namespace mc

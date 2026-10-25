@@ -81,6 +81,12 @@ namespace mc
                        mboost::shared_ptr<ClientboundLoginPacket>)(this, connection, player, packet);
         }
 
+        void respawn(mboost::shared_ptr<ServerPlayer> *out, const mboost::shared_ptr<ServerPlayer> &player, int dimension, bool keepAllPlayerData)
+        {
+            MLINK_FUNC(void, 0x0329BEBC, PlayerList *, mboost::shared_ptr<ServerPlayer> *, mboost::shared_ptr<ServerPlayer>, int,
+                       bool)(this, out, player, dimension, keepAllPlayerData);
+        }
+
         void tick()
         {
             MLINK_FUNC(void, 0x032A53FC, PlayerList *)(this);

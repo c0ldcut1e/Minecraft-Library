@@ -38,6 +38,12 @@ namespace mc
                        mboost::shared_ptr<ServerPlayer>)(this, _server, _connection, _player);
         }
 
+        static void CreateShared(mboost::shared_ptr<ServerGamePacketListenerImpl> *out, ServerGamePacketListenerImpl *listener)
+        {
+            MLINK_FUNC(mboost::shared_ptr<ServerGamePacketListenerImpl> *, 0x0328C1C8, mboost::shared_ptr<ServerGamePacketListenerImpl> *,
+                       ServerGamePacketListenerImpl *)(out, listener);
+        }
+
         void disconnect(DisconnectPacket::eDisconnectReason reason)
         {
             MLINK_FUNC(void, 0x03288878, ServerGamePacketListenerImpl *, DisconnectPacket::eDisconnectReason)(this, reason);

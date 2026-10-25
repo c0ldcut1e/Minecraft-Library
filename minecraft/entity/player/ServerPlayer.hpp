@@ -144,11 +144,10 @@ namespace mc
             MLINK_FUNC(void, 0x032C3114, ServerPlayer *)(this);
         }
 
-        ServerPlayerGameMode *gamemode;
-        ServerGamePacketListenerImpl *connection;
+        uint32_t field_0x868;
+        mboost::shared_ptr<ServerGamePacketListenerImpl> connection;
         MinecraftServer *server;
-        uint32_t field_0x874;
-        uint32_t field_0x878;
+        ServerPlayerGameMode *gamemode;
         uint32_t field_0x87C;
         uint32_t field_0x880;
         uint32_t field_0x884;

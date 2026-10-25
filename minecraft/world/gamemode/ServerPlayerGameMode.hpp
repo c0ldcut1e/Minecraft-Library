@@ -5,6 +5,7 @@
 #include "MasterGameMode.hpp"
 #include "block/BlockPos.hpp"
 #include "internal/shared_ptr.hpp"
+#include "utils/GameType.hpp"
 #include "world/level/Level.hpp"
 
 namespace mc
@@ -14,9 +15,17 @@ namespace mc
     class ServerPlayerGameMode
     {
     public:
+        uint32_t field_0x0;
+        GameType *gameType;
+
         ServerPlayerGameMode(Level *level, MasterGameMode *masterGamemode)
         {
             MLINK_FUNC(void, 0x0329A940, ServerPlayerGameMode *, Level *, MasterGameMode *)(this, level, masterGamemode);
+        }
+
+        static ServerPlayerGameMode *Create(Level *level, MasterGameMode *masterGamemode)
+        {
+            return MLINK_FUNC(ServerPlayerGameMode *, 0x0329A940, ServerPlayerGameMode *, Level *, MasterGameMode *)(nullptr, level, masterGamemode);
         }
 
         void destroyBlock(const BlockPos &pos)
