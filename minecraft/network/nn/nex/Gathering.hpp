@@ -12,6 +12,12 @@ namespace nn::nex
     class Gathering
     {
     public:
+        enum _Flag : uint32_t
+        {
+            Flag_DisconnectChangeOwner = 0x10,
+            Flag_AllowNoParticipant    = 0x80,
+        };
+
         Gathering()
         {
             MLINK_FUNC(void, 0x036C8134, Gathering *)(this);

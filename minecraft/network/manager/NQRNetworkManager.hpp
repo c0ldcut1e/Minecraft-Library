@@ -54,6 +54,7 @@ namespace mc
             uint32_t field_0x1C;
             void *extensionData;
         };
+        MC_CHECK_SIZE(SessionSearchResult, 0x24);
 
         class PlayerSyncData
         {
@@ -74,6 +75,7 @@ namespace mc
             uint8_t playerCount : 4;
             uint16_t field_0x4E;
         };
+        MC_CHECK_SIZE(PlayerSyncData, 0x50);
 
         class RoomSyncData
         {
@@ -90,6 +92,7 @@ namespace mc
 
             PlayerSyncData players[8];
         };
+        MC_CHECK_SIZE(RoomSyncData, 0x280);
 
         static void SafeToRespondToGameBootInvite(int value)
         {
@@ -111,9 +114,6 @@ namespace mc
             return MLINK_FUNC(int, 0x03466B98, NQRNetworkManager *)(this);
         }
 
-        MC_CHECK_SIZE(SessionSearchResult, 0x24);
-        MC_CHECK_SIZE(PlayerSyncData, 0x50);
-        MC_CHECK_SIZE(RoomSyncData, 0x280);
         uint32_t field_0x0;
         uint32_t field_0x4;
         uint32_t field_0x8;

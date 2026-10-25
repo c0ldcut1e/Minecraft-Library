@@ -8,6 +8,7 @@
 #include "MinecraftLib.hpp"
 #include "NQRNetworkManager.hpp"
 #include "internal/vector.hpp"
+#include "network/nn/pia/Result.hpp"
 #include "network/player/NQRNetworkPlayer.hpp"
 
 namespace mc
@@ -39,6 +40,17 @@ namespace mc
             Ready        = 2,
             Disconnected = 3,
         };
+
+        enum class EJoinFailedReason : uint32_t
+        {
+        };
+
+        struct ClientJoinData
+        {
+            uint32_t localPlayerMask;
+            uint8_t data[0xFC];
+        };
+        MC_CHECK_SIZE(ClientJoinData, 0x100);
 
         static NQRNetworkManager_WiiU *GetInstance()
         {
@@ -131,6 +143,11 @@ namespace mc
             return MLINK_FUNC(bool, 0x0349942C, NQRNetworkManager_WiiU *)(this);
         }
 
+        void SetLastNetworkError(nn::pia::Result result)
+        {
+            MLINK_FUNC(void, 0x03491F04, NQRNetworkManager_WiiU *, nn::pia::Result)(this, result);
+        }
+
         void JoinRoom(uint32_t _sessionId, int playerMask, const void *presenceSyncInfo)
         {
             MLINK_FUNC(void, 0x0349B20C, NQRNetworkManager_WiiU *, uint32_t, int, const void *)(this, _sessionId, playerMask, presenceSyncInfo);
@@ -190,6 +207,22 @@ namespace mc
         void Session_CleanupSession()
         {
             MLINK_FUNC(void, 0x034919F0, NQRNetworkManager_WiiU *)(this);
+        }
+
+        void SendJoinData()
+        {
+            MLINK_FUNC(void, 0x03495E9C, NQRNetworkManager_WiiU *)(this);
+        }
+
+        bool AddRemotePlayersAndSync(uint64_t stationId, ClientJoinData &joinData, EJoinFailedReason *reason)
+        {
+            return MLINK_FUNC(bool, 0x034965B4, NQRNetworkManager_WiiU *, uint64_t, ClientJoinData &, EJoinFailedReason *)(this, stationId, joinData,
+                                                                                                                           reason);
+        }
+
+        void SendJoinFailedData(uint64_t stationId, uint32_t localPlayerMask, EJoinFailedReason reason)
+        {
+            MLINK_FUNC(void, 0x03496FC4, NQRNetworkManager_WiiU *, uint64_t, uint32_t, EJoinFailedReason)(this, stationId, localPlayerMask, reason);
         }
 
         void SetState(eNQRNetworkManagerInternalState state)

@@ -30,6 +30,12 @@ namespace nn::nex
             MLINK_FUNC(void, 0x036520F4, MatchmakeSession *, uint32_t)(this, 2);
         }
 
+        MatchmakeSession &operator=(const MatchmakeSession &other)
+        {
+            MLINK_FUNC(void, 0x0362F11C, MatchmakeSession *, const MatchmakeSession *)(this, &other);
+            return *this;
+        }
+
         void Reset()
         {
             MLINK_FUNC(void, 0x036305F4, MatchmakeSession *)(this);

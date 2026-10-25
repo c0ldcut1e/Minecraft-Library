@@ -19,10 +19,10 @@ namespace mc
         }
 
         uint32_t field_0x18;
-        uint32_t field_0x1C;
-        uint32_t field_0x20;
-        uint32_t field_0x24;
-        uint32_t field_0x28;
+        int entityId;
+        int xa;
+        int ya;
+        int za;
         uint32_t field_0x2C;
     };
     MC_CHECK_SIZE(ClientboundSetEntityMotionPacket, 0x30);

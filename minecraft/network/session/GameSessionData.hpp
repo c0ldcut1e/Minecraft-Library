@@ -12,14 +12,7 @@ namespace mc
     public:
         uint16_t version;
         char hostName[21];
-        char playerName0[21];
-        char playerName1[21];
-        char playerName2[21];
-        char playerName3[21];
-        char playerName4[21];
-        char playerName5[21];
-        char playerName6[21];
-        char playerName7[21];
+        char playerNames[8][21];
         uint8_t field_0xBF;
         uint32_t field_0xC0;
         uint32_t field_0xC4;

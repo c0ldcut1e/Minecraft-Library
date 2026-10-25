@@ -7,6 +7,7 @@
 #include "MiiDataEntry.hpp"
 #include "MinecraftLib.hpp"
 #include "internal/basic_string.hpp"
+#include "network/nn/fp/GameMode.hpp"
 
 namespace mc
 {
@@ -71,6 +72,11 @@ namespace mc
         void SetPresenceString(uint32_t param_1)
         {
             MLINK_FUNC(void, 0x034114F4, CProfile *, uint32_t)(this, param_1);
+        }
+
+        void SetRichPresenceGameModeData(nn::fp::GameMode &gameMode)
+        {
+            MLINK_FUNC(void, 0x03411B0C, CProfile *, nn::fp::GameMode &)(this, gameMode);
         }
 
         MC_CHECK_SIZE(PROFILE_DETAILS, 0x50);
@@ -245,25 +251,8 @@ namespace mc
         uint32_t field_0x3D0;
         uint32_t field_0x3D4;
         uint32_t field_0x3D8;
-        uint32_t field_0x3DC;
-        uint32_t field_0x3E0;
-        uint32_t field_0x3E4;
-        uint32_t field_0x3E8;
-        uint32_t field_0x3EC;
-        uint32_t field_0x3F0;
-        uint32_t field_0x3F4;
-        uint32_t field_0x3F8;
-        uint32_t field_0x3FC;
-        uint32_t field_0x400;
-        uint32_t field_0x404;
-        uint32_t field_0x408;
-        uint32_t field_0x40C;
-        uint32_t field_0x410;
-        uint32_t field_0x414;
-        uint32_t field_0x418;
-        uint32_t field_0x41C;
-        uint32_t field_0x420;
-        uint32_t field_0x424;
+        nn::fp::GameMode gameMode;
+        mstd::basic_string<wchar_t> presenceString;
         uint32_t field_0x428;
         uint32_t field_0x42C;
         uint32_t field_0x430;

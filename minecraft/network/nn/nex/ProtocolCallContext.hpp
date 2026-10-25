@@ -46,6 +46,11 @@ namespace nn::nex
             return GetState() == eCallContextState_Success;
         }
 
+        bool Reset()
+        {
+            return MLINK_FUNC(bool, 0x0372681C, ProtocolCallContext *)(this);
+        }
+
         bool Wait(uint32_t timeoutMilliseconds)
         {
             return MLINK_FUNC(bool, 0x036FD610, ProtocolCallContext *, uint32_t)(this, timeoutMilliseconds);

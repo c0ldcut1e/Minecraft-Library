@@ -18,9 +18,11 @@ namespace mc
     class FakeNetworkPlayer : public INetworkPlayer
     {
     public:
-        FakeNetworkPlayer() : vtable((VTable *) MLink::CorrectPointerOffset(kFakeNetworkPlayerVtable)), nameCapacity(7)
+        FakeNetworkPlayer()
         {
             memset(this, 0, sizeof(FakeNetworkPlayer));
+            vtable       = (VTable *) MLink::CorrectPointerOffset(kFakeNetworkPlayerVtable);
+            nameCapacity = 7;
         }
 
         void Initialize(const wchar_t *nameValue, const PlayerUID &uidValue, uint8_t smallIdValue)
@@ -180,9 +182,9 @@ namespace mc
         uint32_t field_0x34;
         uint32_t field_0x38;
         char16_t name[8];
-        uint32_t field_0x4C;
+        char16_t *namePointer;
         uint32_t nameLength;
-        uint32_t nameCapacity{};
+        uint32_t nameCapacity;
         uint8_t smallId;
         uint8_t field_0x59;
         uint8_t field_0x5A;

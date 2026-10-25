@@ -7,6 +7,7 @@
 #include "MinecraftLib.hpp"
 #include "network/nn/pia/Result.hpp"
 #include "network/nn/pia/StationIndex.hpp"
+#include "network/nn/pia/common/Job.hpp"
 
 namespace nn::pia::session
 {
@@ -43,6 +44,11 @@ namespace nn::pia::session
         StationIndex GetLocalStationIndex()
         {
             return MLINK_FUNC(StationIndex, 0x0350A9D8, Mesh *)(this);
+        }
+
+        [[nodiscard]] int64_t GetTime() const
+        {
+            return MLINK_FUNC(int64_t, 0x0350AB84, const Mesh *)(this);
         }
 
         [[nodiscard]] bool IsValidStationIndex(StationIndex stationIndex) const
@@ -289,7 +295,7 @@ namespace nn::pia::session
 
         uint32_t field_0x0;
         uint32_t field_0x4;
-        uint32_t field_0x8;
+        common::Job *joinJob;
         uint32_t field_0xC;
         uint32_t field_0x10;
         uint32_t field_0x14;
@@ -297,7 +303,7 @@ namespace nn::pia::session
         uint32_t field_0x1C;
         uint32_t field_0x20;
         uint32_t field_0x24;
-        uint32_t field_0x28;
+        common::Job *stationsJob;
         uint32_t field_0x2C;
         uint32_t field_0x30;
         uint32_t field_0x34;
@@ -308,7 +314,8 @@ namespace nn::pia::session
         uint32_t field_0x48;
         uint32_t field_0x4C;
         uint32_t field_0x50;
-        uint32_t field_0x54;
+        uint16_t maxStationNum;
+        uint16_t field_0x56;
         uint32_t hostStationIndex;
         uint32_t localStationIndex;
     };

@@ -102,6 +102,11 @@ namespace mc
         uint32_t field_0x168;
         uint32_t field_0x16C;
         uint32_t field_0x170;
+
+        void SetIgnoreInput(bool ignoreInput)
+        {
+            MLINK_FUNC(void, 0x02DFB74C, IUIScene_LoadCreateJoin *, bool)(this, ignoreInput);
+        }
     };
     MC_CHECK_SIZE(IUIScene_LoadCreateJoin, 0x174);
 } // namespace mc
