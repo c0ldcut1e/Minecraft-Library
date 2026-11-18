@@ -6,12 +6,11 @@
 
 #include "MinecraftLib.hpp"
 #include "block/BlockPos.hpp"
+#include "entity/Entity.hpp"
 #include "internal/shared_ptr.hpp"
 
 namespace mc
 {
-    class Entity;
-
     class ChunkPos
     {
     public:
@@ -23,6 +22,16 @@ namespace mc
         ChunkPos(const BlockPos &pos)
         {
             MLINK_FUNC(void, 0x021B8090, ChunkPos *, const BlockPos &)(this, pos);
+        }
+
+        static int64_t asLong(int x, int z)
+        {
+            return MLINK_FUNC(int64_t, 0x021B80F4, int, int)(x, z);
+        }
+
+        static bool eq_test(const ChunkPos &x, const ChunkPos &y)
+        {
+            return MLINK_FUNC(bool, 0x021B88D0, const ChunkPos &, const ChunkPos &)(x, y);
         }
 
         int hashCode()
@@ -84,7 +93,6 @@ namespace mc
 
         int x;
         int z;
-        int field_0x8;
     };
-    MC_CHECK_SIZE(ChunkPos, 0xC);
+    MC_CHECK_SIZE(ChunkPos, 0x8);
 } // namespace mc
