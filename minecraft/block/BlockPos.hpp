@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
@@ -14,6 +16,36 @@ namespace mc
         BlockPos(int xPos, int yPos, int zPos)
         {
             MLINK_FUNC(BlockPos *, 0x020C3AD4, BlockPos *, int, int, int)(this, xPos, yPos, zPos);
+        }
+
+        bool equals(const BlockPos &pos) const
+        {
+            return MLINK_FUNC(bool, 0x020C3ECC, const BlockPos *, const BlockPos &)(this, pos);
+        }
+
+        bool equals(const BlockPos *pos) const
+        {
+            return MLINK_FUNC(bool, 0x020C3F0C, const BlockPos *, const BlockPos *)(this, pos);
+        }
+
+        int hashCode() const
+        {
+            return MLINK_FUNC(int, 0x020C3F5C, const BlockPos *)(this);
+        }
+
+        int randomSeed() const
+        {
+            return MLINK_FUNC(int, 0x020C3F7C, const BlockPos *)(this);
+        }
+
+        int64_t compressBlockPos() const
+        {
+            return MLINK_FUNC(int64_t, 0x020C450C, const BlockPos *)(this);
+        }
+
+        int getRandomSeed() const
+        {
+            return MLINK_FUNC(int, 0x020C45D0, const BlockPos *)(this);
         }
 
         auto operator+(const BlockPos &pos) const -> BlockPos
