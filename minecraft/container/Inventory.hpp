@@ -7,6 +7,7 @@
 #include "Container.hpp"
 #include "MinecraftLib.hpp"
 #include "client/resource/NonNullList.hpp"
+#include "entity/player/Player.hpp"
 #include "internal/not_null_ptr.hpp"
 #include "internal/shared_ptr.hpp"
 #include "item/Item.hpp"
@@ -218,11 +219,11 @@ namespace mc
         NonNullList<mboost::not_null_ptr<ItemInstance>> compartments[3];
         uint32_t field_0x68;
         int hotbarSlot;
-        uint32_t field_0x70;
+        Player *player;
         uint32_t field_0x74;
         uint32_t field_0x78;
         mboost::not_null_ptr<ItemInstance> carried;
-        uint32_t field_0x84;
+        int changeCount;
         uint32_t field_0x88;
     };
     MC_CHECK_SIZE(Inventory, 0x8C);
