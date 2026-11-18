@@ -30,14 +30,14 @@ namespace mc
             return MLINK_FUNC(int, 0x02497FEC)();
         }
 
-        void add(int slot, const mboost::shared_ptr<ItemInstance> &item)
+        void add(int slot, mboost::not_null_ptr<ItemInstance> item)
         {
-            MLINK_FUNC(void, 0x0249C0D4, Inventory *, int, const mboost::shared_ptr<ItemInstance> &)(this, slot, item);
+            MLINK_FUNC(void, 0x0249C0D4, Inventory *, int, mboost::not_null_ptr<ItemInstance>)(this, slot, item);
         }
 
-        bool add(const mboost::shared_ptr<ItemInstance> &item)
+        bool add(mboost::not_null_ptr<ItemInstance> item)
         {
-            return MLINK_FUNC(bool, 0x0249D300, Inventory *, const mboost::shared_ptr<ItemInstance> &)(this, item);
+            return MLINK_FUNC(bool, 0x0249D300, Inventory *, mboost::not_null_ptr<ItemInstance>)(this, item);
         }
 
         void clearContent()
@@ -100,9 +100,9 @@ namespace mc
             MLINK_FUNC(void, 0x024A1878, Inventory *)(this);
         }
 
-        int findSlotMatchingItem(const mboost::shared_ptr<ItemInstance> &item, bool param_2)
+        int findSlotMatchingItem(mboost::not_null_ptr<ItemInstance> item, bool param_2)
         {
-            return MLINK_FUNC(int, 0x02498A34, Inventory *, const mboost::shared_ptr<ItemInstance> &, bool)(this, item, param_2);
+            return MLINK_FUNC(int, 0x02498A34, Inventory *, mboost::not_null_ptr<ItemInstance>, bool)(this, item, param_2);
         }
 
         void getCarried(mboost::shared_ptr<ItemInstance> &item)
@@ -185,9 +185,9 @@ namespace mc
             MLINK_FUNC(void, 0x0249F5FC, Inventory *, ListTag *)(this, listTag);
         }
 
-        void setCarried(const mboost::not_null_ptr<ItemInstance> &item)
+        void setCarried(mboost::not_null_ptr<ItemInstance> item)
         {
-            MLINK_FUNC(void, 0x024A20F8, Inventory *, const mboost::not_null_ptr<ItemInstance> &)(this, item);
+            MLINK_FUNC(void, 0x024A20F8, Inventory *, mboost::not_null_ptr<ItemInstance>)(this, item);
         }
 
         void setChanged()
@@ -221,8 +221,7 @@ namespace mc
         uint32_t field_0x70;
         uint32_t field_0x74;
         uint32_t field_0x78;
-        uint32_t field_0x7C;
-        uint32_t field_0x80;
+        mboost::not_null_ptr<ItemInstance> carried;
         uint32_t field_0x84;
         uint32_t field_0x88;
     };
