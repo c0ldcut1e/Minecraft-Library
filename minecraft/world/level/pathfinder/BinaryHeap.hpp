@@ -63,8 +63,8 @@ namespace mc
         }
 
         Node **heap;
-        int size;
         int capacity;
+        int size;
     };
     MC_CHECK_SIZE(BinaryHeap, 0xC);
 } // namespace mc
