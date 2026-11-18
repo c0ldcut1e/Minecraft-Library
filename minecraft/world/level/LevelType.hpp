@@ -37,9 +37,9 @@ namespace mc
             MLINK_FUNC(void, 0x0253EDCC, LevelType *, bool)(this, selectable);
         }
 
-        const mstd::basic_string<wchar_t> &getGeneratorName()
+        void getGeneratorName(mstd::basic_string<wchar_t> *out)
         {
-            return MLINK_FUNC(const mstd::basic_string<wchar_t> &, 0x0253F1C8, LevelType *)(this);
+            MLINK_FUNC(void, 0x0253F1C8, LevelType *, mstd::basic_string<wchar_t> *)(this, out);
         }
 
         int getVersion()
@@ -58,18 +58,18 @@ namespace mc
         }
 
         int id;
-        int version;
-        uint16_t field_0x8;
+        uint32_t field_0x4;
+        uint32_t field_0x8;
         uint32_t field_0xC;
         uint32_t field_0x10;
-        const wchar_t *generatorName;
+        uint32_t field_0x14;
         uint32_t field_0x18;
         uint32_t field_0x1C;
         uint32_t field_0x20;
-        int replacementVersion;
+        int version;
+        bool selectableByUser;
         bool hasReplacementFlag;
         bool hasHelpTextFlag;
-        bool selectableByUser;
         uint8_t field_0x2B;
     };
     MC_CHECK_SIZE(LevelType, 0x2C);
