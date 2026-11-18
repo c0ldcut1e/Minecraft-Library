@@ -8,6 +8,7 @@
 #include "LevelType.hpp"
 #include "MinecraftLib.hpp"
 #include "block/BlockPos.hpp"
+#include "internal/VTable.hpp"
 #include "internal/basic_string.hpp"
 #include "internal/shared_ptr.hpp"
 #include "internal/vector.hpp"
@@ -433,93 +434,88 @@ namespace mc
             return MLINK_FUNC(int, 0x025C2DCC, LevelData *)(this);
         }
 
-        uint32_t seedLow;
         uint32_t seedHigh;
+        uint32_t seedLow;
+        LevelType *generatorType;
+        SuperflatConfig *generatorOptions;
         int xSpawn;
         int ySpawn;
         int zSpawn;
-        uint32_t field_0x14;
-        uint32_t field_0x18;
         uint32_t field_0x1C;
-        uint32_t gameTimeLow;
         uint32_t gameTimeHigh;
-        uint32_t dayTimeLow;
+        uint32_t gameTimeLow;
         uint32_t dayTimeHigh;
-        uint32_t sizeOnDiskLow;
+        uint32_t dayTimeLow;
+        uint32_t lastPlayedHigh;
+        uint32_t lastPlayedLow;
         uint32_t sizeOnDiskHigh;
-        uint32_t field_0x38;
-        uint32_t field_0x3C;
+        uint32_t sizeOnDiskLow;
         uint32_t field_0x40;
+        // The game constructs and destroys this member with LevelData.
+        union
+        {
+            mstd::basic_string<wchar_t> levelName;
+        };
+        int version;
+        int clearWeatherTime;
         bool raining;
-        uint8_t field_0x45;
-        uint8_t field_0x46;
-        uint8_t field_0x47;
-        uint32_t field_0x48;
-        uint32_t field_0x4C;
-        uint32_t field_0x50;
-        uint32_t field_0x54;
-        uint32_t field_0x58;
-        uint32_t field_0x5C;
-        uint32_t field_0x60;
-        uint32_t field_0x64;
-        bool thundering;
         uint8_t field_0x6D;
         uint8_t field_0x6E;
         uint8_t field_0x6F;
-        uint32_t field_0x70;
-        bool initialized;
+        int rainTime;
+        bool thundering;
         uint8_t field_0x75;
         uint8_t field_0x76;
         uint8_t field_0x77;
-        uint32_t field_0x78;
+        int thunderTime;
         GameType *gameType;
         bool generateMapFeatures;
         bool hardcore;
         bool allowCommands;
-        bool difficultyLocked;
+        bool initialized;
         Difficulty *difficulty;
-        bool spawnBonusChest;
+        bool difficultyLocked;
         uint8_t field_0x89;
         uint8_t field_0x8A;
         uint8_t field_0x8B;
         uint32_t field_0x8C;
-        bool hasBeenInCreative;
-        uint8_t field_0x8D;
-        uint8_t field_0x8E;
-        uint8_t field_0x8F;
-        int clearWeatherTime;
-        int thunderTime;
+        uint32_t field_0x90;
+        uint32_t field_0x94;
         uint32_t field_0x98;
         uint32_t field_0x9C;
-        int rainTime;
-        uint32_t field_0xA4;
-        bool modernEnd;
-        bool useNewSeaLevelFlag;
-        uint8_t field_0xAA;
-        uint8_t field_0xAB;
+        uint32_t field_0xA0;
         int cloudHeight;
+        bool useNewSeaLevelFlag;
+        bool hasBeenInCreative;
+        bool spawnBonusChest;
+        uint8_t field_0xAB;
         int xzSize;
-        uint8_t biomeScale;
+        int hellScale;
+        bool modernEnd;
         uint8_t field_0xB5;
         uint8_t field_0xB6;
         uint8_t field_0xB7;
-        uint32_t field_0xB8;
+        int xStronghold;
         uint32_t field_0xBC;
-        uint32_t field_0xC0;
+        int zStronghold;
         bool hasStronghold;
         uint8_t field_0xC5;
         uint8_t field_0xC6;
         uint8_t field_0xC7;
-        uint32_t field_0xC8;
-        uint32_t field_0xCC;
+        int xStrongholdEndPortal;
+        int zStrongholdEndPortal;
         bool hasStrongholdEndPortal;
-        uint8_t field_0xD1;
+        uint8_t biomeScale;
         uint8_t field_0xD2;
         uint8_t field_0xD3;
         int biomeCentreXChunk;
         int biomeCentreZChunk;
-        uint32_t field_0xDC;
-        uint32_t vtable;
+        MC_UNDEFINED_TYPE(uint8_t, GameRules) gameRules;
+        uint8_t field_0xDD;
+        uint8_t field_0xDE;
+        uint8_t field_0xDF;
+        VTable *vtable;
+        uint32_t field_0xE4;
     };
-    MC_CHECK_SIZE(LevelData, 0xE4);
+    MC_CHECK_SIZE(LevelData, 0xE8);
 } // namespace mc
