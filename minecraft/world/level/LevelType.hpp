@@ -37,6 +37,7 @@ namespace mc
             MLINK_FUNC(void, 0x0253EDCC, LevelType *, bool)(this, selectable);
         }
 
+        // The game constructs the returned string in uninitialized storage.
         void getGeneratorName(mstd::basic_string<wchar_t> *out)
         {
             MLINK_FUNC(void, 0x0253F1C8, LevelType *, mstd::basic_string<wchar_t> *)(this, out);
@@ -58,14 +59,7 @@ namespace mc
         }
 
         int id;
-        uint32_t field_0x4;
-        uint32_t field_0x8;
-        uint32_t field_0xC;
-        uint32_t field_0x10;
-        uint32_t field_0x14;
-        uint32_t field_0x18;
-        uint32_t field_0x1C;
-        uint32_t field_0x20;
+        mstd::basic_string<wchar_t> name;
         int version;
         bool selectableByUser;
         bool hasReplacementFlag;
