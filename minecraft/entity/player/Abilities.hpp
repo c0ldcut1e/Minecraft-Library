@@ -5,12 +5,28 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "nbt/CompoundTag.hpp"
 
 namespace mc
 {
     class Abilities
     {
     public:
+        Abilities()
+        {
+            MLINK_FUNC(void, 0x0200E180, Abilities *)(this);
+        }
+
+        void addSaveData(CompoundTag *parentTag)
+        {
+            MLINK_FUNC(void, 0x0200E274, Abilities *, CompoundTag *)(this, parentTag);
+        }
+
+        void loadSaveData(CompoundTag *parentTag)
+        {
+            MLINK_FUNC(void, 0x0200E6F4, Abilities *, CompoundTag *)(this, parentTag);
+        }
+
         float getFlyingSpeed()
         {
             return MLINK_FUNC(float, 0x0200ED38, Abilities *)(this);
