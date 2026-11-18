@@ -9,7 +9,7 @@
 
 namespace mc
 {
-    class DataOutputStream;
+    class Level;
 
     class LevelChunk
     {
@@ -150,7 +150,7 @@ namespace mc
         uint32_t field_0x188;
         uint32_t field_0x18C;
         uint32_t field_0x190;
-        int chunkX;
+        Level *level;
         uint32_t field_0x198;
         uint32_t field_0x19C;
         uint32_t field_0x1A0;
@@ -159,7 +159,7 @@ namespace mc
         uint32_t field_0x1AC;
         uint32_t field_0x1B0;
         uint32_t field_0x1B4;
-        uint32_t field_0x1B8;
+        int chunkX;
         int chunkZ;
         uint32_t field_0x1C0;
         uint32_t field_0x1C4;
