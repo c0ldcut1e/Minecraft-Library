@@ -9,6 +9,7 @@
 #include "Packet.hpp"
 #include "container/Inventory.hpp"
 #include "internal/enable_shared_from_this.hpp"
+#include "internal/not_null_ptr.hpp"
 #include "internal/shared_ptr.hpp"
 #include "item/Item.hpp"
 #include "item/ItemInstance.hpp"
@@ -27,7 +28,7 @@ namespace mc
         static void craft(ClientPacketListener *listener, Inventory *inventory, int craftId, int itemId, int itemAmount, int itemAux)
         {
             listener->send(mboost::shared_ptr<Packet>(new CraftItemPacket(craftId, 0, 0)));
-            inventory->add(mboost::shared_ptr<ItemInstance>(new ItemInstance(Item::byId(itemId), itemAmount, itemAux)));
+            inventory->add(mboost::not_null_ptr<ItemInstance>(new ItemInstance(Item::byId(itemId), itemAmount, itemAux)));
         }
 
         [[nodiscard]] int GetCustomSlot(size_t index) const
