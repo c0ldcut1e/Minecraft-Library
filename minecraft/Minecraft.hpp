@@ -13,6 +13,7 @@
 #include "block/HalfTransparentBlock.hpp"
 #include "block/Material.hpp"
 #include "block/MaterialColor.hpp"
+#include "block/MutableBlockPos.hpp"
 #include "block/PortalBlock.hpp"
 #include "block/SoundType.hpp"
 #include "block/entity/BannerBlockEntity.hpp"
