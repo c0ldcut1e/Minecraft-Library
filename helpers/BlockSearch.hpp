@@ -20,8 +20,6 @@ namespace mc::helpers
         int firstZ       = 0;
     };
 
-    // Predicate receives a position and its state. maxVisits limits reads, and
-    // stopAfterFirst can be used when only the first matching position is needed.
     template<typename Predicate>
     BlockSearchResult searchBlocks(Level &level, const BlockRegion &region, uint64_t maxVisits, bool stopAfterFirst, Predicate predicate)
     {
@@ -55,4 +53,4 @@ namespace mc::helpers
                                        });
         return result;
     }
-} // namespace mc::helpers
+}

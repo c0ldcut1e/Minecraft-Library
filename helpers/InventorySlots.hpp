@@ -14,7 +14,6 @@ namespace mc::helpers
         int total   = 0;
     };
 
-    // The result reports the total even if the caller's output buffer is too small.
     inline SlotCollectionResult collectMatchingSlots(Inventory &inventory, const StackQuery &query, int first, int last, int *output, int capacity)
     {
         SlotCollectionResult result;
@@ -58,4 +57,4 @@ namespace mc::helpers
         }
         return result;
     }
-} // namespace mc::helpers
+}

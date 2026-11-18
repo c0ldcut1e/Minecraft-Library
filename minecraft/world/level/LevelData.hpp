@@ -451,7 +451,6 @@ namespace mc
         uint32_t sizeOnDiskHigh;
         uint32_t sizeOnDiskLow;
         uint32_t field_0x40;
-        // The game constructs and destroys this member with LevelData.
         union
         {
             mstd::basic_string<wchar_t> levelName;

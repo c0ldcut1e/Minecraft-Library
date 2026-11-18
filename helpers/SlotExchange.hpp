@@ -8,9 +8,6 @@
 
 namespace mc::helpers
 {
-    // Exchange two slots only when both game stacks exist and both destinations accept them.
-    // The game receives two setItem calls and their normal player notifications;
-    // the exchange is not atomic.
     inline bool exchangeSlots(Inventory &inventory, int first, int second)
     {
         const int size = inventory.getContainerSize();
@@ -43,4 +40,4 @@ namespace mc::helpers
         inventory.setChanged();
         return true;
     }
-} // namespace mc::helpers
+}

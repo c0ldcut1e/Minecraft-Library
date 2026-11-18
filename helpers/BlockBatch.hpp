@@ -15,8 +15,6 @@ namespace mc::helpers
         bool completed   = false;
     };
 
-    // Process at most maxVisits positions. Returning false from the callback stops
-    // after the current position, and the cursor resumes at the next one.
     template<typename Callback>
     BlockBatchResult processBlockBatch(Level &level, RegionCursor &cursor, uint64_t maxVisits, Callback callback)
     {
@@ -39,4 +37,4 @@ namespace mc::helpers
         result.completed = cursor.done;
         return result;
     }
-} // namespace mc::helpers
+}

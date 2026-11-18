@@ -15,9 +15,6 @@ namespace mc::helpers
         int64_t matchingItems = 0;
     };
 
-    // The callback receives the slot and a shared pointer; return false to stop.
-    // Copy the pointer inside the callback if it must outlive that call.
-    // Slots are scanned in [first, last), clamped to the inventory size.
     template<typename Callback>
     bool visitMatchingStacks(Inventory &inventory, const StackQuery &query, int first, int last, Callback callback)
     {
@@ -68,20 +65,4 @@ namespace mc::helpers
         return scanInventory(inventory, query, 0, inventory.getContainerSize());
     }
 
-    inline int findMatchingSlot(Inventory &inventory, const StackQuery &query, int first, int last)
-    {
-        int result = -1;
-        visitMatchingStacks(inventory, query, first, last,
-                            [&result](int slot, const mboost::shared_ptr<ItemInstance> &)
-                            {
-                                result = slot;
-                                return false;
-                            });
-        return result;
-    }
-
-    inline int findMatchingSlot(Inventory &inventory, const StackQuery &query)
-    {
-        return findMatchingSlot(inventory, query, 0, inventory.getContainerSize());
-    }
-} // namespace mc::helpers
+}

@@ -6,7 +6,6 @@
 
 namespace mc::helpers
 {
-    // Caller-owned cursor for spreading an inclusive region traversal across ticks.
     struct RegionCursor
     {
         BlockRegion bounds;
@@ -20,7 +19,8 @@ namespace mc::helpers
 
         bool current(int &outX, int &outY, int &outZ) const
         {
-            if (done || !bounds.valid() || !bounds.contains(x, y, z))
+            if (done || !bounds.valid() || x < bounds.minX || x > bounds.maxX || y < bounds.minY || y > bounds.maxY || z < bounds.minZ ||
+                z > bounds.maxZ)
             {
                 return false;
             }
@@ -32,7 +32,8 @@ namespace mc::helpers
 
         bool advance()
         {
-            if (done || !bounds.valid() || !bounds.contains(x, y, z))
+            if (done || !bounds.valid() || x < bounds.minX || x > bounds.maxX || y < bounds.minY || y > bounds.maxY || z < bounds.minZ ||
+                z > bounds.maxZ)
             {
                 done = true;
                 return false;
@@ -59,4 +60,4 @@ namespace mc::helpers
             return !done;
         }
     };
-} // namespace mc::helpers
+}
