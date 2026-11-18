@@ -5,6 +5,7 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/VTable.hpp"
 #include "internal/basic_string.hpp"
 
 namespace mc
@@ -49,9 +50,71 @@ namespace mc
 
         static Direction *east asm("0x109C46B4 - 0x502200");
 
+        static Direction *from3DDataValue(int value)
+        {
+            return MLINK_FUNC(Direction *, 0x0229A0A8, int)(value);
+        }
+
+        static Direction *from2DDataValue(int value)
+        {
+            return MLINK_FUNC(Direction *, 0x0229A288, int)(value);
+        }
+
+        static Direction *fromYRot(double rotation)
+        {
+            return MLINK_FUNC(Direction *, 0x0229A2D4, double)(rotation);
+        }
+
         Axis *getAxis()
         {
             return MLINK_FUNC(Axis *, 0x02298C78, Direction *)(this);
         }
+
+        int get3DDataValue() const
+        {
+            return MLINK_FUNC(int, 0x0229A088, const Direction *)(this);
+        }
+
+        int get2DDataValue() const
+        {
+            return MLINK_FUNC(int, 0x0229A090, const Direction *)(this);
+        }
+
+        uint8_t getOrdinal() const
+        {
+            return MLINK_FUNC(uint8_t, 0x0229A098, const Direction *)(this);
+        }
+
+        Direction *getOpposite() const
+        {
+            return MLINK_FUNC(Direction *, 0x0229A0FC, const Direction *)(this);
+        }
+
+        Direction *getClockWise() const
+        {
+            return MLINK_FUNC(Direction *, 0x0229A118, const Direction *)(this);
+        }
+
+        Direction *getCounterClockWise() const
+        {
+            return MLINK_FUNC(Direction *, 0x0229A1D0, const Direction *)(this);
+        }
+
+        VTable *vtable;
+        int data3D;
+        int oppositeIndex;
+        int data2D;
+        mstd::basic_string<wchar_t> name;
+        Axis *axis;
+        MC_UNDEFINED_TYPE(uint32_t *, Direction::AxisDirection) axisDirection;
+        MC_UNDEFINED_TYPE(uint32_t *, Vec3i) normal;
+        uint8_t ordinal;
+        uint8_t field_0x3D;
+        uint8_t field_0x3E;
+        uint8_t field_0x3F;
+        int stepX;
+        int stepY;
+        int stepZ;
     };
+    MC_CHECK_SIZE(Direction, 0x4C);
 } // namespace mc
