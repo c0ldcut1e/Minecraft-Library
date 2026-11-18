@@ -1,4 +1,17 @@
 #pragma once
+
+#include "helpers/BlockBatch.hpp"
+#include "helpers/BlockRegion.hpp"
+#include "helpers/BlockSearch.hpp"
+#include "helpers/BlockVolume.hpp"
+#include "helpers/ChunkCoordinates.hpp"
+#include "helpers/Durability.hpp"
+#include "helpers/InventoryQuery.hpp"
+#include "helpers/InventorySlots.hpp"
+#include "helpers/PlayerLookup.hpp"
+#include "helpers/RegionCursor.hpp"
+#include "helpers/SlotExchange.hpp"
+#include "helpers/StackQuery.hpp"
 // NOLINTBEGIN(misc-include-cleaner)
 
 #include "mlink/MLink.hpp"
