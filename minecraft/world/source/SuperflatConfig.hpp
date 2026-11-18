@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+#include "mlink/MLink.hpp"
+
 #include "MinecraftLib.hpp"
 #include "internal/basic_string.hpp"
 #include "internal/unordered_map.hpp"
@@ -21,6 +23,61 @@ namespace mc
     class SuperflatConfig
     {
     public:
+        bool hasParam(uint8_t param)
+        {
+            return MLINK_FUNC(bool, 0x02428BD4, SuperflatConfig *, uint8_t)(this, param);
+        }
+
+        bool hasOption(uint8_t param, uint8_t option)
+        {
+            return MLINK_FUNC(bool, 0x024300E8, SuperflatConfig *, uint8_t, uint8_t)(this, param, option);
+        }
+
+        SuperflatConfig *setDisplayname(const mstd::basic_string<wchar_t> &name)
+        {
+            return MLINK_FUNC(SuperflatConfig *, 0x0242F09C, SuperflatConfig *, const mstd::basic_string<wchar_t> &)(this, name);
+        }
+
+        void setVersion(uint8_t value)
+        {
+            MLINK_FUNC(void, 0x02433CC8, SuperflatConfig *, uint8_t)(this, value);
+        }
+
+        void addParam(uint8_t param)
+        {
+            MLINK_FUNC(void, 0x02431258, SuperflatConfig *, uint8_t)(this, param);
+        }
+
+        void removeParam(uint8_t param)
+        {
+            MLINK_FUNC(void, 0x0243187C, SuperflatConfig *, uint8_t)(this, param);
+        }
+
+        void setOption(uint8_t param, uint8_t option, uint8_t value)
+        {
+            MLINK_FUNC(void, 0x024314C4, SuperflatConfig *, uint8_t, uint8_t, uint8_t)(this, param, option, value);
+        }
+
+        uint8_t getOption(uint8_t param, uint8_t option)
+        {
+            return MLINK_FUNC(uint8_t, 0x02433CD0, SuperflatConfig *, uint8_t, uint8_t)(this, param, option);
+        }
+
+        uint8_t maybeOption(uint8_t param, uint8_t option, uint8_t fallback)
+        {
+            return MLINK_FUNC(uint8_t, 0x02433D80, SuperflatConfig *, uint8_t, uint8_t, uint8_t)(this, param, option, fallback);
+        }
+
+        void updateLayers()
+        {
+            MLINK_FUNC(void, 0x02431FB4, SuperflatConfig *)(this);
+        }
+
+        void clear()
+        {
+            MLINK_FUNC(void, 0x02433B5C, SuperflatConfig *)(this);
+        }
+
         mstd::basic_string<wchar_t> displayName;
         uint8_t version;
         uint8_t field_0x21;
