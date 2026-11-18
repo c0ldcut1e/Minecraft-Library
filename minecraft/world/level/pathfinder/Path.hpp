@@ -21,7 +21,7 @@ namespace mc
     public:
         Path(mc::ArrayWithLength<Node *> nodes)
         {
-            MLINK_FUNC(Path *, 0x0275639C, Path *, mc::ArrayWithLength<Node *>)(this, nodes);
+            MLINK_FUNC(Path *, 0x0275639C, Path *, mc::ArrayWithLength<Node *> *)(this, &nodes);
         }
 
         Path(const Path &other)
