@@ -5,6 +5,8 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "block/Block.hpp"
+#include "block/BlockState.hpp"
 #include "internal/basic_string.hpp"
 #include "internal/unordered_map.hpp"
 #include "internal/vector.hpp"
@@ -13,10 +15,67 @@ namespace mc
 {
     struct FlatLayerInfo
     {
-        uint32_t field_0x0;
-        uint32_t field_0x4;
-        uint32_t field_0x8;
-        uint32_t field_0xC;
+        FlatLayerInfo() = default;
+
+        FlatLayerInfo(int height, Block *block)
+        {
+            MLINK_FUNC(void, 0x0242DF50, FlatLayerInfo *, int, Block *)(this, height, block);
+        }
+
+        FlatLayerInfo(int height, int blockId, int data)
+        {
+            MLINK_FUNC(void, 0x0242DFD0, FlatLayerInfo *, int, int, int)(this, height, blockId, data);
+        }
+
+        FlatLayerInfo(int version, int height, Block *block, int data)
+        {
+            MLINK_FUNC(void, 0x0242E090, FlatLayerInfo *, int, int, Block *, int)(this, version, height, block, data);
+        }
+
+        int getStart() const
+        {
+            return MLINK_FUNC(int, 0x02428918, const FlatLayerInfo *)(this);
+        }
+
+        const BlockState *getBlockState() const
+        {
+            return MLINK_FUNC(const BlockState *, 0x02428920, const FlatLayerInfo *)(this);
+        }
+
+        int getHeight() const
+        {
+            return MLINK_FUNC(int, 0x0242A228, const FlatLayerInfo *)(this);
+        }
+
+        int getEnd() const
+        {
+            return MLINK_FUNC(int, 0x0242A230, const FlatLayerInfo *)(this);
+        }
+
+        void setHeight(int height)
+        {
+            MLINK_FUNC(void, 0x0242E128, FlatLayerInfo *, int)(this, height);
+        }
+
+        void setBlockState(const BlockState *state)
+        {
+            MLINK_FUNC(void, 0x0242E130, FlatLayerInfo *, const BlockState *)(this, state);
+        }
+
+        Block *getBlock() const
+        {
+            return MLINK_FUNC(Block *, 0x0242E138, const FlatLayerInfo *)(this);
+        }
+
+        void setStart(int start)
+        {
+            MLINK_FUNC(void, 0x0242E1D8, FlatLayerInfo *, int)(this, start);
+        }
+
+        int field_0x0;
+        const BlockState *blockState;
+        int height;
+        int start;
     };
     MC_CHECK_SIZE(FlatLayerInfo, 0x10);
 
