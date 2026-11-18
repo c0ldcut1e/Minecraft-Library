@@ -1239,9 +1239,9 @@ namespace mc
         uint32_t field_0x1284;
         uint32_t field_0x1288;
         uint32_t field_0x128C;
-        uint32_t field_0x1290;
-        uint32_t field_0x1294;
-        uint32_t field_0x1298;
+        void (*extDataCallback)(bool, void *);
+        void *extDataCallbackData;
+        void *extDataOutput;
         uint32_t field_0x129C;
         uint32_t field_0x12A0;
         uint32_t field_0x12A4;
