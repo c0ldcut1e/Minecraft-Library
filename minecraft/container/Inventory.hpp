@@ -31,6 +31,18 @@ namespace mc
             return MLINK_FUNC(int, 0x02497FEC)();
         }
 
+        bool isSameItem(mboost::not_null_ptr<ItemInstance> first, mboost::not_null_ptr<ItemInstance> second, bool ignoreTags)
+        {
+            return MLINK_FUNC(bool, 0x02497FF4, Inventory *, mboost::not_null_ptr<ItemInstance>, mboost::not_null_ptr<ItemInstance>,
+                              bool)(this, first, second, ignoreTags);
+        }
+
+        bool hasRemainingSpaceForItem(mboost::not_null_ptr<ItemInstance> first, mboost::not_null_ptr<ItemInstance> second, bool ignoreTags)
+        {
+            return MLINK_FUNC(bool, 0x024981D4, Inventory *, mboost::not_null_ptr<ItemInstance>, mboost::not_null_ptr<ItemInstance>,
+                              bool)(this, first, second, ignoreTags);
+        }
+
         void add(int slot, mboost::not_null_ptr<ItemInstance> item)
         {
             MLINK_FUNC(void, 0x0249C0D4, Inventory *, int, mboost::not_null_ptr<ItemInstance>)(this, slot, item);
@@ -61,6 +73,16 @@ namespace mc
             return MLINK_FUNC(int, 0x024998E0, Inventory *, mboost::not_null_ptr<ItemInstance>)(this, item);
         }
 
+        bool canDestroy(const BlockState *state)
+        {
+            return MLINK_FUNC(bool, 0x024A1014, Inventory *, const BlockState *)(this, state);
+        }
+
+        void getArmor(int slot, mboost::not_null_ptr<ItemInstance> *out)
+        {
+            MLINK_FUNC(void, 0x024A1270, Inventory *, mboost::not_null_ptr<ItemInstance> *, int)(this, out, slot);
+        }
+
         int getContainerData(int index)
         {
             return MLINK_FUNC(int, 0x024A2C80, Inventory *, int)(this, index);
@@ -89,6 +111,11 @@ namespace mc
         int getSlot(Item *item, int auxValue, CompoundTag *tag)
         {
             return MLINK_FUNC(int, 0x024A360C, Inventory *, Item *, int, CompoundTag *)(this, item, auxValue, tag);
+        }
+
+        int getSlotWithRemainingSpace(mboost::not_null_ptr<ItemInstance> item)
+        {
+            return MLINK_FUNC(int, 0x0249A7A8, Inventory *, mboost::not_null_ptr<ItemInstance>)(this, item);
         }
 
         int getSuitableHotbarSlot()
