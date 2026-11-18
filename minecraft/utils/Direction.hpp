@@ -7,6 +7,7 @@
 #include "MinecraftLib.hpp"
 #include "internal/VTable.hpp"
 #include "internal/basic_string.hpp"
+#include "utils/Vec3i.hpp"
 
 namespace mc
 {
@@ -127,7 +128,7 @@ namespace mc
         mstd::basic_string<wchar_t> name;
         Axis *axis;
         MC_UNDEFINED_TYPE(uint32_t *, Direction::AxisDirection) axisDirection;
-        MC_UNDEFINED_TYPE(uint32_t *, Vec3i) normal;
+        Vec3i *normal;
         uint8_t ordinal;
         uint8_t field_0x3D;
         uint8_t field_0x3E;

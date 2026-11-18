@@ -538,6 +538,7 @@
 #include "utils/Vec2.hpp"
 #include "utils/Vec2f.hpp"
 #include "utils/Vec3.hpp"
+#include "utils/Vec3i.hpp"
 #include "utils/eITEM_SLOT.hpp"
 #include "utils/ePARTICLE_TYPE.hpp"
 #include "world/Dimension.hpp"
