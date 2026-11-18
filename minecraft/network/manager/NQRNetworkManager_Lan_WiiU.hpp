@@ -31,6 +31,12 @@ namespace mc
             MLINK_FUNC(void, 0x03474E70, NQRNetworkManager_Lan_WiiU *, INQRNetworkManagerListener *)(this, listener);
         }
 
+        void GetExtDataForRoom(uint32_t roomId, void *extData, void (*callback)(bool, void *), void *callbackData)
+        {
+            MLINK_FUNC(void, 0x03484680, NQRNetworkManager_Lan_WiiU *, uint32_t, void *, void (*)(bool, void *), void *)(this, roomId, extData,
+                                                                                                                         callback, callbackData);
+        }
+
         void Tick()
         {
             MLINK_FUNC(void, 0x03475334, NQRNetworkManager_Lan_WiiU *)(this);

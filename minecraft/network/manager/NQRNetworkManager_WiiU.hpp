@@ -108,6 +108,12 @@ namespace mc
             return MLINK_FUNC(eNQRNetworkManagerInternalState, 0x0349941C, NQRNetworkManager_WiiU *)(this);
         }
 
+        void GetExtDataForRoom(uint32_t roomId, void *extData, void (*callback)(bool, void *), void *callbackData)
+        {
+            MLINK_FUNC(void, 0x0349C9C4, NQRNetworkManager_WiiU *, uint32_t, void *, void (*)(bool, void *), void *)(this, roomId, extData, callback,
+                                                                                                                     callbackData);
+        }
+
         int GetPlayerCount()
         {
             return MLINK_FUNC(int, 0x0349C9E8, NQRNetworkManager_WiiU *)(this);
