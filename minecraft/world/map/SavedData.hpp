@@ -5,6 +5,7 @@
 #include "mlink/MLink.hpp"
 
 #include "MinecraftLib.hpp"
+#include "internal/VTable.hpp"
 #include "internal/basic_string.hpp"
 
 namespace mc
@@ -19,27 +20,27 @@ namespace mc
 
         bool isDirty() const
         {
-            return dirty;
+            return MLINK_FUNC(bool, 0x027EC864, const SavedData *)(this);
         }
 
         void setDirty(bool state)
         {
-            dirty = state;
+            MLINK_FUNC(void, 0x027EC848, SavedData *, bool)(this, state);
         }
 
         void setDirty()
         {
-            setDirty(true);
+            MLINK_FUNC(void, 0x027EC850, SavedData *)(this);
         }
 
         uint32_t field_0x0;
         uint32_t field_0x4;
         mstd::basic_string<wchar_t> str;
-        bool field_0x25;
-        bool field_0x26;
-        bool field_0x27;
         bool dirty;
-        uint32_t field_0x2C;
+        uint8_t field_0x29;
+        uint8_t field_0x2A;
+        uint8_t field_0x2B;
+        VTable *vtable;
     };
     MC_CHECK_SIZE(SavedData, 0x30);
 } // namespace mc
