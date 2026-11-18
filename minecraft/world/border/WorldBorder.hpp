@@ -12,7 +12,6 @@
 
 namespace mc
 {
-    class BorderChangeListener;
     class Entity;
     class Level;
 
@@ -119,9 +118,9 @@ namespace mc
             MLINK_FUNC(void, 0x02A346C8, WorldBorder *, double, double, uint64_t)(this, fromSize, toSize, time);
         }
 
-        void addListener(BorderChangeListener *listener)
+        void addListener(MC_UNDEFINED_TYPE(uint32_t *, BorderChangeListener) listener)
         {
-            MLINK_FUNC(void, 0x02A34D5C, WorldBorder *, BorderChangeListener *)(this, listener);
+            MLINK_FUNC(void, 0x02A34D5C, WorldBorder *, MC_UNDEFINED_TYPE(uint32_t *, BorderChangeListener))(this, listener);
         }
 
         void setAbsoluteMaxSize(int size)
@@ -174,7 +173,7 @@ namespace mc
             MLINK_FUNC(void, 0x02A34FA8, WorldBorder *, int)(this, warningBlocks);
         }
 
-        VTable *vtable;
+        uint32_t field_0x0;
         uint32_t field_0x4;
         uint32_t field_0x8;
         uint32_t field_0xC;
@@ -186,13 +185,13 @@ namespace mc
         uint32_t field_0x34;
         uint32_t field_0x38;
         uint32_t field_0x3C;
-        uint32_t field_0x40;
+        int absoluteMaxSize;
         uint32_t field_0x44;
         double damagePerBlock;
         double damageSafeZone;
-        uint32_t field_0x58;
-        uint32_t field_0x5C;
-        Level *level;
+        int warningTime;
+        int warningBlocks;
+        VTable *vtable;
         uint32_t field_0x64;
     };
     MC_CHECK_SIZE(WorldBorder, 0x68);
