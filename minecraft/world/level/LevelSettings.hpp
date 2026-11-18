@@ -119,32 +119,32 @@ namespace mc
             return MLINK_FUNC(SuperflatConfig *, 0x025A203C, LevelSettings *)(this);
         }
 
-        uint32_t seedLow;
         uint32_t seedHigh;
+        uint32_t seedLow;
         const GameType *gameType;
         bool generateMapFeatures;
         bool hardcore;
         uint8_t field_0xE;
         uint8_t field_0xF;
-        LevelType *levelType;
-        bool allowCommands;
+        int cloudHeight;
+        bool useNewSeaLevelFlag;
         uint8_t field_0x15;
         uint8_t field_0x16;
         uint8_t field_0x17;
-        int cloudHeight;
-        bool useNewSeaLevelFlag;
-        bool modernEnd;
+        LevelType *levelType;
+        bool allowCommands;
+        bool startingBonusItems;
         uint8_t field_0x1E;
         uint8_t field_0x1F;
+        SuperflatConfig *levelTypeOptions;
         int xzSize;
         int hellScale;
-        int biomeCentreXChunk;
+        bool modernEnd;
         uint8_t biomeScale;
-        uint8_t field_0x2D;
         uint8_t field_0x2E;
         uint8_t field_0x2F;
+        int biomeCentreXChunk;
         int biomeCentreZChunk;
-        SuperflatConfig *levelTypeOptions;
     };
     MC_CHECK_SIZE(LevelSettings, 0x38);
 } // namespace mc
