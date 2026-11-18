@@ -59,9 +59,9 @@ namespace mc
             return MLINK_FUNC(int, 0x02758310, Path *)(this);
         }
 
-        Vec3 getPos(mboost::shared_ptr<Entity> entity, int index)
+        Vec3 *getPos(mboost::shared_ptr<Entity> entity, int index)
         {
-            return MLINK_FUNC(Vec3, 0x0275802C, Path *, mboost::shared_ptr<Entity>, int)(this, entity, index);
+            return MLINK_FUNC(Vec3 *, 0x0275802C, Path *, mboost::shared_ptr<Entity>, int)(this, entity, index);
         }
 
         int getSize()
@@ -94,14 +94,14 @@ namespace mc
             MLINK_FUNC(void, 0x0278B400, Path *)(this);
         }
 
-        Vec3 currentPos()
+        Vec3 *currentPos()
         {
-            return MLINK_FUNC(Vec3, 0x02758998, Path *)(this);
+            return MLINK_FUNC(Vec3 *, 0x02758998, Path *)(this);
         }
 
-        Vec3 currentPos(mboost::shared_ptr<Entity> entity)
+        Vec3 *currentPos(mboost::shared_ptr<Entity> entity)
         {
-            return MLINK_FUNC(Vec3, 0x02758214, Path *, mboost::shared_ptr<Entity>)(this, entity);
+            return MLINK_FUNC(Vec3 *, 0x02758214, Path *, mboost::shared_ptr<Entity>)(this, entity);
         }
 
         bool sameAs(Path *other)
