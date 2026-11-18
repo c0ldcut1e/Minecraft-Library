@@ -4,7 +4,7 @@
 
 #include "helpers/StackQuery.hpp"
 #include "minecraft/container/Inventory.hpp"
-#include "minecraft/internal/shared_ptr.hpp"
+#include "minecraft/internal/not_null_ptr.hpp"
 
 namespace mc::helpers
 {
@@ -29,8 +29,8 @@ namespace mc::helpers
         }
         for (int slot = first; slot < last; ++slot)
         {
-            mboost::shared_ptr<ItemInstance> stack;
-            inventory.getItem(static_cast<uint32_t>(slot), stack);
+            mboost::not_null_ptr<ItemInstance> stack;
+            inventory.getItem(static_cast<uint32_t>(slot), &stack);
             if (query.matches(stack.get()) && !callback(slot, stack))
             {
                 return false;
@@ -43,7 +43,7 @@ namespace mc::helpers
     {
         InventoryScanResult result;
         visitMatchingStacks(inventory, query, first, last,
-                            [&result](int slot, const mboost::shared_ptr<ItemInstance> &stack)
+                            [&result](int slot, const mboost::not_null_ptr<ItemInstance> &stack)
                             {
                                 if (result.firstSlot < 0)
                                 {

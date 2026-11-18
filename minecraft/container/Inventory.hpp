@@ -17,7 +17,7 @@
 
 namespace mc
 {
-    class Inventory : public Container
+    class Inventory
     {
     public:
         static bool isHotbarSlot(int slot)
@@ -110,9 +110,9 @@ namespace mc
             MLINK_FUNC(void, 0x024A22D8, Inventory *, mboost::shared_ptr<ItemInstance> &)(this, item);
         }
 
-        void getItem(uint32_t slot, mboost::shared_ptr<ItemInstance> &item)
+        void getItem(uint32_t slot, mboost::not_null_ptr<ItemInstance> *item)
         {
-            MLINK_FUNC(void, 0x024A0B9C, Inventory *, mboost::shared_ptr<ItemInstance> &, uint32_t)(this, item, slot);
+            MLINK_FUNC(void, 0x024A0B9C, Inventory *, mboost::not_null_ptr<ItemInstance> *, uint32_t)(this, item, slot);
         }
 
         bool hasPickedItem()
@@ -170,9 +170,9 @@ namespace mc
             MLINK_FUNC(void, 0x024994CC, Inventory *, mboost::not_null_ptr<ItemInstance>)(this, item);
         }
 
-        const mboost::shared_ptr<ItemInstance> &getSelected()
+        const mboost::not_null_ptr<ItemInstance> &getSelected()
         {
-            return MLINK_FUNC(const mboost::shared_ptr<ItemInstance> &, 0x02497F7C, Inventory *)(this);
+            return MLINK_FUNC(const mboost::not_null_ptr<ItemInstance> &, 0x02497F7C, Inventory *)(this);
         }
 
         void load(ListTag *listTag)
@@ -195,9 +195,9 @@ namespace mc
             MLINK_FUNC(void, 0x024A20E8, Inventory *)(this);
         }
 
-        void setItem(uint32_t index, const mboost::shared_ptr<ItemInstance> &item)
+        void setItem(uint32_t index, mboost::not_null_ptr<ItemInstance> item)
         {
-            MLINK_FUNC(void, 0x0249EFAC, Inventory *, uint32_t, const mboost::shared_ptr<ItemInstance> &)(this, index, item);
+            MLINK_FUNC(void, 0x0249EFAC, Inventory *, uint32_t, mboost::not_null_ptr<ItemInstance>)(this, index, item);
         }
 
         void swapPaint(int wheel)
@@ -210,20 +210,12 @@ namespace mc
             MLINK_FUNC(void, 0x0249BBF4, Inventory *)(this);
         }
 
-        uint32_t field_0xC;
-        uint32_t field_0x10;
-        uint32_t field_0x14;
-        uint32_t field_0x18;
-        uint32_t field_0x1C;
-        uint32_t field_0x20;
-        uint32_t field_0x24;
-        uint32_t field_0x28;
-        uint32_t field_0x2C;
-        uint32_t field_0x30;
-        uint32_t field_0x34;
+        uint32_t field_0x0;
+        uint32_t field_0x4;
         NonNullList<mboost::not_null_ptr<ItemInstance>> items;
         NonNullList<mboost::not_null_ptr<ItemInstance>> armor;
         NonNullList<mboost::not_null_ptr<ItemInstance>> offhand;
+        NonNullList<mboost::not_null_ptr<ItemInstance>> compartments[3];
         uint32_t field_0x68;
         int hotbarSlot;
         uint32_t field_0x70;

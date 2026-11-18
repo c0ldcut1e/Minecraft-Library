@@ -4,7 +4,7 @@
 
 #include "helpers/InventoryQuery.hpp"
 #include "minecraft/container/Inventory.hpp"
-#include "minecraft/internal/shared_ptr.hpp"
+#include "minecraft/internal/not_null_ptr.hpp"
 
 namespace mc::helpers
 {
@@ -18,7 +18,7 @@ namespace mc::helpers
     {
         SlotCollectionResult result;
         visitMatchingStacks(inventory, query, first, last,
-                            [&](int slot, const mboost::shared_ptr<ItemInstance> &)
+                            [&](int slot, const mboost::not_null_ptr<ItemInstance> &)
                             {
                                 if (output != nullptr && result.written < capacity)
                                 {
@@ -44,8 +44,8 @@ namespace mc::helpers
         }
         for (int slot = first; slot < last; ++slot)
         {
-            mboost::shared_ptr<ItemInstance> stack;
-            inventory.getItem(static_cast<uint32_t>(slot), stack);
+            mboost::not_null_ptr<ItemInstance> stack;
+            inventory.getItem(static_cast<uint32_t>(slot), &stack);
             if (!stack || stack->isEmpty())
             {
                 if (output != nullptr && result.written < capacity)

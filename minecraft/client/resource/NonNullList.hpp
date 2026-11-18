@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 namespace mc
 {
     template<typename T>
@@ -12,37 +14,37 @@ namespace mc
 
         iter begin()
         {
-            return start;
+            return elements;
         }
 
         citer begin() const
         {
-            return start;
+            return elements;
         }
 
         iter end()
         {
-            return finish;
+            return elements ? elements + size : elements;
         }
 
         citer end() const
         {
-            return finish;
+            return elements ? elements + size : elements;
         }
 
         T &operator[](int index)
         {
-            return static_cast<T *>(field_0x0)[index];
+            return elements[index];
         }
 
         const T &operator[](int index) const
         {
-            return static_cast<const T *>(field_0x0)[index];
+            return elements[index];
         }
 
-        void *field_0x0;
+        T *elements;
         int size;
-        T *start;
-        T *finish;
+        uint32_t field_0x8;
+        uint32_t field_0xC;
     };
 } // namespace mc

@@ -4,7 +4,6 @@
 
 #include "minecraft/container/Inventory.hpp"
 #include "minecraft/internal/not_null_ptr.hpp"
-#include "minecraft/internal/shared_ptr.hpp"
 
 namespace mc::helpers
 {
@@ -20,18 +19,16 @@ namespace mc::helpers
             return true;
         }
 
-        mboost::shared_ptr<ItemInstance> a;
-        mboost::shared_ptr<ItemInstance> b;
-        inventory.getItem(static_cast<uint32_t>(first), a);
-        inventory.getItem(static_cast<uint32_t>(second), b);
+        mboost::not_null_ptr<ItemInstance> a;
+        mboost::not_null_ptr<ItemInstance> b;
+        inventory.getItem(static_cast<uint32_t>(first), &a);
+        inventory.getItem(static_cast<uint32_t>(second), &b);
         if (!a || !b)
         {
             return false;
         }
 
-        mboost::not_null_ptr<ItemInstance> aForCheck(a.get(), a.detail);
-        mboost::not_null_ptr<ItemInstance> bForCheck(b.get(), b.detail);
-        if (!inventory.canPlaceItem(second, aForCheck) || !inventory.canPlaceItem(first, bForCheck))
+        if (!inventory.canPlaceItem(second, a) || !inventory.canPlaceItem(first, b))
         {
             return false;
         }
