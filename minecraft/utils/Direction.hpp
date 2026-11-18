@@ -121,6 +121,11 @@ namespace mc
             return MLINK_FUNC(Direction *, 0x0229A1D0, const Direction *)(this);
         }
 
+        void getNormal(Vec3i *out) const
+        {
+            MLINK_FUNC(void, 0x0229A9C8, Vec3i *, const Direction *)(out, this);
+        }
+
         VTable *vtable;
         int data3D;
         int oppositeIndex;
