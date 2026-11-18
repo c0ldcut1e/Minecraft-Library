@@ -141,6 +141,21 @@ namespace mc
             MLINK_FUNC(void, 0x0249D3FC, Inventory *, Level *, mboost::not_null_ptr<ItemInstance>)(this, level, item);
         }
 
+        void removeItem(uint32_t slot, int count, mboost::not_null_ptr<ItemInstance> *out)
+        {
+            MLINK_FUNC(void, 0x0249DE20, Inventory *, mboost::not_null_ptr<ItemInstance> *, uint32_t, int)(this, out, slot, count);
+        }
+
+        void removeItem(mboost::not_null_ptr<ItemInstance> item)
+        {
+            MLINK_FUNC(void, 0x0249E468, Inventory *, mboost::not_null_ptr<ItemInstance>)(this, item);
+        }
+
+        void removeItemNoUpdate(int slot, mboost::not_null_ptr<ItemInstance> *out)
+        {
+            MLINK_FUNC(void, 0x0249E84C, Inventory *, mboost::not_null_ptr<ItemInstance> *, int)(this, out, slot);
+        }
+
         bool removeResource(Item *item, bool includeOffhand)
         {
             return MLINK_FUNC(bool, 0x024A3C9C, Inventory *, Item *, bool)(this, item, includeOffhand);
