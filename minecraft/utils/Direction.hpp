@@ -30,8 +30,28 @@ namespace mc
                 Z = 2
             };
 
-            uint32_t field_0x0;
-            uint32_t field_0x4;
+            bool isHorizontal()
+            {
+                return MLINK_FUNC(bool, 0x02298C5C, Axis *)(this);
+            }
+
+            bool isVertical()
+            {
+                return MLINK_FUNC(bool, 0x0229AC7C, Axis *)(this);
+            }
+
+            Plane *getPlane()
+            {
+                return MLINK_FUNC(Plane *, 0x0229AB24, Axis *)(this);
+            }
+
+            EAxis getId()
+            {
+                return MLINK_FUNC(EAxis, 0x0229A110, Axis *)(this);
+            }
+
+            VTable *vtable;
+            VTable *secondaryVtable;
             mstd::basic_string<wchar_t> name;
             Plane *plane;
             EAxis axis;
